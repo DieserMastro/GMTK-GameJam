@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ch2bvudr6iaf6"]
 
-[ext_resource type="Script" uid="uid://3s8u8gf5i3fb" path="res://Player/player_main.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://3s8u8gf5i3fb" path="res://scenes/characters/player/player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://vdoysgnwtpds" path="res://icon.svg" id="2_4ntmi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m7wxx"]
@@ -18,7 +18,8 @@ shape = SubResource("CapsuleShape2D_m7wxx")
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_4ntmi")
 
-[node name="interactionRange" type="Area2D" parent="." unique_id=546827802]
+[node name="InteractionRange" type="Area2D" parent="." unique_id=546827802]
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="interactionRange" unique_id=1015802609]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionRange" unique_id=1015802609]
 shape = SubResource("CircleShape2D_m7wxx")
