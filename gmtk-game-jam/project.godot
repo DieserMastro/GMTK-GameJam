@@ -21,7 +21,7 @@ GameManager="*uid://c7agv2js546md"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg")
 
 [input]
 
