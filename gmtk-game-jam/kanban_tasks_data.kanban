@@ -10,7 +10,19 @@
 		{
 			"uuid": "018fc325-ef08-4ead-a35b-53c9082006ac",
 			"title": "Todo",
-			"tasks": []
+			"tasks": [
+				"68b44111-d68b-4b56-ad28-12eaa0cceb21",
+				"a2ddfc6a-d322-4926-8669-3385b7977ec9",
+				"0dca679b-69ef-408f-9d17-5ca9a4a39dd6",
+				"201ba6e6-8baf-49d2-b094-3573838ec1b7",
+				"aa25f036-5b8a-4874-ba00-9f1e9f93c20d",
+				"4bc150eb-0934-4767-b5c8-e483e09431d3",
+				"552e7a82-bcb4-4c5f-b35f-7aa7fb65adf7",
+				"6678aa17-7cec-43e8-8d1a-7ce1c54385d4",
+				"817eb799-8633-4c45-abc2-19484ee5a3de",
+				"e1b4ee52-df98-4956-9809-689460509136",
+				"4ee4351d-8b50-4917-b63e-69c43edc4a8a"
+			]
 		},
 		{
 			"uuid": "ddda3241-6cc0-4813-8d51-82318ccecaaa",
@@ -23,7 +35,158 @@
 			"tasks": []
 		}
 	],
-	"tasks": [],
+	"tasks": [
+		{
+			"uuid": "68b44111-d68b-4b56-ad28-12eaa0cceb21",
+			"title": "[Feat] Player controller",
+			"description": "",
+			"category": "2136e6eb-919f-4f44-b5c4-bbf2d8ed097d",
+			"steps": [
+				{
+					"details": "Simple movement",
+					"done": false
+				},
+				{
+					"details": "Animations",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "a2ddfc6a-d322-4926-8669-3385b7977ec9",
+			"title": "[Feat] Interaction",
+			"description": "",
+			"category": "2136e6eb-919f-4f44-b5c4-bbf2d8ed097d",
+			"steps": [
+				{
+					"details": "On input",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "0dca679b-69ef-408f-9d17-5ca9a4a39dd6",
+			"title": "[Feat] Mini game system",
+			"description": "Each game has its own logic\n",
+			"category": "2136e6eb-919f-4f44-b5c4-bbf2d8ed097d",
+			"steps": [
+				{
+					"details": "fade in",
+					"done": false
+				},
+				{
+					"details": "start its own game",
+					"done": false
+				},
+				{
+					"details": "fades out",
+					"done": false
+				},
+				{
+					"details": "has a timer",
+					"done": false
+				},
+				{
+					"details": "saves results to global state",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "201ba6e6-8baf-49d2-b094-3573838ec1b7",
+			"title": "[Feat] Timer",
+			"description": "Overarching timer of the entire game.\n\nTimer runs out => Game ends, we show result",
+			"category": "2136e6eb-919f-4f44-b5c4-bbf2d8ed097d",
+			"steps": []
+		},
+		{
+			"uuid": "aa25f036-5b8a-4874-ba00-9f1e9f93c20d",
+			"title": "[Feat] Mini game timer",
+			"description": "",
+			"category": "2136e6eb-919f-4f44-b5c4-bbf2d8ed097d",
+			"steps": []
+		},
+		{
+			"uuid": "4bc150eb-0934-4767-b5c8-e483e09431d3",
+			"title": "[Feat] Resources",
+			"description": "- Money\n- Food\n- Drinks\n- Overarching score\n\nNeed to be save in game state\n",
+			"category": "2136e6eb-919f-4f44-b5c4-bbf2d8ed097d",
+			"steps": []
+		},
+		{
+			"uuid": "552e7a82-bcb4-4c5f-b35f-7aa7fb65adf7",
+			"title": "[Feat] Global state",
+			"description": "",
+			"category": "2136e6eb-919f-4f44-b5c4-bbf2d8ed097d",
+			"steps": [
+				{
+					"details": "Keeps money",
+					"done": false
+				},
+				{
+					"details": "Keeps food",
+					"done": false
+				},
+				{
+					"details": "Keeps drinks",
+					"done": false
+				},
+				{
+					"details": "Keeps score",
+					"done": false
+				},
+				{
+					"details": "Keeps time",
+					"done": false
+				},
+				{
+					"details": "Keeps mini game status",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "6678aa17-7cec-43e8-8d1a-7ce1c54385d4",
+			"title": "[Feat] Simple main menu",
+			"description": "",
+			"category": "2136e6eb-919f-4f44-b5c4-bbf2d8ed097d",
+			"steps": [
+				{
+					"details": "Logo",
+					"done": false
+				},
+				{
+					"details": "Start",
+					"done": false
+				},
+				{
+					"details": "Credits",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "4ee4351d-8b50-4917-b63e-69c43edc4a8a",
+			"title": "[Feat] Come up with game name",
+			"description": "",
+			"category": "2136e6eb-919f-4f44-b5c4-bbf2d8ed097d",
+			"steps": []
+		},
+		{
+			"uuid": "817eb799-8633-4c45-abc2-19484ee5a3de",
+			"title": "[Feat] Dialogue",
+			"description": "Plugin for dialogue\n\nUpon interaction, dialogue starts.\n\nLetters come in sequentially, no fast forwarding, fixed dialogue speed. Every mini game has a dialogue before it transitions.\n\nPerhaps try different fixed speeds based on mini game's difficulty\n",
+			"category": "2136e6eb-919f-4f44-b5c4-bbf2d8ed097d",
+			"steps": []
+		},
+		{
+			"uuid": "e1b4ee52-df98-4956-9809-689460509136",
+			"title": "[Feat] Main scene",
+			"description": "Keeps managers and current scene",
+			"category": "2136e6eb-919f-4f44-b5c4-bbf2d8ed097d",
+			"steps": []
+		}
+	],
 	"layout": {
 		"columns": [
 			[
