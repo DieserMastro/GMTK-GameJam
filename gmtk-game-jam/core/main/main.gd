@@ -10,7 +10,7 @@ enum SCENE {
 
 var _current_scene: Node
 var _scene_paths: Dictionary[SCENE, String] = {
-	SCENE.TOWN_SQUARE: "uid://cq4pci732ymju",
+	SCENE.TOWN_SQUARE: "uid://b170u02mew26o",
 }
 
 

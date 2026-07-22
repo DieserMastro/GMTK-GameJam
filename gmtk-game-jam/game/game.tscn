@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b0vosv16q7rm7"]
+
+[ext_resource type="Script" uid="uid://bpggkrmqvpby" path="res://game/game.gd" id="1_vasa2"]
+[ext_resource type="PackedScene" uid="uid://b7i2j0w1tsafa" path="res://common/ui/fade_transition/fade_transition.tscn" id="2_h7iqs"]
+
+[node name="Game" type="Node" unique_id=431908219]
+script = ExtResource("1_vasa2")
+
+[node name="GameTimer" type="Timer" parent="." unique_id=1704357662]
+one_shot = true
+
+[node name="FadeTransition" parent="." unique_id=952596589 instance=ExtResource("2_h7iqs")]
+
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
