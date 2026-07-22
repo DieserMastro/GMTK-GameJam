@@ -11,4 +11,4 @@ wait_time = 10.0
 [node name="Characters" type="Node2D" parent="." index="2" unique_id=1453516371]
 
 [node name="Player" parent="Characters" index="0" unique_id=505119842 instance=ExtResource("2_em1hl")]
-position = Vector2(576, 320)
+position = Vector2(256, 256)
