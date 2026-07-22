@@ -2,14 +2,16 @@ class_name Main
 extends Node
 
 enum SCENE {
+	MAIN_MENU,
 	TOWN_SQUARE,
 }
 
 @export_group("Scenes")
-@export var initial_scene := SCENE.TOWN_SQUARE
+@export var initial_scene := SCENE.MAIN_MENU
 
 var _current_scene: Node
 var _scene_paths: Dictionary[SCENE, String] = {
+	SCENE.MAIN_MENU: "uid://can2dbsfqk2ii",
 	SCENE.TOWN_SQUARE: "uid://b170u02mew26o",
 }
 
