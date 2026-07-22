@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="GMTK gameJam"
+run/main_scene="uid://ch2bvudr6iaf6"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/kanban_tasks/plugin.cfg")
+enabled=PackedStringArray()
 
 [physics]
 
