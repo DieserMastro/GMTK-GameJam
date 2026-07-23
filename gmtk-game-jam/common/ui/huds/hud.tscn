@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dfy467pphqbvf"]
+
+[ext_resource type="Script" uid="uid://cni7ngvbekblt" path="res://common/ui/huds/hud.gd" id="1_2s4u0"]
+
+[node name="HUD" type="CanvasLayer" unique_id=1935746708]
+script = ExtResource("1_2s4u0")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1864772103]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimeLeftLabel" type="Label" parent="MarginContainer" unique_id=168906198]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_type_variation = &"TimerLabel"
+text = "00:00"
+
+[node name="TitleLabel" type="Label" parent="MarginContainer" unique_id=1733014648]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_type_variation = &"HeaderMedium"
+text = "Town Square"
