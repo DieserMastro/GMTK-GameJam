@@ -20,6 +20,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_released("run"):
 		_is_running = false
 
+	if event.is_action_pressed("interact"):
+		GameManager.main.load_scene(Main.SCENE.MINI_GAME)
+
 
 func _movement():
 	var direction := Input.get_vector("left", "right", "up", "down")

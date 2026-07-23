@@ -21,7 +21,6 @@ func _ready() -> void:
 
 
 func start_game_timer() -> void:
-	time_left = DEFAULT_TIME_LEFT_IN_S
 	time_left_changed.emit(time_left)
 	game_timer.start()
 
@@ -33,9 +32,9 @@ func reset_game_timer() -> void:
 
 
 func _on_game_timer_timeout() -> void:
-	time_left -= 1
+	time_left = max(0, time_left - 1)
 	time_left_changed.emit(time_left)
 
-	if time_left <= 0:
+	if time_left == 0:
 		game_timer.stop()
 		time_expired.emit()
