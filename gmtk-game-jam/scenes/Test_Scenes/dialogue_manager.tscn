@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dc3cpfcs5dn66"]
+
+[ext_resource type="Script" uid="uid://djsofijeesvx1" path="res://scenes/Test_Scenes/dialogue_manager.gd" id="1_fwsxm"]
+[ext_resource type="FontFile" uid="uid://c2ggcy1ttguqi" path="res://common/ui/fonts/Tiny5/Tiny5-Regular.ttf" id="2_llb4l"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_m7wxx"]
+font = ExtResource("2_llb4l")
+
+[node name="DialogueManager" type="CanvasLayer" unique_id=621769665]
+process_mode = 3
+script = ExtResource("1_fwsxm")
+
+[node name="DialogueBox" type="Control" parent="." unique_id=1730014913]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -128.0
+offset_right = -128.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="DialogueBox" unique_id=1723196435]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+color = Color(0, 0, 0, 0.5)
+
+[node name="DialogueText" type="Label" parent="DialogueBox" unique_id=1759084743]
+custom_minimum_size = Vector2(240, 48)
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 248.0
+offset_bottom = 56.0
+text = "Example Text Hihi"
+label_settings = SubResource("LabelSettings_m7wxx")
+autowrap_mode = 3
