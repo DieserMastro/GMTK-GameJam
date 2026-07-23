@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://yj615rn7aflx"]
+
+[ext_resource type="Script" uid="uid://c7agv2js546md" path="res://core/managers/game_manager.gd" id="1_vnh22"]
+
+[node name="GameManager" type="Node" unique_id=1164351822]
+script = ExtResource("1_vnh22")
+
+[node name="GameTimer" type="Timer" parent="." unique_id=392599265]
+
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
