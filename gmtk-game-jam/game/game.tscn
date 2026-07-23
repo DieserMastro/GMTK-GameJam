@@ -7,3 +7,4 @@
 script = ExtResource("1_vasa2")
 
 [node name="FadeTransition" parent="." unique_id=952596589 instance=ExtResource("2_h7iqs")]
+layer = 2
