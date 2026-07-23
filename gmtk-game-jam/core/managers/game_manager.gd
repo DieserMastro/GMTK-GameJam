@@ -3,7 +3,7 @@ extends Node
 signal time_left_changed(time_left: int)
 signal time_expired
 
-const DEFAULT_TIME_LEFT_IN_S := 5
+const DEFAULT_TIME_LEFT_IN_S := 600
 
 var money := 0
 var food := 0
