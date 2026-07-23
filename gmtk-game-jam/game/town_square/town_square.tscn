@@ -4,27 +4,31 @@
 [ext_resource type="Script" uid="uid://b325yy04pb0p1" path="res://game/town_square/town_square.gd" id="2_4vpmu"]
 [ext_resource type="PackedScene" uid="uid://ch2bvudr6iaf6" path="res://scenes/characters/player/player.tscn" id="2_em1hl"]
 [ext_resource type="PackedScene" uid="uid://dfy467pphqbvf" path="res://common/ui/huds/town_square_hud.tscn" id="3_68aj7"]
+[ext_resource type="PackedScene" uid="uid://cpl4yqbh11u4p" path="res://scenes/characters/npc/npc.tscn" id="5_v3tlx"]
 
 [node name="TownSquare" unique_id=431908219 instance=ExtResource("1_g2j7n")]
 script = ExtResource("2_4vpmu")
 
-[node name="TownSquareHUD" parent="." index="1" unique_id=1935746708 instance=ExtResource("3_68aj7")]
+[node name="TownSquareHUD" parent="." index="0" unique_id=1935746708 instance=ExtResource("3_68aj7")]
 
-[node name="Label" type="Label" parent="." index="2" unique_id=739712449]
+[node name="Label" type="Label" parent="." index="1" unique_id=739712449]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -18.0
-offset_right = 100.0
-offset_bottom = 18.0
+offset_left = -256.0
+offset_top = -256.0
+offset_right = -56.0
+offset_bottom = -220.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Town Square"
 
-[node name="Characters" type="Node2D" parent="." index="3" unique_id=1453516371]
+[node name="Characters" type="Node2D" parent="." index="2" unique_id=1453516371]
 
 [node name="Player" parent="Characters" index="0" unique_id=505119842 instance=ExtResource("2_em1hl")]
 position = Vector2(256, 256)
+
+[node name="NPC" parent="Characters" index="1" unique_id=1625721130 instance=ExtResource("5_v3tlx")]
+position = Vector2(64, 256)

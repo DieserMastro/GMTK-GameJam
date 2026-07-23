@@ -3,23 +3,18 @@
 [ext_resource type="Script" uid="uid://3s8u8gf5i3fb" path="res://scenes/characters/player/player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://vdoysgnwtpds" path="res://icon.svg" id="2_4ntmi"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m7wxx"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_m7wxx"]
-radius = 51.009804
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_stf77"]
+size = Vector2(26, 26)
 
 [node name="Player" type="CharacterBody2D" unique_id=505119842]
+collision_mask = 6
+motion_mode = 1
 script = ExtResource("1_4flbx")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=97906786]
-shape = SubResource("CapsuleShape2D_m7wxx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1781381797]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_4ntmi")
 
-[node name="InteractionRange" type="Area2D" parent="." unique_id=546827802]
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionRange" unique_id=1015802609]
-shape = SubResource("CircleShape2D_m7wxx")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=97906786]
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_stf77")

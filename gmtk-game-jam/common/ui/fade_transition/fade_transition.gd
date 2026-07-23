@@ -1,3 +1,4 @@
+@tool
 class_name FadeTransition
 extends CanvasLayer
 
@@ -13,6 +14,11 @@ const DEFAULT_FADE_OUT_DURATION := 1.0
 var _tween: Tween
 
 @onready var fade_rect: ColorRect = $FadeRect
+
+
+func _ready() -> void:
+	if Engine.is_editor_hint():
+		queue_free()
 
 
 func fade_in(duration := fade_in_duration) -> void:
