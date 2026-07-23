@@ -8,6 +8,7 @@ func _ready() -> void:
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
+	super(event)
 	if event.is_action_pressed("interact"):
 		GameManager.main.load_scene(Main.SCENE.TOWN_SQUARE)
 

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://r5i522rq1kch" path="res://common/ui/fade_transition/fade_transition.gd" id="1_ef0a5"]
 
 [node name="FadeTransition" type="CanvasLayer" unique_id=988272189]
+process_mode = 1
 layer = 2
 visible = false
 script = ExtResource("1_ef0a5")

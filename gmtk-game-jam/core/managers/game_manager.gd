@@ -31,6 +31,10 @@ func reset_game_timer() -> void:
 	game_timer.start()
 
 
+func pause_game_timer(pause: bool) -> void:
+	game_timer.paused = pause
+
+
 func _on_game_timer_timeout() -> void:
 	time_left = max(0, time_left - 1)
 	time_left_changed.emit(time_left)
