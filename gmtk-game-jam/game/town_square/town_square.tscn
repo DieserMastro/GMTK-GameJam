@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://b170u02mew26o"]
 
 [ext_resource type="PackedScene" uid="uid://b0vosv16q7rm7" path="res://game/game.tscn" id="1_g2j7n"]
+[ext_resource type="Script" uid="uid://b325yy04pb0p1" path="res://game/town_square/town_square.gd" id="2_4vpmu"]
 [ext_resource type="PackedScene" uid="uid://ch2bvudr6iaf6" path="res://scenes/characters/player/player.tscn" id="2_em1hl"]
+[ext_resource type="PackedScene" uid="uid://dfy467pphqbvf" path="res://common/ui/huds/town_square_hud.tscn" id="3_68aj7"]
 
 [node name="TownSquare" unique_id=431908219 instance=ExtResource("1_g2j7n")]
+script = ExtResource("2_4vpmu")
 
-[node name="GameTimer" parent="." index="0" unique_id=1704357662]
-wait_time = 10.0
+[node name="TownSquareHUD" parent="." index="0" unique_id=1935746708 instance=ExtResource("3_68aj7")]
 
 [node name="Characters" type="Node2D" parent="." index="2" unique_id=1453516371]
 
