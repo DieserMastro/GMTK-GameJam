@@ -1,9 +1,11 @@
+class_name HUD
 extends CanvasLayer
 
 @export var title := "Town Square"
 
-@onready var time_left_label: Label = $MarginContainer/TimeLeftLabel
-@onready var title_label: Label = $MarginContainer/TitleLabel
+@onready var time_left_label: Label = $ContentContainer/TimeLeftLabel
+@onready var title_label: Label = $ContentContainer/TitleLabel
+@onready var pause_container: Control = $PauseContainer
 
 
 func _init() -> void:
@@ -11,8 +13,17 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	_on_time_left_changed(GameManager.time_left)
 	title_label.text = title
+	if GameManager.time_left:
+		_on_time_left_changed(GameManager.time_left)
+
+
+func pause() -> void:
+	pause_container.show()
+
+
+func unpause() -> void:
+	pause_container.hide()
 
 
 func _on_time_left_changed(time_left: int) -> void:

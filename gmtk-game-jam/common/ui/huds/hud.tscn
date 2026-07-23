@@ -5,23 +5,54 @@
 [node name="HUD" type="CanvasLayer" unique_id=1935746708]
 script = ExtResource("1_2s4u0")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1864772103]
+[node name="ContentContainer" type="MarginContainer" parent="." unique_id=1864772103]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TimeLeftLabel" type="Label" parent="MarginContainer" unique_id=168906198]
+[node name="TimeLeftLabel" type="Label" parent="ContentContainer" unique_id=168906198]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_type_variation = &"TimerLabel"
 text = "00:00"
 
-[node name="TitleLabel" type="Label" parent="MarginContainer" unique_id=1733014648]
+[node name="TitleLabel" type="Label" parent="ContentContainer" unique_id=1733014648]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_type_variation = &"HeaderMedium"
 text = "Town Square"
+
+[node name="PauseContainer" type="Control" parent="." unique_id=1598784355]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="PauseContainer" unique_id=547832410]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="CenterContainer" type="CenterContainer" parent="PauseContainer" unique_id=1715843443]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseLabel" type="Label" parent="PauseContainer/CenterContainer" unique_id=99122549]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Paused"
