@@ -1,6 +1,9 @@
 extends CanvasLayer
 
-@onready var time_left_label: Label = $TimeLeftLabel
+@export var title := "Town Square"
+
+@onready var time_left_label: Label = $MarginContainer/TimeLeftLabel
+@onready var title_label: Label = $MarginContainer/TitleLabel
 
 
 func _init() -> void:
@@ -9,6 +12,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	_on_time_left_changed(GameManager.time_left)
+	title_label.text = title
 
 
 func _on_time_left_changed(time_left: int) -> void:

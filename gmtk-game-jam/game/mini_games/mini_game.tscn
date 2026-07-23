@@ -2,27 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://b0vosv16q7rm7" path="res://game/game.tscn" id="1_hd5nu"]
 [ext_resource type="Script" uid="uid://nhjssway1ymd" path="res://game/mini_games/mini_game.gd" id="2_70amm"]
-[ext_resource type="PackedScene" uid="uid://dfy467pphqbvf" path="res://common/ui/huds/town_square_hud.tscn" id="3_5womt"]
+[ext_resource type="PackedScene" uid="uid://dfy467pphqbvf" path="res://common/ui/huds/hud.tscn" id="3_5womt"]
 [ext_resource type="PackedScene" uid="uid://ch2bvudr6iaf6" path="res://scenes/characters/player/player.tscn" id="4_db6aq"]
 
 [node name="MiniGame" unique_id=431908219 instance=ExtResource("1_hd5nu")]
 script = ExtResource("2_70amm")
 
-[node name="TownSquareHUD" parent="." index="1" unique_id=1935746708 instance=ExtResource("3_5womt")]
+[node name="HUD" parent="." index="1" unique_id=1935746708 instance=ExtResource("3_5womt")]
+title = "Mini Game"
 
-[node name="Label" type="Label" parent="." index="2" unique_id=1724885228]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -256.0
-offset_right = -120.0
-offset_bottom = -220.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Mini game"
-
-[node name="Player" parent="." index="3" unique_id=505119842 instance=ExtResource("4_db6aq")]
+[node name="Player" parent="." index="2" unique_id=505119842 instance=ExtResource("4_db6aq")]
 position = Vector2(249, 223)
