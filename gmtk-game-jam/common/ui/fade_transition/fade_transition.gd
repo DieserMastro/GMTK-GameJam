@@ -17,8 +17,7 @@ var _tween: Tween
 
 
 func _ready() -> void:
-	if Engine.is_editor_hint():
-		queue_free()
+	_show_only_in_game()
 
 
 func fade_in(duration := fade_in_duration) -> void:
@@ -44,3 +43,10 @@ func _kill_tween() -> void:
 		return
 
 	_tween.kill()
+
+
+func _show_only_in_game() -> void:
+	if Engine.is_editor_hint():
+		hide()
+	else:
+		show()
