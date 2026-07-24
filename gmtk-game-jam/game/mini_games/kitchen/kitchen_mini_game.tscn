@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://dxvlmr187anxi"]
+
+[ext_resource type="PackedScene" uid="uid://cwrx7y4kaw1v5" path="res://game/mini_games/mini_game.tscn" id="1_exmhl"]
+[ext_resource type="PackedScene" uid="uid://ch2bvudr6iaf6" path="res://scenes/characters/player/player.tscn" id="2_2mbp5"]
+[ext_resource type="Script" uid="uid://bxwl5i2i8lbfl" path="res://game/mini_games/kitchen/kitchen_mini_game.gd" id="2_4awqa"]
+[ext_resource type="Texture2D" uid="uid://vdoysgnwtpds" path="res://icon.svg" id="2_diicf"]
+[ext_resource type="PackedScene" uid="uid://cl8ho73h70m67" path="res://scenes/interactables/interactable.tscn" id="4_wxaar"]
+[ext_resource type="Resource" uid="uid://dhtksiv7nkxa0" path="res://resources/interactables/chef.tres" id="5_7blyf"]
+[ext_resource type="Resource" uid="uid://cwsoxn5k3pbxd" path="res://resources/interactables/kitchen_table.tres" id="7_t4nur"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n340e"]
+
+[node name="KitchenMiniGame" unique_id=431908219 instance=ExtResource("1_exmhl")]
+script = ExtResource("2_4awqa")
+metadata/_edit_group_ = true
+
+[node name="Walls" type="StaticBody2D" parent="." index="2" unique_id=1295232296]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls" index="0" unique_id=1274645843]
+position = Vector2(236, 479)
+shape = SubResource("WorldBoundaryShape2D_n340e")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls" index="1" unique_id=612599072]
+position = Vector2(25, 292)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_n340e")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls" index="2" unique_id=1459053047]
+position = Vector2(451, 293)
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_n340e")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls" index="3" unique_id=396702738]
+position = Vector2(242, 72)
+rotation = -3.1415925
+shape = SubResource("WorldBoundaryShape2D_n340e")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls" index="4" unique_id=1447998804]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-41, 270)
+scale = Vector2(1, 4.4400024)
+texture = ExtResource("2_diicf")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Walls" index="5" unique_id=1790723679]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(238, 544)
+scale = Vector2(5.2000012, 1)
+texture = ExtResource("2_diicf")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Walls" index="6" unique_id=1029507689]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(515, 296)
+scale = Vector2(1, 5.1599975)
+texture = ExtResource("2_diicf")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Walls" index="7" unique_id=405119834]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(242, 7)
+scale = Vector2(5.9599953, 1)
+texture = ExtResource("2_diicf")
+
+[node name="Player" parent="." index="3" unique_id=505119842 instance=ExtResource("2_2mbp5")]
+position = Vector2(248, 265)
+
+[node name="Chef" parent="." index="4" unique_id=158379313 instance=ExtResource("4_wxaar")]
+position = Vector2(64, 256)
+interactable_resource = ExtResource("5_7blyf")
+
+[node name="Table" parent="." index="5" unique_id=1870566876 instance=ExtResource("4_wxaar")]
+position = Vector2(223.99997, 344)
+rotation = -1.5707964
+interactable_resource = ExtResource("7_t4nur")
+enabled = false
+
+[node name="TableLayer" type="CanvasLayer" parent="." index="6" unique_id=289619446]
+layer = 2
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="TableLayer" index="0" unique_id=855916188]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="interacted" from="Chef" to="." method="_on_chef_interacted"]
+[connection signal="interacted" from="Table" to="." method="_on_table_interacted"]

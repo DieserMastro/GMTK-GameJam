@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ClickableResource" format=3 uid="uid://n2pgweek6e8s"]
+
+[ext_resource type="Script" uid="uid://bkpys216jvj2m" path="res://resources/clickables/clickable_resource.gd" id="1_oaqqe"]
+[ext_resource type="Texture2D" uid="uid://vdoysgnwtpds" path="res://icon.svg" id="2_nrjfw"]
+
+[resource]
+script = ExtResource("1_oaqqe")
+texture = ExtResource("2_nrjfw")
+texture_when_complete = ExtResource("2_nrjfw")
+metadata/_custom_type_script = "uid://bkpys216jvj2m"

@@ -1,5 +1,5 @@
 class_name Game
-extends Node
+extends Node2D
 
 @onready var fade_transition: FadeTransition = $FadeTransition
 @onready var hud: HUD = $HUD
@@ -30,8 +30,6 @@ func _end() -> void:
 ## Override for logic that happens when game exits
 func _exit() -> void:
 	print("%s exiting" % name)
-	GameManager.reset_game_timer()
-	GameManager.main.load_scene(Main.SCENE.TOWN_SQUARE)
 
 
 func _toggle_pause() -> void:

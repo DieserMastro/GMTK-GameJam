@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="MiniGameInteractionResource" format=3 uid="uid://c5qlag3tu7c2f"]
+
+[ext_resource type="Script" uid="uid://b44bitmod4qs7" path="res://resources/interactions/mini_games/minigame_interaction_resource.gd" id="1_8cmtt"]
+
+[resource]
+script = ExtResource("1_8cmtt")
+mini_game = 2
+metadata/_custom_type_script = "uid://b44bitmod4qs7"

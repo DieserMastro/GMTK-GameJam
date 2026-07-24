@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://c3thcmvc25bv6"]
+
+[ext_resource type="PackedScene" uid="uid://cwrx7y4kaw1v5" path="res://game/mini_games/mini_game.tscn" id="1_tapj2"]
+[ext_resource type="Script" uid="uid://4p5w2okpclsl" path="res://game/mini_games/kitchen/table/kitchen_table_mini_game.gd" id="2_yrf5k"]
+[ext_resource type="PackedScene" uid="uid://7ioxjnfp55qg" path="res://scenes/clickables/clickable.tscn" id="3_ypf3e"]
+[ext_resource type="Resource" uid="uid://n2pgweek6e8s" path="res://resources/clickables/mixture_clickable.tres" id="4_4l0du"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1xhu4"]
+size = Vector2(16, 16)
+
+[node name="KitchenTableMiniGame" unique_id=431908219 instance=ExtResource("1_tapj2")]
+script = ExtResource("2_yrf5k")
+
+[node name="HUD" parent="." index="1" unique_id=1935746708]
+visible = false
+
+[node name="Table" type="Sprite2D" parent="." index="2" unique_id=1107412774]
+modulate = Color(0.6855397, 0.26536822, 9.62615e-08, 1)
+position = Vector2(237, 453.99997)
+scale = Vector2(20.593496, 1.5512209)
+texture = SubResource("PlaceholderTexture2D_1xhu4")
+
+[node name="Mixture" parent="." index="3" unique_id=1607775320 instance=ExtResource("3_ypf3e")]
+position = Vector2(339, 376)
+clickable_resource = ExtResource("4_4l0du")
+
+[connection signal="completed" from="Mixture" to="." method="_on_mixture_completed"]

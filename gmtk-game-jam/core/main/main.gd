@@ -4,7 +4,7 @@ extends Node
 enum SCENE {
 	MAIN_MENU,
 	TOWN_SQUARE,
-	MINI_GAME,
+	KITCHEN_GAME,
 }
 
 @export_group("Scenes")
@@ -14,7 +14,7 @@ var _current_scene: Node
 var _scene_paths: Dictionary[SCENE, String] = {
 	SCENE.MAIN_MENU: "uid://can2dbsfqk2ii",
 	SCENE.TOWN_SQUARE: "uid://b170u02mew26o",
-	SCENE.MINI_GAME: "uid://cwrx7y4kaw1v5",
+	SCENE.KITCHEN_GAME: "uid://dxvlmr187anxi",
 }
 
 

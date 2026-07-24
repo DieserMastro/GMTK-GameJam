@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://7ioxjnfp55qg"]
+
+[ext_resource type="Script" uid="uid://o2cohfb36a1w" path="res://scenes/clickables/clickable.gd" id="1_gakur"]
+[ext_resource type="Texture2D" uid="uid://vdoysgnwtpds" path="res://icon.svg" id="2_2xaig"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efr6i"]
+size = Vector2(128, 128)
+
+[node name="Clickable" type="Area2D" unique_id=1607775320]
+script = ExtResource("1_gakur")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=443016978]
+texture = ExtResource("2_2xaig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1369354479]
+shape = SubResource("RectangleShape2D_efr6i")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b7i2j0w1tsafa" path="res://common/ui/fade_transition/fade_transition.tscn" id="2_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://dfy467pphqbvf" path="res://common/ui/huds/hud.tscn" id="3_h7iqs"]
 
-[node name="Game" type="Node" unique_id=431908219]
+[node name="Game" type="Node2D" unique_id=2038440534]
 process_mode = 3
 script = ExtResource("1_vasa2")
 
