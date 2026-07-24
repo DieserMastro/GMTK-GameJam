@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://d2nsioyi4ya0b"]
+
+[ext_resource type="Script" uid="uid://wj8oyv6weyx5" path="res://scenes/components/drag_component/drag_component.gd" id="1_l3ne7"]
+
+[node name="DragComponent" type="Area2D" unique_id=962421988]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_l3ne7")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

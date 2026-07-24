@@ -5,10 +5,10 @@ signal time_expired
 
 const DEFAULT_TIME_LEFT_IN_S := 600
 
-var money := 0
-var food := 0
-var drinks := 0
-var score := 0
+var money := 0.0
+var food := 0.0
+var drinks := 0.0
+var score := 0.0
 var time_left := DEFAULT_TIME_LEFT_IN_S
 
 var main: Main

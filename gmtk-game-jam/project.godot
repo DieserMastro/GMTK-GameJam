@@ -88,10 +88,12 @@ pause={
 2d_physics/layer_2="interactable"
 2d_physics/layer_3="interaction_zone"
 2d_physics/layer_4="world"
+2d_physics/layer_5="draggable"
 
 [physics]
 
 3d/physics_engine="Jolt Physics"
+2d/default_gravity=490.0
 
 [rendering]
 

@@ -4,6 +4,8 @@ extends StaticBody2D
 
 signal interacted
 
+const INTERACTABLE_OUTLINE = preload("uid://cpjmjky3ccwkf")
+
 @export_group("Data")
 @export var interactable_resource: InteractableResource
 @export_group("Properties")
@@ -26,3 +28,11 @@ func _on_interactive_component_interacted() -> void:
 		interactable_resource.interaction_resource.interact(self)
 
 	interacted.emit()
+
+
+func _on_interactive_component_body_entered(_body: Node2D) -> void:
+	sprite.material = INTERACTABLE_OUTLINE
+
+
+func _on_interactive_component_body_exited(_body: Node2D) -> void:
+	sprite.material = null

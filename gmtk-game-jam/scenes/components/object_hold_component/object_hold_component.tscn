@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ciyqi01n7elf4"]
+
+[ext_resource type="Script" uid="uid://2bmols20tdhs" path="res://scenes/components/object_hold_component/object_hold_component.gd" id="1_07pmt"]
+
+[node name="ObjectHoldComponent" type="Node2D" unique_id=731818641]
+script = ExtResource("1_07pmt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1467571371]
+scale = Vector2(0.4, 0.4)
+
+[node name="Label" type="Label" parent="." unique_id=791334085]
+offset_right = 40.0
+offset_bottom = 36.0
+theme_type_variation = &"ObjectLabel"

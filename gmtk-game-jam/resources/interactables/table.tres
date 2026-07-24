@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="InteractableResource" format=3 uid="uid://df6l70rodbigf"]
+
+[ext_resource type="Script" uid="uid://drepfw6nrceyd" path="res://resources/interactables/interactable_resource.gd" id="1_wkpoi"]
+[ext_resource type="Texture2D" uid="uid://vdoysgnwtpds" path="res://icon.svg" id="2_urahy"]
+
+[resource]
+script = ExtResource("1_wkpoi")
+texture = ExtResource("2_urahy")
+metadata/_custom_type_script = "uid://drepfw6nrceyd"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ObjectResource" format=3 uid="uid://cjn8vot3hggo2"]
+
+[ext_resource type="Script" uid="uid://d0w7pjpcodj0q" path="res://resources/objects/object_resource.gd" id="1_2315k"]
+[ext_resource type="Texture2D" uid="uid://gw8ujrd460t7" path="res://assets/sprites/garnish.png" id="2_vd66v"]
+
+[resource]
+script = ExtResource("1_2315k")
+texture = ExtResource("2_vd66v")
+name = "Garnish"
+metadata/_custom_type_script = "uid://d0w7pjpcodj0q"

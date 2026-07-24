@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://6scta5rmi534"]
+
+[ext_resource type="Texture2D" uid="uid://vdoysgnwtpds" path="res://icon.svg" id="1_3l1mf"]
+[ext_resource type="Script" uid="uid://b4pb2m35wbf6q" path="res://scenes/draggables/draggable.gd" id="1_k2q1g"]
+[ext_resource type="PackedScene" uid="uid://d2nsioyi4ya0b" path="res://scenes/components/drag_component/drag_component.tscn" id="4_84xpg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1xhu4"]
+size = Vector2(38, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n340e"]
+size = Vector2(54, 54)
+
+[node name="Draggable" type="AnimatableBody2D" unique_id=363098984]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_k2q1g")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1027399129]
+texture = ExtResource("1_3l1mf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1462348924]
+shape = SubResource("RectangleShape2D_1xhu4")
+
+[node name="DragComponent" parent="." unique_id=962421988 instance=ExtResource("4_84xpg")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DragComponent" unique_id=429454166]
+shape = SubResource("RectangleShape2D_n340e")
+debug_color = Color(0.6403845, 0.5250959, 0, 0.41960785)
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="drag_ended" from="DragComponent" to="." method="_on_drag_component_drag_ended"]
+[connection signal="drag_started" from="DragComponent" to="." method="_on_drag_component_drag_started"]
