@@ -9,6 +9,7 @@ font = ExtResource("2_llb4l")
 [node name="DialogueManager" type="CanvasLayer" unique_id=621769665]
 process_mode = 3
 script = ExtResource("1_fwsxm")
+dialogue_lines = Array[String](["Yippie, some text", "even more text", ""])
 
 [node name="DialogueBox" type="Control" parent="." unique_id=1730014913]
 layout_mode = 3
@@ -39,3 +40,9 @@ offset_bottom = 56.0
 text = "Example Text Hihi"
 label_settings = SubResource("LabelSettings_m7wxx")
 autowrap_mode = 3
+
+[node name="Timer" type="Timer" parent="DialogueBox" unique_id=133031953]
+wait_time = 0.05
+one_shot = true
+
+[connection signal="timeout" from="DialogueBox/Timer" to="." method="_on_timer_timeout"]
