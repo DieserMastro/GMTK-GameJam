@@ -85,8 +85,9 @@ pause={
 [layer_names]
 
 2d_physics/layer_1="player"
-2d_physics/layer_2="npc"
+2d_physics/layer_2="interactable"
 2d_physics/layer_3="interaction_zone"
+2d_physics/layer_4="world"
 
 [physics]
 

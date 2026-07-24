@@ -2,13 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://b0vosv16q7rm7" path="res://game/game.tscn" id="1_hd5nu"]
 [ext_resource type="Script" uid="uid://nhjssway1ymd" path="res://game/mini_games/mini_game.gd" id="2_70amm"]
-[ext_resource type="PackedScene" uid="uid://ch2bvudr6iaf6" path="res://scenes/characters/player/player.tscn" id="4_db6aq"]
 
 [node name="MiniGame" unique_id=431908219 instance=ExtResource("1_hd5nu")]
 script = ExtResource("2_70amm")
 
 [node name="HUD" parent="." index="1" unique_id=1935746708]
 title = "Mini Game"
-
-[node name="Player" parent="." index="2" unique_id=505119842 instance=ExtResource("4_db6aq")]
-position = Vector2(249, 223)

@@ -3,7 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://b0vosv16q7rm7" path="res://game/game.tscn" id="1_g2j7n"]
 [ext_resource type="Script" uid="uid://b325yy04pb0p1" path="res://game/town_square/town_square.gd" id="2_4vpmu"]
 [ext_resource type="PackedScene" uid="uid://ch2bvudr6iaf6" path="res://scenes/characters/player/player.tscn" id="2_em1hl"]
-[ext_resource type="PackedScene" uid="uid://cpl4yqbh11u4p" path="res://scenes/characters/npc/npc.tscn" id="5_v3tlx"]
+[ext_resource type="PackedScene" uid="uid://cl8ho73h70m67" path="res://scenes/interactables/interactable.tscn" id="4_68aj7"]
+[ext_resource type="Resource" uid="uid://bdaqjh4hf64bw" path="res://resources/interactables/manager.tres" id="5_v3tlx"]
 
 [node name="TownSquare" unique_id=431908219 instance=ExtResource("1_g2j7n")]
 script = ExtResource("2_4vpmu")
@@ -13,5 +14,11 @@ script = ExtResource("2_4vpmu")
 [node name="Player" parent="Characters" index="0" unique_id=505119842 instance=ExtResource("2_em1hl")]
 position = Vector2(256, 256)
 
-[node name="NPC" parent="Characters" index="1" unique_id=1625721130 instance=ExtResource("5_v3tlx")]
+[node name="Manager" parent="Characters" index="1" unique_id=158379313 instance=ExtResource("4_68aj7")]
 position = Vector2(64, 256)
+interactable_resource = ExtResource("5_v3tlx")
+
+[node name="InteractiveComponent" parent="Characters/Manager" index="2" unique_id=1993090527]
+position = Vector2(24, 0)
+
+[editable path="Characters/Manager"]

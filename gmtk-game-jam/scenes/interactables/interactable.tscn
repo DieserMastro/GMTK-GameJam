@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cl8ho73h70m67"]
+
+[ext_resource type="Script" uid="uid://bhu4ih2tfs52i" path="res://scenes/interactables/interactable.gd" id="1_ikuv3"]
+[ext_resource type="PackedScene" uid="uid://2a4rngsu2huk" path="res://scenes/components/interactive_component/interactive_component.tscn" id="1_u3mly"]
+[ext_resource type="Texture2D" uid="uid://vdoysgnwtpds" path="res://icon.svg" id="2_irwer"]
+[ext_resource type="Shape2D" uid="uid://by10u0u7x8vpy" path="res://scenes/interactables/character_shape/character_shape.tres" id="3_u5smv"]
+
+[node name="Interactable" type="StaticBody2D" unique_id=158379313]
+collision_layer = 2
+script = ExtResource("1_ikuv3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=304418158]
+scale = Vector2(0.12000015, 0.16000046)
+texture = ExtResource("2_irwer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1354084234]
+shape = ExtResource("3_u5smv")
+
+[node name="InteractiveComponent" parent="." unique_id=1993090527 instance=ExtResource("1_u3mly")]
+
+[connection signal="interacted" from="InteractiveComponent" to="." method="_on_interactive_component_interacted"]
