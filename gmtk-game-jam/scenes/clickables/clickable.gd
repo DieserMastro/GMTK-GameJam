@@ -1,9 +1,13 @@
+@tool
+class_name Clickable
 extends Node2D
 
 signal completed
 
 @export_group("Data")
 @export var clickable_resource: ClickableResource
+@export_group("Properties")
+@export var enabled := true
 
 var _clicks_left := 5
 
@@ -18,8 +22,15 @@ func _ready() -> void:
 	_clicks_left = clickable_resource.clicks_needed
 
 
+func complete() -> void:
+	_clicks_left = 0
+
+	if clickable_resource:
+		sprite.texture = clickable_resource.texture_when_complete
+
+
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if _clicks_left == 0 or not event.is_pressed():
+	if _clicks_left == 0 or not event.is_pressed() or not enabled:
 		return
 
 	_clicks_left -= 1
@@ -30,7 +41,3 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 		sprite.texture = clickable_resource.texture_when_complete
 
 	completed.emit()
-
-
-func _on_body_entered(body: Node2D) -> void:
-	print(body)

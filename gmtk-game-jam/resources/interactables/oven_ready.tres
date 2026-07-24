@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InteractableResource" format=3 uid="uid://dyfybcescfaq8"]
+
+[ext_resource type="Shape2D" uid="uid://by10u0u7x8vpy" path="res://scenes/interactables/character_shape/character_shape.tres" id="1_cni5d"]
+[ext_resource type="Script" uid="uid://drepfw6nrceyd" path="res://resources/interactables/interactable_resource.gd" id="2_hrrqn"]
+[ext_resource type="Texture2D" uid="uid://brfbbnkjyrfet" path="res://scenes/characters/player/sprites/idle.png" id="3_cni5d"]
+
+[resource]
+script = ExtResource("2_hrrqn")
+texture = ExtResource("3_cni5d")
+collision_shape = ExtResource("1_cni5d")
+metadata/_custom_type_script = "uid://drepfw6nrceyd"

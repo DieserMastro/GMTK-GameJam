@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://lnn5d0ur6gfm"]
+
+[ext_resource type="Script" uid="uid://bdju733cabbeh" path="res://scenes/components/drop_zone_component/drop_zone_component.gd" id="1_2b6v8"]
+
+[node name="DropZoneComponent" type="Area2D" unique_id=1875523933]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_2b6v8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

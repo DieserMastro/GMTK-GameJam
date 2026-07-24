@@ -7,12 +7,22 @@
 [ext_resource type="PackedScene" uid="uid://cl8ho73h70m67" path="res://scenes/interactables/interactable.tscn" id="4_wxaar"]
 [ext_resource type="Resource" uid="uid://dhtksiv7nkxa0" path="res://resources/interactables/chef.tres" id="5_7blyf"]
 [ext_resource type="Resource" uid="uid://cwsoxn5k3pbxd" path="res://resources/interactables/kitchen_table.tres" id="7_t4nur"]
+[ext_resource type="Resource" uid="uid://cej0srahq64yr" path="res://resources/interactables/oven.tres" id="8_hd1pi"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n340e"]
 
 [node name="KitchenMiniGame" unique_id=431908219 instance=ExtResource("1_exmhl")]
 script = ExtResource("2_4awqa")
+oven_cooking_duration = 2.0
+food_reward = 5.0
+player_maximum_cake_speed = 100.0
 metadata/_edit_group_ = true
+
+[node name="CarefulProgressBar" type="ProgressBar" parent="HUD" parent_id_path=PackedInt32Array(1935746708) index="2" unique_id=2015282336]
+offset_left = 168.0
+offset_top = 16.0
+offset_right = 304.0
+offset_bottom = 56.0
 
 [node name="Walls" type="StaticBody2D" parent="." index="2" unique_id=1295232296]
 collision_layer = 8
@@ -74,7 +84,16 @@ rotation = -1.5707964
 interactable_resource = ExtResource("7_t4nur")
 enabled = false
 
-[node name="TableLayer" type="CanvasLayer" parent="." index="6" unique_id=289619446]
+[node name="Oven" parent="." index="6" unique_id=1492403898 instance=ExtResource("4_wxaar")]
+position = Vector2(200, 184)
+rotation = 1.5707964
+interactable_resource = ExtResource("8_hd1pi")
+enabled = false
+
+[node name="OvenTimer" type="Timer" parent="Oven" index="3" unique_id=872090508]
+one_shot = true
+
+[node name="TableLayer" type="CanvasLayer" parent="." index="7" unique_id=289619446]
 layer = 2
 visible = false
 
@@ -89,3 +108,5 @@ color = Color(0, 0, 0, 1)
 
 [connection signal="interacted" from="Chef" to="." method="_on_chef_interacted"]
 [connection signal="interacted" from="Table" to="." method="_on_table_interacted"]
+[connection signal="interacted" from="Oven" to="." method="_on_oven_interacted"]
+[connection signal="timeout" from="Oven/OvenTimer" to="." method="_on_oven_timer_timeout"]

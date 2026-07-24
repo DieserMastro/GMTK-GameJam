@@ -9,5 +9,7 @@ MarginContainer/constants/margin_bottom = 16
 MarginContainer/constants/margin_left = 16
 MarginContainer/constants/margin_right = 16
 MarginContainer/constants/margin_top = 16
+ObjectLabel/base_type = &"Label"
+ObjectLabel/font_sizes/font_size = 6
 TimerLabel/base_type = &"Label"
 TimerLabel/font_sizes/font_size = 16

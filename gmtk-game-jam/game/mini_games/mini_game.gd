@@ -3,14 +3,17 @@ extends Game
 
 signal exited
 
+var _can_exit_manually := false
+
 
 func _ready() -> void:
 	super()
 	fade_transition.fade_in()
 
 
-func _unhandled_key_input(event: InputEvent) -> void:
-	super(event)
+func _start() -> void:
+	super()
+	_can_exit_manually = true
 
 
 func _end() -> void:

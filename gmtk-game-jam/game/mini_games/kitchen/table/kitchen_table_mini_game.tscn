@@ -4,9 +4,22 @@
 [ext_resource type="Script" uid="uid://4p5w2okpclsl" path="res://game/mini_games/kitchen/table/kitchen_table_mini_game.gd" id="2_yrf5k"]
 [ext_resource type="PackedScene" uid="uid://7ioxjnfp55qg" path="res://scenes/clickables/clickable.tscn" id="3_ypf3e"]
 [ext_resource type="Resource" uid="uid://n2pgweek6e8s" path="res://resources/clickables/mixture_clickable.tres" id="4_4l0du"]
+[ext_resource type="PackedScene" uid="uid://6scta5rmi534" path="res://scenes/draggables/draggable.tscn" id="5_4l0du"]
+[ext_resource type="PackedScene" uid="uid://lnn5d0ur6gfm" path="res://scenes/components/drop_zone_component/drop_zone_component.tscn" id="5_ehgg7"]
+[ext_resource type="PackedScene" uid="uid://bgn0vyn0uq0ix" path="res://scenes/objects/object.tscn" id="7_3dexj"]
+[ext_resource type="Resource" uid="uid://uyr0ytc1fh54" path="res://resources/draggables/egg_resource.tres" id="7_sbbns"]
+[ext_resource type="Resource" uid="uid://c8fkav6qrxu1c" path="res://resources/objects/cake_object.tres" id="8_etnbf"]
+[ext_resource type="Texture2D" uid="uid://d3610a07s2874" path="res://assets/sprites/cake.png" id="9_l0ulh"]
+[ext_resource type="Resource" uid="uid://bogu0bbijg0s1" path="res://resources/draggables/garnish_resource.tres" id="13_oah0i"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1xhu4"]
 size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1xhu4"]
+size = Vector2(148, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7ty8"]
+size = Vector2(52, 54)
 
 [node name="KitchenTableMiniGame" unique_id=431908219 instance=ExtResource("1_tapj2")]
 script = ExtResource("2_yrf5k")
@@ -20,8 +33,45 @@ position = Vector2(237, 453.99997)
 scale = Vector2(20.593496, 1.5512209)
 texture = SubResource("PlaceholderTexture2D_1xhu4")
 
-[node name="Mixture" parent="." index="3" unique_id=1607775320 instance=ExtResource("3_ypf3e")]
+[node name="MixturePhase" type="Node2D" parent="." index="3" unique_id=1154494750]
+
+[node name="Mixture" parent="MixturePhase" index="0" unique_id=1607775320 instance=ExtResource("3_ypf3e")]
 position = Vector2(339, 376)
 clickable_resource = ExtResource("4_4l0du")
+enabled = false
 
-[connection signal="completed" from="Mixture" to="." method="_on_mixture_completed"]
+[node name="DropZoneComponent" parent="MixturePhase/Mixture" index="2" unique_id=1875523933 node_paths=PackedStringArray("sprite_to_outline") instance=ExtResource("5_ehgg7")]
+sprite_to_outline = NodePath("../Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MixturePhase/Mixture/DropZoneComponent" index="0" unique_id=1386030397]
+shape = SubResource("RectangleShape2D_1xhu4")
+
+[node name="Egg" parent="MixturePhase" index="1" unique_id=363098984 instance=ExtResource("5_4l0du")]
+position = Vector2(125, 418)
+draggable_resource = ExtResource("7_sbbns")
+
+[node name="GarnishPhase" type="Node2D" parent="." index="4" unique_id=1726015083]
+
+[node name="Cake" parent="GarnishPhase" index="0" unique_id=458700114 instance=ExtResource("7_3dexj")]
+position = Vector2(327, 426)
+object_resource = ExtResource("8_etnbf")
+
+[node name="Sprite2D" parent="GarnishPhase/Cake" index="0" unique_id=1124588674]
+texture = ExtResource("9_l0ulh")
+
+[node name="DropZoneComponent" parent="GarnishPhase/Cake" index="1" unique_id=1596987020 node_paths=PackedStringArray("sprite_to_outline") instance=ExtResource("5_ehgg7")]
+sprite_to_outline = NodePath("../Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GarnishPhase/Cake/DropZoneComponent" index="0" unique_id=1429914516]
+shape = SubResource("RectangleShape2D_c7ty8")
+
+[node name="Garnish" parent="GarnishPhase" index="1" unique_id=2116761473 instance=ExtResource("5_4l0du")]
+position = Vector2(127, 422)
+draggable_resource = ExtResource("13_oah0i")
+
+[connection signal="completed" from="MixturePhase/Mixture" to="." method="_on_mixture_completed"]
+[connection signal="dropped_into_drop_zone" from="MixturePhase/Egg" to="." method="_on_egg_dropped_into_drop_zone"]
+[connection signal="dropped_into_drop_zone" from="GarnishPhase/Garnish" to="." method="_on_garnish_dropped_into_drop_zone"]
+
+[editable path="MixturePhase/Mixture"]
+[editable path="GarnishPhase/Cake"]

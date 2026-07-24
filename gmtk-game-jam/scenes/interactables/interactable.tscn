@@ -18,4 +18,6 @@ shape = ExtResource("3_u5smv")
 
 [node name="InteractiveComponent" parent="." unique_id=1993090527 instance=ExtResource("1_u3mly")]
 
+[connection signal="body_entered" from="InteractiveComponent" to="." method="_on_interactive_component_body_entered"]
+[connection signal="body_exited" from="InteractiveComponent" to="." method="_on_interactive_component_body_exited"]
 [connection signal="interacted" from="InteractiveComponent" to="." method="_on_interactive_component_interacted"]

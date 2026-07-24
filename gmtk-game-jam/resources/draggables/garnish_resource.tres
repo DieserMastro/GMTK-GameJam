@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="DraggableResource" format=3 uid="uid://bogu0bbijg0s1"]
+
+[ext_resource type="Script" uid="uid://drc58io8bh1q1" path="res://resources/draggables/draggable_resource.gd" id="1_p1iik"]
+[ext_resource type="Texture2D" uid="uid://gw8ujrd460t7" path="res://assets/sprites/garnish.png" id="2_oqh46"]
+
+[resource]
+script = ExtResource("1_p1iik")
+texture = ExtResource("2_oqh46")
+metadata/_custom_type_script = "uid://drc58io8bh1q1"
