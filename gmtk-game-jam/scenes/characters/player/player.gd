@@ -14,6 +14,11 @@ var _interactive: InteractiveComponent
 @onready var object_hold_component: ObjectHoldComponent = $ObjectHoldComponent
 
 
+func _init() -> void:
+	DialogueManager.dialogue_started.connect(freeze)
+	DialogueManager.dialogue_completed.connect(unfreeze)
+
+
 func _physics_process(_delta: float):
 	if _is_frozen:
 		return

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DialogueInteractionResource" format=3 uid="uid://dkmv106j0qqil"]
+
+[ext_resource type="Script" uid="uid://shptia53mxru" path="res://resources/interactions/dialogue_interaction_resource.gd" id="1_w2gof"]
+[ext_resource type="Resource" uid="uid://c178mo3qmi0d4" path="res://resources/dialogues/chef_dialogue.tres" id="1_wt73w"]
+[ext_resource type="Resource" uid="uid://qsf36juxbxgo" path="res://resources/dialogues/chef_kitchen_done_dialogue.tres" id="2_w2gof"]
+
+[resource]
+script = ExtResource("1_w2gof")
+dialogue = ExtResource("1_wt73w")
+completed_dialogue = ExtResource("2_w2gof")
+mini_game = 2

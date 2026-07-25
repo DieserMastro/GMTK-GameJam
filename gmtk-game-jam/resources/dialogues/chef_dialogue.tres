@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DialogueResource" format=3 uid="uid://c178mo3qmi0d4"]
+
+[ext_resource type="Script" uid="uid://b16j8gviy27i0" path="res://resources/dialogues/dialogue_resource.gd" id="1_jhcbq"]
+
+[resource]
+script = ExtResource("1_jhcbq")
+lines = Array[String](["Thank god you're here!", "The festival starts soon, and we're out of cake!", "Hurry, make a few.", "Start at the table, put the ingredients together and mix the mixture.", "Put the mixture into the oven, but be careful of going too fast!", "Afterwards, put some garnish on top.", "Then the cake is ready for display.", "The cake can be displayed at the showcase on the right."])
+metadata/_custom_type_script = "uid://b16j8gviy27i0"

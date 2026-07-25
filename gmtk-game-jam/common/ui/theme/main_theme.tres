@@ -2,6 +2,13 @@
 
 [resource]
 default_font_size = 32
+DialogueBoxMarginContainer/base_type = &"MarginContainer"
+DialogueBoxMarginContainer/constants/margin_bottom = 8
+DialogueBoxMarginContainer/constants/margin_left = 8
+DialogueBoxMarginContainer/constants/margin_right = 8
+DialogueBoxMarginContainer/constants/margin_top = 8
+DialogueLabel/base_type = &"Label"
+DialogueLabel/font_sizes/font_size = 16
 HeaderLarge/font_sizes/font_size = 48
 HeaderMedium/base_type = &"Label"
 HeaderMedium/font_sizes/font_size = 20

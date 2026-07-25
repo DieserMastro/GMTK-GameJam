@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="DialogueInteractionResource" format=3 uid="uid://be71rtnf2da7p"]
+
+[ext_resource type="Script" uid="uid://b16j8gviy27i0" path="res://resources/dialogues/dialogue_resource.gd" id="1_gu07d"]
+[ext_resource type="Script" uid="uid://shptia53mxru" path="res://resources/interactions/dialogue_interaction_resource.gd" id="2_qmmpl"]
+
+[sub_resource type="Resource" id="Resource_qmmpl"]
+script = ExtResource("1_gu07d")
+lines = Array[String](["Well done, Jesse."])
+metadata/_custom_type_script = "uid://b16j8gviy27i0"
+
+[sub_resource type="Resource" id="Resource_0d1ac"]
+script = ExtResource("1_gu07d")
+lines = Array[String](["Jesse, it's time to cook."])
+metadata/_custom_type_script = "uid://b16j8gviy27i0"
+
+[resource]
+script = ExtResource("2_qmmpl")
+dialogue = SubResource("Resource_0d1ac")
+completed_dialogue = SubResource("Resource_qmmpl")
+should_go_to_destination = true
+dialogue_destination = 2
+mini_game = 2
+metadata/_custom_type_script = "uid://shptia53mxru"

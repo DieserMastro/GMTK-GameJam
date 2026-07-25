@@ -8,6 +8,7 @@ const INTERACTABLE_OUTLINE = preload("uid://cpjmjky3ccwkf")
 
 @export_group("Data")
 @export var interactable_resource: InteractableResource
+@export var interaction_resource: InteractionResource
 @export_group("Properties")
 @export var enabled: bool = true:
 	set(value):
@@ -54,8 +55,8 @@ func _on_interactive_component_interacted() -> void:
 	if interactable_resource.play_only_on_interaction:
 		sprite.play("default")
 
-	if interactable_resource.can_interact():
-		interactable_resource.interaction_resource.interact(self)
+	if interaction_resource:
+		interaction_resource.interact(self)
 
 	interacted.emit()
 

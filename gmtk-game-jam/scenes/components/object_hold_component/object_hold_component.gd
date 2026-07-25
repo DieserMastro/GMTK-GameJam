@@ -5,7 +5,6 @@ extends Node2D
 @export var object_resource: ObjectResource
 
 @onready var sprite: Sprite2D = $Sprite2D
-@onready var label: Label = $Label
 
 
 func _ready() -> void:

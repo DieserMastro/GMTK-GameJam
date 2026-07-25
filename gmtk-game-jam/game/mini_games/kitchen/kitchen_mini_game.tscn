@@ -1,11 +1,10 @@
 [gd_scene format=4 uid="uid://dxvlmr187anxi"]
 
 [ext_resource type="PackedScene" uid="uid://cwrx7y4kaw1v5" path="res://game/mini_games/mini_game.tscn" id="1_exmhl"]
-[ext_resource type="PackedScene" uid="uid://ch2bvudr6iaf6" path="res://scenes/characters/player/player.tscn" id="2_2mbp5"]
 [ext_resource type="Script" uid="uid://bxwl5i2i8lbfl" path="res://game/mini_games/kitchen/kitchen_mini_game.gd" id="2_4awqa"]
-[ext_resource type="Texture2D" uid="uid://br6uukya5p8a3" path="res://assets/sprites/kitchen_tilemap.png" id="3_qj3sd"]
 [ext_resource type="PackedScene" uid="uid://cl8ho73h70m67" path="res://scenes/interactables/interactable.tscn" id="4_wxaar"]
 [ext_resource type="Resource" uid="uid://dhtksiv7nkxa0" path="res://resources/interactables/chef.tres" id="5_7blyf"]
+[ext_resource type="Resource" uid="uid://dkmv106j0qqil" path="res://resources/interactions/dialogues/chef_kitchen_dialogue_interaction.tres" id="5_eguca"]
 [ext_resource type="Resource" uid="uid://df6l70rodbigf" path="res://resources/interactables/table.tres" id="7_hd1pi"]
 [ext_resource type="Texture2D" uid="uid://dw5q4crs4y016" path="res://assets/sprites/chef.png" id="7_k25f1"]
 [ext_resource type="Resource" uid="uid://cej0srahq64yr" path="res://resources/interactables/oven_free.tres" id="8_hd1pi"]
@@ -13,87 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://bu6ppcak5w1xr" path="res://assets/sprites/oven_empty.png" id="10_eguca"]
 [ext_resource type="Resource" uid="uid://qm4xcbsl28eb" path="res://resources/interactables/kitchen_showcase.tres" id="12_v3bvo"]
 [ext_resource type="Texture2D" uid="uid://bkpo6wu2168rd" path="res://assets/sprites/kitchen_showcase.png" id="13_quxeh"]
-[ext_resource type="Resource" uid="uid://daias6g427ok5" path="res://resources/interactables/kitchen_door.tres" id="14_k20tb"]
-[ext_resource type="Texture2D" uid="uid://cemy2fbwe8vdu" path="res://assets/sprites/kitchen_door.png" id="15_eguca"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k25f1"]
-texture = ExtResource("3_qj3sd")
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-3:0/0 = 0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-4:0/0 = 0
-4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-5:0/0 = 0
-5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-6:0/0 = 0
-6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-7:0/0 = 0
-0:1/0 = 0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:1/0 = 0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:1/0 = 0
-2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-3:1/0 = 0
-3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-4:1/0 = 0
-4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-5:1/0 = 0
-5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-6:1/0 = 0
-6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-7:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-5:2/0 = 0
-6:2/0 = 0
-6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-7:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-4:3/0 = 0
-5:3/0 = 0
-6:3/0 = 0
-6:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-7:3/0 = 0
-0:4/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-3:4/0 = 0
-4:4/0 = 0
-5:4/0 = 0
-6:4/0 = 0
-6:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-7:4/0 = 0
-0:5/0 = 0
-1:5/0 = 0
-2:5/0 = 0
-3:5/0 = 0
-4:5/0 = 0
-5:5/0 = 0
-6:5/0 = 0
-6:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-7:5/0 = 0
-5:7/0 = 0
-6:7/0 = 0
-7:7/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_1xhu4"]
-physics_layer_0/collision_layer = 8
-physics_layer_0/collision_mask = 0
-sources/0 = SubResource("TileSetAtlasSource_k25f1")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1xhu4"]
+distance = 8.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_eguca"]
 
@@ -189,22 +110,9 @@ size = Vector2(16, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k20tb"]
 size = Vector2(14, 49)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_nivet"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("15_eguca")
-}],
-"loop": 1,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_q2kpj"]
-radius = 8.062258
-
 [node name="KitchenMiniGame" unique_id=431908219 instance=ExtResource("1_exmhl")]
 script = ExtResource("2_4awqa")
+mini_game_scene = 2
 oven_cooking_duration = 10.0
 food_reward = 5.0
 player_maximum_cake_speed = 100.0
@@ -216,11 +124,19 @@ offset_top = 16.0
 offset_right = 304.0
 offset_bottom = 56.0
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." index="2" unique_id=989358465]
-tile_map_data = PackedByteArray("AAAIAAsAAAAAAAAAAAAIAAwAAAAAAAEAAAAIAA0AAAAAAAIAAAAIAA4AAAAAAAIAAAAIAA8AAAAAAAIAAAAIABAAAAAAAAIAAAAIABEAAAAAAAIAAAAJAAsAAAABAAAAAAAJAAwAAAABAAEAAAAJAA0AAAAAAAIAAAAJAA4AAAAAAAIAAAAJAA8AAAAAAAIAAAAJABAAAAAAAAIAAAAJABEAAAAAAAIAAAAKAAsAAAAAAAAAAAAKAAwAAAAAAAEAAAAKAA0AAAAAAAIAAAAKAA4AAAAAAAIAAAAKAA8AAAAAAAIAAAAKABAAAAAAAAIAAAAKABEAAAAAAAIAAAALAAsAAAABAAAAAAALAAwAAAABAAEAAAALAA0AAAAAAAIAAAALAA4AAAAAAAIAAAALAA8AAAAAAAIAAAALABAAAAAAAAIAAAALABEAAAAAAAIAAAAMAAsAAAACAAAAAAAMAAwAAAACAAEAAAAMAA0AAAAAAAIAAAAMAA4AAAAAAAIAAAAMAA8AAAAAAAIAAAAMABAAAAAAAAIAAAAMABEAAAAAAAIAAAANAAsAAAAAAAAAAAANAAwAAAADAAEAAAANAA0AAAAAAAIAAAANAA4AAAAAAAIAAAANAA8AAAAAAAIAAAANABAAAAAAAAIAAAANABEAAAAAAAIAAAAOAAsAAAABAAAAAAAOAAwAAAADAAEAAAAOAA0AAAAAAAIAAAAOAA4AAAAAAAIAAAAOAA8AAAAAAAIAAAAOABAAAAAAAAIAAAAOABEAAAAAAAIAAAAPAAsAAAAAAAAAAAAPAAwAAAADAAEAAAAPAA0AAAAAAAIAAAAPAA4AAAAAAAIAAAAPAA8AAAAAAAIAAAAPABAAAAAAAAIAAAAPABEAAAAAAAIAAAAQAAsAAAABAAAAAAAQAAwAAAAEAAEAAAAQAA0AAAAAAAIAAAAQAA4AAAAAAAIAAAAQAA8AAAAAAAIAAAAQABAAAAAAAAIAAAAQABEAAAAAAAIAAAARAA0AAAAAAAIAAAARAA4AAAAAAAIAAAARAA8AAAAAAAIAAAARABAAAAAAAAIAAAARABEAAAAAAAIAAAASAAsAAAAGAAAAAAASAAwAAAAGAAEAAAASAA0AAAAAAAIAAAASAA4AAAAAAAIAAAASAA8AAAAAAAIAAAASABAAAAAAAAIAAAASABEAAAAAAAIAAAATAAsAAAAGAAAAAAATAAwAAAAGAAEAAAAUAAsAAAAHAAAAAAAUAAwAAAAHAAEAAAAUAA0AAAAHAAIAAAAUAA4AAAAHAAMAAAAUAA8AAAAHAAQAAAAUABAAAAAHAAAAAAAUABEAAAAHAAEAAAARAAwAAAAFAAEAAAAIABIAAAAAAAIAAAAJABIAAAAAAAIAAAAKABIAAAAAAAIAAAALABIAAAAAAAIAAAAMABIAAAAAAAIAAAANABIAAAAAAAIAAAAOABIAAAAAAAIAAAAPABIAAAAAAAIAAAAQABIAAAAAAAIAAAARABIAAAAEAAUAAAASABIAAAAFAAUAAAAUABIAAAAHAAUAAAATAA0AAAAGAAEAAAATAA4AAAAGAAEAAAA=")
-tile_set = SubResource("TileSet_1xhu4")
+[node name="TileMapLayer" parent="." index="2" unique_id=1206871208]
+tile_map_data = PackedByteArray("AAANAA0AAgAAAAIAAAANAA4AAgAAAAIAAAANAA8AAgAAAAIAAAANABAAAgAAAAIAAAANABEAAgAAAAIAAAANABIAAgAAAAIAAAAOAA0AAgAAAAIAAAAOAA4AAgAAAAIAAAAOAA8AAgAAAAIAAAAOABAAAgAAAAIAAAAOABEAAgAAAAIAAAAOABIAAgAAAAIAAAAPAA0AAgAAAAIAAAAPAA4AAgAAAAIAAAAPAA8AAgAAAAIAAAAPABAAAgAAAAIAAAAPABEAAgAAAAIAAAAPABIAAgAAAAIAAAAQAA0AAgAAAAIAAAAQAA4AAgAAAAIAAAAQAA8AAgAAAAIAAAAQABAAAgAAAAIAAAAQABEAAgAAAAIAAAAQABIAAgAAAAIAAAARAA0AAgAAAAIAAAARAA4AAgAAAAIAAAARAA8AAgAAAAIAAAARABAAAgAAAAIAAAARABEAAgAAAAIAAAARABIAAgAAAAIAAAASAA0AAgAAAAIAAAASAA4AAgAAAAIAAAASAA8AAgAAAAIAAAASABAAAgAAAAIAAAASABEAAgAAAAIAAAATAA0AAgAAAAIAAAATAA4AAgAAAAIAAAATAA8AAgAAAAIAAAATABAAAgAAAAIAAAATABEAAgAAAAIAAAATABIAAgAAAAIAAAAUAA0AAgAGAAEAAAAUAA4AAgAGAAAAAAAUAA8AAgAGAAEAAAAUABAAAgAGAAAAAAAUABEAAgAGAAEAAAAUABIAAgAGAAAAAAAIAA0AAgAAAAIAAAAIAA4AAgAAAAIAAAAIAA8AAgAAAAIAAAAIABAAAgAAAAIAAAAIABEAAgAAAAIAAAAIABIAAgAAAAIAAAAJAA0AAgAAAAIAAAAJAA4AAgAAAAIAAAAJAA8AAgAAAAIAAAAJABAAAgAAAAIAAAAJABEAAgAAAAIAAAAJABIAAgAAAAIAAAAKAA0AAgAAAAIAAAAKAA4AAgAAAAIAAAAKAA8AAgAAAAIAAAAKABAAAgAAAAIAAAAKABEAAgAAAAIAAAAKABIAAgAAAAIAAAALAA0AAgAAAAIAAAALAA4AAgAAAAIAAAALAA8AAgAAAAIAAAALABAAAgAAAAIAAAALABEAAgAAAAIAAAALABIAAgAAAAIAAAAMAA0AAgAAAAIAAAAMAA4AAgAAAAIAAAAMAA8AAgAAAAIAAAAMABAAAgAAAAIAAAAMABEAAgAAAAIAAAAMABIAAgAAAAIAAAAIAAsAAgAAAAIAAAAIAAwAAgAAAAIAAAAJAAsAAgAAAAIAAAAJAAwAAgAAAAIAAAAKAAsAAgAAAAIAAAAKAAwAAgAAAAIAAAALAAsAAgAAAAIAAAALAAwAAgAAAAIAAAAMAAsAAgAAAAIAAAAMAAwAAgAAAAIAAAANAAsAAgAAAAIAAAANAAwAAgAAAAIAAAAOAAsAAgAAAAIAAAAOAAwAAgAAAAIAAAAPAAsAAgAAAAIAAAAPAAwAAgAAAAIAAAAQAAsAAgAAAAIAAAAQAAwAAgAAAAIAAAARAAsAAgAAAAIAAAARAAwAAgAAAAIAAAASAAsAAgAAAAIAAAASAAwAAgAAAAIAAAASABIAAgAAAAIAAAATAAsAAgAAAAIAAAATAAwAAgAAAAIAAAAUAAsAAgAGAAEAAAAUAAwAAgAGAAAAAAAIAAkAAgAAAAEAAAAJAAkAAgABAAEAAAAKAAkAAgAAAAEAAAALAAkAAgABAAEAAAAMAAkAAgAAAAEAAAANAAkAAgABAAEAAAAOAAkAAgACAAEAAAAPAAkAAgADAAEAAAAQAAkAAgAEAAEAAAARAAkAAgAFAAEAAAASAAkAAgADAAEAAAATAAkAAgAEAAEAAAAUAAkAAgAGAAEAAAAIAAgAAgAAAAAAAAAJAAgAAgABAAAAAAAKAAgAAgAAAAAAAAALAAgAAgABAAAAAAAMAAgAAgAAAAAAAAANAAgAAgABAAAAAAAOAAgAAgACAAAAAAAPAAgAAgADAAAAAAAQAAgAAgAEAAAAAAARAAgAAgAFAAAAAAASAAgAAgADAAAAAAATAAgAAgAEAAAAAAAUAAgAAgAGAAAAAAAIABMAAgAAAAIAAAAJABMAAgAAAAIAAAAKABMAAgAAAAIAAAALABMAAgAAAAIAAAAMABMAAgAAAAIAAAANABMAAgAAAAIAAAAOABMAAgAAAAIAAAAPABMAAgAAAAIAAAAQABMAAgAAAAIAAAARABMAAgAAAAIAAAASABMAAgAAAAIAAAATABMAAgAAAAIAAAAUABMAAgAGAAEAAAAIAAoAAgAAAAIAAAAJAAoAAgAAAAIAAAAKAAoAAgAAAAIAAAALAAoAAgAAAAIAAAAMAAoAAgAAAAIAAAANAAoAAgAAAAIAAAAOAAoAAgAAAAIAAAAPAAoAAgAAAAIAAAAQAAoAAgAAAAIAAAARAAoAAgAAAAIAAAASAAoAAgAAAAIAAAATAAoAAgAAAAIAAAAUAAoAAgAGAAAAAAA=")
 
-[node name="Walls" type="Node2D" parent="." index="3" unique_id=1253551247]
+[node name="Player" parent="." index="3" unique_id=505119842]
+position = Vector2(288, 296)
+
+[node name="Camera2D" parent="Player" index="3" unique_id=1976386145]
+zoom = Vector2(2.75, 2.75)
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="Walls" type="Node2D" parent="." index="4" unique_id=1253551247]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Walls" index="0" unique_id=1023323356]
 position = Vector2(224, 304)
@@ -228,7 +144,7 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D" index="0" unique_id=541942783]
-position = Vector2(0, -3)
+position = Vector2(0, 24)
 shape = SubResource("WorldBoundaryShape2D_1xhu4")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls/StaticBody2D" index="1" unique_id=1559107720]
@@ -236,13 +152,14 @@ position = Vector2(-93, -50)
 rotation = 1.5707964
 shape = SubResource("WorldBoundaryShape2D_eguca")
 
-[node name="Chef" parent="." index="4" unique_id=158379313 instance=ExtResource("4_wxaar")]
-position = Vector2(148, 214)
+[node name="Chef" parent="." index="5" unique_id=158379313 instance=ExtResource("4_wxaar")]
+position = Vector2(152, 224)
 interactable_resource = ExtResource("5_7blyf")
+interaction_resource = ExtResource("5_eguca")
 
 [node name="AnimatedSprite2D" parent="Chef" index="0" unique_id=1880559299]
 sprite_frames = SubResource("SpriteFrames_hd1pi")
-frame_progress = 0.057512548
+frame_progress = 0.53129363
 
 [node name="InteractiveComponent" parent="Chef" index="2" unique_id=1993090527]
 position = Vector2(21, 0)
@@ -250,14 +167,14 @@ position = Vector2(21, 0)
 [node name="CollisionShape2D" parent="Chef/InteractiveComponent" index="0" unique_id=405062491]
 shape = SubResource("CircleShape2D_eguca")
 
-[node name="Table" parent="." index="5" unique_id=1870566876 instance=ExtResource("4_wxaar")]
-position = Vector2(148, 254)
+[node name="Table" parent="." index="6" unique_id=1870566876 instance=ExtResource("4_wxaar")]
+position = Vector2(160, 296)
 interactable_resource = ExtResource("7_hd1pi")
 enabled = false
 
 [node name="AnimatedSprite2D" parent="Table" index="0" unique_id=1880559299]
 sprite_frames = SubResource("SpriteFrames_qj3sd")
-frame_progress = 0.057512548
+frame_progress = 0.5687806
 
 [node name="CollisionShape2D" parent="Table" index="1" unique_id=1354084234]
 shape = SubResource("RectangleShape2D_k25f1")
@@ -270,8 +187,8 @@ position = Vector2(-32, 8)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_q2kpj")
 
-[node name="Oven" parent="." index="6" unique_id=1492403898 instance=ExtResource("4_wxaar")]
-position = Vector2(280, 184)
+[node name="Oven" parent="." index="7" unique_id=1492403898 instance=ExtResource("4_wxaar")]
+position = Vector2(280, 136)
 rotation = 1.5707964
 interactable_resource = ExtResource("8_hd1pi")
 enabled = false
@@ -294,13 +211,13 @@ shape = SubResource("CapsuleShape2D_b3fwt")
 [node name="OvenTimer" type="Timer" parent="Oven" index="3" unique_id=872090508]
 one_shot = true
 
-[node name="Showcase" parent="." index="7" unique_id=1644408972 instance=ExtResource("4_wxaar")]
-position = Vector2(312, 272)
+[node name="Showcase" parent="." index="8" unique_id=1644408972 instance=ExtResource("4_wxaar")]
+position = Vector2(328, 240)
 interactable_resource = ExtResource("12_v3bvo")
 
 [node name="AnimatedSprite2D" parent="Showcase" index="0" unique_id=1880559299]
 sprite_frames = SubResource("SpriteFrames_quxeh")
-frame_progress = 0.057512548
+frame_progress = 0.5687806
 
 [node name="CollisionShape2D" parent="Showcase" index="1" unique_id=1354084234]
 shape = SubResource("RectangleShape2D_quxeh")
@@ -322,24 +239,7 @@ position = Vector2(0, -16)
 [node name="CakeThree" type="Marker2D" parent="Showcase/ShowcaseCakeMarkers" index="2" unique_id=1915348207]
 position = Vector2(0, 16)
 
-[node name="Door" parent="." index="8" unique_id=678913382 instance=ExtResource("4_wxaar")]
-position = Vector2(172, 303)
-interactable_resource = ExtResource("14_k20tb")
-
-[node name="AnimatedSprite2D" parent="Door" index="0" unique_id=1880559299]
-sprite_frames = SubResource("SpriteFrames_nivet")
-frame_progress = 0.057512548
-
-[node name="InteractiveComponent" parent="Door" index="2" unique_id=1993090527]
-position = Vector2(0, -10)
-
-[node name="CollisionShape2D" parent="Door/InteractiveComponent" index="0" unique_id=405062491]
-shape = SubResource("CircleShape2D_q2kpj")
-
-[node name="Player" parent="." index="9" unique_id=505119842 instance=ExtResource("2_2mbp5")]
-position = Vector2(256, 256)
-
-[node name="TableLayer" type="CanvasLayer" parent="." index="10" unique_id=289619446]
+[node name="TableLayer" type="CanvasLayer" parent="." index="9" unique_id=289619446]
 layer = 2
 visible = false
 
@@ -357,7 +257,6 @@ color = Color(0, 0, 0, 1)
 [connection signal="interacted" from="Oven" to="." method="_on_oven_interacted"]
 [connection signal="timeout" from="Oven/OvenTimer" to="." method="_on_oven_timer_timeout"]
 [connection signal="interacted" from="Showcase" to="." method="_on_showcase_interacted"]
-[connection signal="interacted" from="Door" to="." method="_on_door_interacted"]
 
 [editable path="Chef"]
 [editable path="Chef/InteractiveComponent"]
@@ -367,5 +266,3 @@ color = Color(0, 0, 0, 1)
 [editable path="Oven/InteractiveComponent"]
 [editable path="Showcase"]
 [editable path="Showcase/InteractiveComponent"]
-[editable path="Door"]
-[editable path="Door/InteractiveComponent"]

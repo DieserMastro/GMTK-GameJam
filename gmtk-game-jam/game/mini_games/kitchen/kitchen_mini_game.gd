@@ -20,6 +20,7 @@ const TABLE_MINI_GAME_PACKED := preload("uid://c3thcmvc25bv6")
 const MIXTURE_OBJECT_RESOURCE = preload("uid://dd4by80jhcg6w")
 const OBJECT = preload("uid://bgn0vyn0uq0ix")
 
+
 @export_group("Properties")
 @export var oven_cooking_duration := 10.0
 @export var food_reward := 5.0
@@ -34,13 +35,11 @@ var _showcase_cake_markers = []
 @onready var oven: Interactable = $Oven
 @onready var showcase: Interactable = $Showcase
 @onready var chef: Interactable = $Chef
-@onready var door: Interactable = $Door
 @onready var table_layer: CanvasLayer = $TableLayer
-@onready var player: Player = $Player
 @onready var careful_progress_bar: ProgressBar = $HUD/CarefulProgressBar
 @onready var oven_timer: Timer = $Oven/OvenTimer
 
-
+ 
 func _ready() -> void:
 	super()
 	_change_state(STATE.DIALOGUE)
@@ -65,7 +64,6 @@ func _change_state(new_state: STATE) -> void:
 			table.disable()
 			oven.disable()
 			showcase.disable()
-			door.disable()
 			chef.enable()
 		STATE.MIXING:
 			oven.disable()
@@ -98,9 +96,9 @@ func _change_state(new_state: STATE) -> void:
 		STATE.DONE:
 			table.disable()
 			showcase.disable()
-			chef.disable()
 			oven.disable()
-			door.enable()
+			chef.enable()
+			_complete()
 
 	_state = new_state
 
@@ -116,7 +114,11 @@ func _reset() -> void:
 
 
 func _on_chef_interacted() -> void:
-	_change_state(STATE.MIXING)
+	match _state:
+		STATE.DIALOGUE:
+			_change_state(STATE.MIXING)
+		STATE.DONE:
+			DialogueManager.dialogue_completed.connect(_end, CONNECT_ONE_SHOT)
 
 
 func _on_table_interacted() -> void:
@@ -129,6 +131,7 @@ func _on_table_interacted() -> void:
 	_table_mini_game.mixture_ready.connect(_on_mixture_ready)
 	_table_mini_game.cake_complete.connect(_on_cake_complete)
 	_table_mini_game.exited.connect(_on_table_mini_game_exited)
+	_table_mini_game.should_limit_camera = false
 	table_layer.add_child(_table_mini_game)
 	var table_phase := KitchenTableMiniGame.STATE.MIXTURE_PHASE if _state == STATE.MIXING else KitchenTableMiniGame.STATE.GARNISH_PHASE
 	_table_mini_game.spawn(table_phase)
@@ -193,7 +196,3 @@ func _is_showcase_full() -> bool:
 			return false
 
 	return true
-
-
-func _on_door_interacted() -> void:
-	_end()

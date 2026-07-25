@@ -10,14 +10,38 @@ var food := 0.0
 var drinks := 0.0
 var score := 0.0
 var time_left := DEFAULT_TIME_LEFT_IN_S
+var finished_mini_games: Array[Main.SCENE] = []
 
 var main: Main
+var town_square_player_position := Vector2.ZERO
 
 @onready var game_timer: Timer = $GameTimer
 
 
 func _ready() -> void:
 	game_timer.wait_time = 1.0
+
+
+func reset_run() -> void:
+	money = 0.0
+	food = 0.0
+	drinks = 0.0
+	score = 0.0
+	finished_mini_games.clear()
+	town_square_player_position = Vector2.ZERO
+	game_timer.stop()
+	time_left = DEFAULT_TIME_LEFT_IN_S
+
+
+func complete_mini_game(mini_game: Main.SCENE) -> void:
+	if is_mini_game_finished(mini_game):
+		return
+
+	finished_mini_games.append(mini_game)
+
+
+func is_mini_game_finished(mini_game: Main.SCENE) -> bool:
+	return finished_mini_games.has(mini_game)
 
 
 func start_game_timer() -> void:

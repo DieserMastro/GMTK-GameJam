@@ -2,9 +2,12 @@
 
 [ext_resource type="Script" uid="uid://ihmn7eksbxu0" path="res://core/main/main.gd" id="1_8fcwd"]
 [ext_resource type="PackedScene" uid="uid://yj615rn7aflx" path="res://core/managers/game_manager.tscn" id="2_6vymn"]
+[ext_resource type="PackedScene" uid="uid://dc3cpfcs5dn66" path="res://scenes/Test_Scenes/dialogue_manager.tscn" id="3_vwfi5"]
 
 [node name="Main" type="Node" unique_id=2037038990]
 process_mode = 3
 script = ExtResource("1_8fcwd")
 
 [node name="GameManager" parent="." unique_id=1164351822 instance=ExtResource("2_6vymn")]
+
+[node name="DialogueManager" parent="." unique_id=621769665 instance=ExtResource("3_vwfi5")]
