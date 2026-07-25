@@ -1,9 +1,23 @@
 extends MiniGame
 
+enum STATE {
+	DIALOGUE,
+	MIXING,
+	OVEN_FREE,
+	OVEN_BUSY,
+	OVEN_DONE,
+	GARNISH,
+	SHOWCASE,
+	DONE,
+}
+
 const TABLE_MINI_GAME_PACKED := preload("uid://c3thcmvc25bv6")
-const OVEN_READY_RESOURCE = preload("uid://dyfybcescfaq8")
-const MIXTURE_OBJECT = preload("uid://dd4by80jhcg6w")
-const CAKE_OBJECT = preload("uid://c8fkav6qrxu1c")
+const OVEN_RESOURCE = preload("uid://cej0srahq64yr")
+const OVEN_BUSY_RESOURCE = preload("uid://dyfybcescfaq8")
+const MIXTURE_OBJECT_RESOURCE = preload("uid://dd4by80jhcg6w")
+const CAKE_OBJECT_RESOURCE = preload("uid://c8fkav6qrxu1c")
+const OBJECT = preload("uid://bgn0vyn0uq0ix")
+const SHOWCASE_CAKE_SCALE := 0.2
 
 @export_group("Properties")
 @export var oven_cooking_duration := 10.0
@@ -11,13 +25,15 @@ const CAKE_OBJECT = preload("uid://c8fkav6qrxu1c")
 @export_group("Player")
 @export var player_maximum_cake_speed := 100.0
 
+var _state := STATE.DIALOGUE
 var _table_mini_game: KitchenTableMiniGame
-var _mixture_ready := false
-var _cake_ready := false
-var _cake_complete := false
+var _showcase_cake_markers = []
 
 @onready var table: Interactable = $Table
 @onready var oven: Interactable = $Oven
+@onready var showcase: Interactable = $Showcase
+@onready var chef: Interactable = $Chef
+@onready var door: Interactable = $Door
 @onready var table_layer: CanvasLayer = $TableLayer
 @onready var player: Player = $Player
 @onready var careful_progress_bar: ProgressBar = $HUD/CarefulProgressBar
@@ -26,23 +42,64 @@ var _cake_complete := false
 
 func _ready() -> void:
 	super()
-	table_layer.hide()
-
-	careful_progress_bar.max_value = player.SPEED
-	careful_progress_bar.hide()
-
+	_change_state(STATE.DIALOGUE)
+	careful_progress_bar.max_value = player_maximum_cake_speed
 	oven_timer.wait_time = oven_cooking_duration
+	_showcase_cake_markers = $Showcase/ShowcaseCakeMarkers.get_children()
 
 
-func _process(_delta: float) -> void:
-	if not _mixture_ready or not oven.enabled or not table.enabled:
-		return
+func _physics_process(_delta: float) -> void:
+	match _state:
+		STATE.OVEN_FREE, STATE.GARNISH:
+			careful_progress_bar.value = player.velocity.length()
+			if player.velocity.length() > player_maximum_cake_speed:
+				_reset()
 
-	careful_progress_bar.value = player.velocity.length()
 
-	if careful_progress_bar.value > player_maximum_cake_speed:
-		print("Too fast, dropped mixture or cake, resetting minigame")
-		_reset()
+func _change_state(new_state: STATE) -> void:
+	match new_state:
+		STATE.DIALOGUE:
+			table_layer.hide()
+			careful_progress_bar.hide()
+			table.disable()
+			oven.disable()
+			showcase.disable()
+			door.disable()
+			chef.enable()
+		STATE.MIXING:
+			oven.disable()
+			showcase.disable()
+			chef.disable()
+			table.enable()
+			careful_progress_bar.value = 0.0
+		STATE.OVEN_FREE:
+			oven.enable()
+			table.disable()
+			careful_progress_bar.show()
+		STATE.OVEN_BUSY:
+			careful_progress_bar.hide()
+			oven.disable()
+			table.disable()
+			oven_timer.start()
+			oven.set_resource(OVEN_BUSY_RESOURCE)
+		STATE.OVEN_DONE:
+			oven.enable()
+		STATE.GARNISH:
+			table.enable()
+			oven.set_resource(OVEN_RESOURCE)
+			careful_progress_bar.show()
+		STATE.SHOWCASE:
+			careful_progress_bar.hide()
+			table.disable()
+			showcase.enable()
+		STATE.DONE:
+			table.disable()
+			showcase.disable()
+			chef.disable()
+			oven.disable()
+			door.enable()
+
+	_state = new_state
 
 
 func _end() -> void:
@@ -51,17 +108,12 @@ func _end() -> void:
 
 
 func _reset() -> void:
+	_change_state(STATE.MIXING)
 	player.drop_object()
-	oven.enabled = false
-	table.enabled = true
-	_mixture_ready = false
-	_cake_ready = false
-	_cake_complete = false
 
 
 func _on_chef_interacted() -> void:
-	print("Spoke to chef, enabling table")
-	table.enabled = true
+	_change_state(STATE.MIXING)
 
 
 func _on_table_interacted() -> void:
@@ -75,20 +127,18 @@ func _on_table_interacted() -> void:
 	_table_mini_game.cake_complete.connect(_on_cake_complete)
 	_table_mini_game.exited.connect(_on_table_mini_game_exited)
 	table_layer.add_child(_table_mini_game)
-	_table_mini_game.spawn({ "mixture_ready": _mixture_ready })
+	var table_phase := KitchenTableMiniGame.STATE.MIXTURE_PHASE if _state == STATE.MIXING else KitchenTableMiniGame.STATE.GARNISH_PHASE
+	_table_mini_game.spawn(table_phase)
 	table_layer.show()
 
 
 func _on_mixture_ready() -> void:
-	_mixture_ready = true
-	oven.enabled = true
-	player.give_object(MIXTURE_OBJECT)
-	careful_progress_bar.show()
+	_change_state(STATE.OVEN_FREE)
+	player.give_object(MIXTURE_OBJECT_RESOURCE)
 
 
 func _on_cake_complete() -> void:
-	GameManager.food += food_reward
-	_cake_complete = true
+	_change_state(STATE.SHOWCASE)
 
 
 func _on_table_mini_game_exited() -> void:
@@ -96,29 +146,50 @@ func _on_table_mini_game_exited() -> void:
 	table_layer.hide()
 	player.unfreeze()
 
-	if _cake_complete:
-		_end()
-
 
 func _on_oven_interacted() -> void:
-	if not _mixture_ready or not oven_timer.is_stopped():
-		return
-
-	if _cake_ready:
-		print("Giving cake to player, enabling table!")
-		table.enabled = true
-		player.give_object(CAKE_OBJECT)
-		return
-
-	print("Oven starting, disabling table & oven, dropping cake")
-	oven_timer.start()
-	table.enabled = false
-	oven.enabled = false
-	player.drop_object()
+	match _state:
+		STATE.OVEN_DONE:
+			_change_state(STATE.GARNISH)
+			player.give_object(CAKE_OBJECT_RESOURCE)
+		STATE.OVEN_FREE:
+			_change_state(STATE.OVEN_BUSY)
+			player.drop_object()
 
 
 func _on_oven_timer_timeout() -> void:
-	print("Cake is ready, enabling  oven")
-	oven.interactable_resource = OVEN_READY_RESOURCE
-	_cake_ready = true
-	oven.enabled = true
+	_change_state(STATE.OVEN_DONE)
+
+
+func _on_showcase_interacted() -> void:
+	player.drop_object()
+	_display_cake()
+
+	if _is_showcase_full():
+		_change_state(STATE.DONE)
+	else:
+		_change_state(STATE.MIXING)
+
+
+func _display_cake() -> void:
+	for cake_marker in _showcase_cake_markers:
+		if cake_marker.get_child_count() > 0:
+			continue
+
+		var cake: GameObject = OBJECT.instantiate()
+		cake.object_resource = CAKE_OBJECT_RESOURCE
+		cake.small()
+		cake_marker.add_child(cake)
+		return
+
+
+func _is_showcase_full() -> bool:
+	for cake_marker in _showcase_cake_markers:
+		if cake_marker.get_child_count() == 0:
+			return false
+
+	return true
+
+
+func _on_door_interacted() -> void:
+	_end()

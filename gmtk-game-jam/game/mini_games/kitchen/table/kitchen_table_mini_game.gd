@@ -4,12 +4,21 @@ extends MiniGame
 signal mixture_ready
 signal cake_complete
 
+enum STATE {
+	MIXTURE_PHASE,
+	GARNISH_PHASE,
+}
+
+var _ingredients_needed := 4
+
 @onready var mixture_phase: Node2D = $MixturePhase
 @onready var garnish_phase: Node2D = $GarnishPhase
 @onready var mixture: Clickable = $MixturePhase/Mixture
-@onready var egg: Draggable = $MixturePhase/Egg
-@onready var cake: Node2D = $GarnishPhase/Cake
-@onready var garnish: Draggable = $GarnishPhase/Garnish
+
+
+func _ready() -> void:
+	super()
+	_ingredients_needed = mixture_phase.find_children("*", "Draggable").size()
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -17,15 +26,15 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		_end()
 
 
-func spawn(data: Dictionary[String, bool]) -> void:
-	if data.get("mixture_ready"):
-		print("Mixture ready, time for cake and garnish")
-		mixture_phase.queue_free()
-		return
-
-	print("Mixture not ready, time for egg and mix")
-	mixture.enabled = false
-	garnish_phase.queue_free()
+func spawn(state: STATE) -> void:
+	match state:
+		STATE.MIXTURE_PHASE:
+			mixture.enabled = false
+			garnish_phase.queue_free()
+		STATE.GARNISH_PHASE:
+			mixture_phase.queue_free()
+		_:
+			push_error("Kitchen table mini game state doesn't exist %s" % state)
 
 
 func _exit() -> void:
@@ -34,18 +43,19 @@ func _exit() -> void:
 
 
 func _on_mixture_completed() -> void:
-	print("Mixture ready, exiting to kitchen")
 	mixture_ready.emit()
 	_end()
 
 
-func _on_egg_dropped_into_drop_zone() -> void:
-	print("Egg added, enabling mixture")
-	egg.queue_free()
-	mixture.enabled = true
+func _on_ingredient_dropped_into_drop_zone(draggable: Draggable) -> void:
+	draggable.queue_free()
+	_ingredients_needed -= 1
+
+	if _ingredients_needed <= 0:
+		mixture.enabled = true
 
 
-func _on_garnish_dropped_into_drop_zone() -> void:
-	print("Garnish put on cake, exiting to kitchen")
+func _on_garnish_dropped_into_drop_zone(draggable: Draggable) -> void:
+	draggable.queue_free()
 	cake_complete.emit()
 	_end()

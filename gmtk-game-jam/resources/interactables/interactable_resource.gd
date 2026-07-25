@@ -1,8 +1,9 @@
 class_name InteractableResource
 extends Resource
 
-@export var texture: Texture2D
-@export var collision_shape: Shape2D
+@export_group("Texture")
+@export var sprite_frames: SpriteFrames
+@export_group("Interaction")
 @export var interaction_resource: InteractionResource
 
 

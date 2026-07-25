@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="InteractableResource" format=3 uid="uid://daias6g427ok5"]
+
+[ext_resource type="Script" uid="uid://drepfw6nrceyd" path="res://resources/interactables/interactable_resource.gd" id="1_uvkwf"]
+[ext_resource type="Texture2D" uid="uid://cemy2fbwe8vdu" path="res://assets/sprites/kitchen_door.png" id="2_nivet"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nivet"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nivet")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_uvkwf")
+sprite_frames = SubResource("SpriteFrames_nivet")
+metadata/_custom_type_script = "uid://drepfw6nrceyd"

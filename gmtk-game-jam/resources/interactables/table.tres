@@ -1,9 +1,20 @@
 [gd_resource type="Resource" script_class="InteractableResource" format=3 uid="uid://df6l70rodbigf"]
 
 [ext_resource type="Script" uid="uid://drepfw6nrceyd" path="res://resources/interactables/interactable_resource.gd" id="1_wkpoi"]
-[ext_resource type="Texture2D" uid="uid://vdoysgnwtpds" path="res://icon.svg" id="2_urahy"]
+[ext_resource type="Texture2D" uid="uid://bmbq0mfiprw5v" path="res://assets/sprites/table.png" id="2_urahy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qj3sd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_urahy")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [resource]
 script = ExtResource("1_wkpoi")
-texture = ExtResource("2_urahy")
+sprite_frames = SubResource("SpriteFrames_qj3sd")
 metadata/_custom_type_script = "uid://drepfw6nrceyd"
