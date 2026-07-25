@@ -12,15 +12,13 @@ func _ready() -> void:
 	if not object_resource:
 		return
 
-	sprite.texture = object_resource.texture
-	label.text = object_resource.name
+	spawn(object_resource)
 
 
 func spawn(new_resource: ObjectResource) -> void:
 	sprite.texture = new_resource.texture
-	label.text = new_resource.name
+	sprite.scale = Vector2.ONE * new_resource.small_texture_scale
 
 
 func drop() -> void:
 	sprite.texture = null
-	label.text = ""

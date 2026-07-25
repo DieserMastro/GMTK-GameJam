@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ClickableResource" format=3 uid="uid://b3xvx60kyp7si"]
+
+[ext_resource type="Script" uid="uid://bkpys216jvj2m" path="res://resources/clickables/clickable_resource.gd" id="1_ye0ym"]
+[ext_resource type="Texture2D" uid="uid://btqam4dob44ns" path="res://assets/sprites/cake_sheet.png" id="2_67k8i"]
+
+[resource]
+script = ExtResource("1_ye0ym")
+texture = ExtResource("2_67k8i")
+texture_h_frames = 5
+metadata/_custom_type_script = "uid://bkpys216jvj2m"

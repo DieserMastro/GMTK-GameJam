@@ -6,9 +6,5 @@
 script = ExtResource("1_07pmt")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1467571371]
+texture_filter = 2
 scale = Vector2(0.4, 0.4)
-
-[node name="Label" type="Label" parent="." unique_id=791334085]
-offset_right = 40.0
-offset_bottom = 36.0
-theme_type_variation = &"ObjectLabel"

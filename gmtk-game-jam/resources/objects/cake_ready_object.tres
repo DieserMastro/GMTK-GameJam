@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ObjectResource" format=3 uid="uid://dk4wbgbpof2cr"]
+
+[ext_resource type="Script" uid="uid://d0w7pjpcodj0q" path="res://resources/objects/object_resource.gd" id="1_6khir"]
+[ext_resource type="Texture2D" uid="uid://dqilq7oisuych" path="res://assets/sprites/cake_ready.png" id="2_6khir"]
+
+[resource]
+script = ExtResource("1_6khir")
+texture = ExtResource("2_6khir")
+small_texture_scale = 0.05
+name = "Cake"
+metadata/_custom_type_script = "uid://d0w7pjpcodj0q"

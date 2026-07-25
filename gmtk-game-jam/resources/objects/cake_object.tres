@@ -1,10 +1,13 @@
 [gd_resource type="Resource" script_class="ObjectResource" format=3 uid="uid://c8fkav6qrxu1c"]
 
 [ext_resource type="Script" uid="uid://d0w7pjpcodj0q" path="res://resources/objects/object_resource.gd" id="1_t5t77"]
-[ext_resource type="Texture2D" uid="uid://d3610a07s2874" path="res://assets/sprites/cake.png" id="2_fqq0m"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t5t77"]
+load_path = "res://.godot/imported/cake.png-7be97290cb5daba82582f2975c271745.ctex"
 
 [resource]
 script = ExtResource("1_t5t77")
-texture = ExtResource("2_fqq0m")
+texture = SubResource("CompressedTexture2D_t5t77")
+small_texture_scale = 0.05
 name = "Cake"
 metadata/_custom_type_script = "uid://d0w7pjpcodj0q"

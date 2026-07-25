@@ -204,7 +204,6 @@ animations = [{
 radius = 8.062258
 
 [node name="KitchenMiniGame" unique_id=431908219 instance=ExtResource("1_exmhl")]
-position = Vector2(-28, 2)
 script = ExtResource("2_4awqa")
 oven_cooking_duration = 10.0
 food_reward = 5.0
@@ -243,7 +242,7 @@ interactable_resource = ExtResource("5_7blyf")
 
 [node name="AnimatedSprite2D" parent="Chef" index="0" unique_id=1880559299]
 sprite_frames = SubResource("SpriteFrames_hd1pi")
-frame_progress = 0.933794
+frame_progress = 0.057512548
 
 [node name="InteractiveComponent" parent="Chef" index="2" unique_id=1993090527]
 position = Vector2(21, 0)
@@ -258,7 +257,7 @@ enabled = false
 
 [node name="AnimatedSprite2D" parent="Table" index="0" unique_id=1880559299]
 sprite_frames = SubResource("SpriteFrames_qj3sd")
-frame_progress = 0.933794
+frame_progress = 0.057512548
 
 [node name="CollisionShape2D" parent="Table" index="1" unique_id=1354084234]
 shape = SubResource("RectangleShape2D_k25f1")
@@ -280,7 +279,6 @@ enabled = false
 [node name="AnimatedSprite2D" parent="Oven" index="0" unique_id=1880559299]
 rotation = -1.5707964
 sprite_frames = SubResource("SpriteFrames_rpcup")
-frame_progress = 1.0
 
 [node name="CollisionShape2D" parent="Oven" index="1" unique_id=1354084234]
 position = Vector2(-1.7484422e-07, 0)
@@ -302,7 +300,7 @@ interactable_resource = ExtResource("12_v3bvo")
 
 [node name="AnimatedSprite2D" parent="Showcase" index="0" unique_id=1880559299]
 sprite_frames = SubResource("SpriteFrames_quxeh")
-frame_progress = 0.24093704
+frame_progress = 0.057512548
 
 [node name="CollisionShape2D" parent="Showcase" index="1" unique_id=1354084234]
 shape = SubResource("RectangleShape2D_quxeh")
@@ -330,7 +328,7 @@ interactable_resource = ExtResource("14_k20tb")
 
 [node name="AnimatedSprite2D" parent="Door" index="0" unique_id=1880559299]
 sprite_frames = SubResource("SpriteFrames_nivet")
-frame_progress = 0.67395014
+frame_progress = 0.057512548
 
 [node name="InteractiveComponent" parent="Door" index="2" unique_id=1993090527]
 position = Vector2(0, -10)

@@ -15,6 +15,7 @@ var _state: STATE
 @onready var mixture_phase: Node2D = $MixturePhase
 @onready var garnish_phase: Node2D = $GarnishPhase
 @onready var mixture: Clickable = $MixturePhase/Mixture
+@onready var cake: Clickable = $GarnishPhase/Cake
 
 
 func _ready() -> void:
@@ -59,6 +60,9 @@ func _on_draggable_dropped_into_drop_zone(draggable: Draggable) -> void:
 
 	if _state == STATE.MIXTURE_PHASE:
 		mixture.next_frame()
+
+	if _state == STATE.GARNISH_PHASE:
+		cake.next_frame()
 
 	if _draggables.is_empty():
 		_on_phase_completed()

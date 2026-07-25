@@ -6,20 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://7ioxjnfp55qg" path="res://scenes/clickables/clickable.tscn" id="3_ypf3e"]
 [ext_resource type="PackedScene" uid="uid://6scta5rmi534" path="res://scenes/draggables/draggable.tscn" id="5_4l0du"]
 [ext_resource type="PackedScene" uid="uid://lnn5d0ur6gfm" path="res://scenes/components/drop_zone_component/drop_zone_component.tscn" id="5_ehgg7"]
-[ext_resource type="PackedScene" uid="uid://bgn0vyn0uq0ix" path="res://scenes/objects/object.tscn" id="7_3dexj"]
+[ext_resource type="Resource" uid="uid://n2pgweek6e8s" path="res://resources/clickables/mixture_clickable.tres" id="5_woy5e"]
 [ext_resource type="Resource" uid="uid://uyr0ytc1fh54" path="res://resources/draggables/egg_resource.tres" id="7_sbbns"]
 [ext_resource type="Resource" uid="uid://b0b7x38kgsfm1" path="res://resources/draggables/milk_resource.tres" id="8_dq8y6"]
-[ext_resource type="Resource" uid="uid://c8fkav6qrxu1c" path="res://resources/objects/cake_object.tres" id="8_etnbf"]
-[ext_resource type="Texture2D" uid="uid://d3610a07s2874" path="res://assets/sprites/cake.png" id="9_l0ulh"]
 [ext_resource type="Resource" uid="uid://05ihqtkovdlj" path="res://resources/draggables/flour_resource.tres" id="9_oah0i"]
 [ext_resource type="Resource" uid="uid://10edvm7in8ej" path="res://resources/draggables/butter_resource.tres" id="10_woy5e"]
+[ext_resource type="Texture2D" uid="uid://6lsqye2m6gi5" path="res://assets/sprites/cherry_pot.png" id="11_dq8y6"]
+[ext_resource type="Resource" uid="uid://b3xvx60kyp7si" path="res://resources/clickables/cake_clickable.tres" id="12_kariw"]
+[ext_resource type="Texture2D" uid="uid://btqam4dob44ns" path="res://assets/sprites/cake_sheet.png" id="13_kariw"]
 [ext_resource type="Resource" uid="uid://bogu0bbijg0s1" path="res://resources/draggables/garnish_resource.tres" id="13_oah0i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xhu4"]
 size = Vector2(148, 140)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7ty8"]
-size = Vector2(52, 54)
+[sub_resource type="CircleShape2D" id="CircleShape2D_1xhu4"]
+radius = 104.0
 
 [node name="KitchenTableMiniGame" unique_id=431908219 instance=ExtResource("1_tapj2")]
 script = ExtResource("2_yrf5k")
@@ -32,6 +33,7 @@ centered = false
 
 [node name="Mixture" parent="MixturePhase" index="0" unique_id=1607775320 instance=ExtResource("3_ypf3e")]
 position = Vector2(128, 256)
+clickable_resource = ExtResource("5_woy5e")
 metadata/_edit_group_ = true
 
 [node name="DropZoneComponent" parent="MixturePhase/Mixture" index="2" unique_id=1875523933 node_paths=PackedStringArray("sprite_to_outline") instance=ExtResource("5_ehgg7")]
@@ -57,23 +59,39 @@ position = Vector2(320, 192)
 draggable_resource = ExtResource("8_dq8y6")
 
 [node name="GarnishPhase" type="Node2D" parent="." index="4" unique_id=1726015083]
-visible = false
 
-[node name="Cake" parent="GarnishPhase" index="0" unique_id=458700114 instance=ExtResource("7_3dexj")]
+[node name="Cake" parent="GarnishPhase" index="0" unique_id=1571282417 instance=ExtResource("3_ypf3e")]
 position = Vector2(128, 256)
-object_resource = ExtResource("8_etnbf")
+clickable_resource = ExtResource("12_kariw")
 
-[node name="Sprite2D" parent="GarnishPhase/Cake" index="0" unique_id=1124588674]
-texture = ExtResource("9_l0ulh")
+[node name="Sprite2D" parent="GarnishPhase/Cake" index="0" unique_id=443016978]
+texture = ExtResource("13_kariw")
+hframes = 5
 
-[node name="DropZoneComponent" parent="GarnishPhase/Cake" index="1" unique_id=1596987020 node_paths=PackedStringArray("sprite_to_outline") instance=ExtResource("5_ehgg7")]
+[node name="DropZoneComponent" parent="GarnishPhase/Cake" index="2" unique_id=1812812116 node_paths=PackedStringArray("sprite_to_outline") instance=ExtResource("5_ehgg7")]
 sprite_to_outline = NodePath("../Sprite2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GarnishPhase/Cake/DropZoneComponent" index="0" unique_id=1429914516]
-shape = SubResource("RectangleShape2D_c7ty8")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GarnishPhase/Cake/DropZoneComponent" index="0" unique_id=2062808082]
+shape = SubResource("CircleShape2D_1xhu4")
 
-[node name="Garnish" parent="GarnishPhase" index="1" unique_id=2116761473 instance=ExtResource("5_4l0du")]
+[node name="Sprite2D" type="Sprite2D" parent="GarnishPhase" index="1" unique_id=1055917360]
+position = Vector2(464, 336)
+texture = ExtResource("11_dq8y6")
+
+[node name="Garnish" parent="GarnishPhase" index="2" unique_id=2116761473 instance=ExtResource("5_4l0du")]
 position = Vector2(448, 192)
+draggable_resource = ExtResource("13_oah0i")
+
+[node name="Garnish2" parent="GarnishPhase" index="3" unique_id=1731118976 instance=ExtResource("5_4l0du")]
+position = Vector2(352, 288)
+draggable_resource = ExtResource("13_oah0i")
+
+[node name="Garnish3" parent="GarnishPhase" index="4" unique_id=576829442 instance=ExtResource("5_4l0du")]
+position = Vector2(416, 256)
+draggable_resource = ExtResource("13_oah0i")
+
+[node name="Garnish4" parent="GarnishPhase" index="5" unique_id=2132477008 instance=ExtResource("5_4l0du")]
+position = Vector2(352, 208)
 draggable_resource = ExtResource("13_oah0i")
 
 [connection signal="completed" from="MixturePhase/Mixture" to="." method="_on_mixture_completed"]
@@ -83,6 +101,9 @@ draggable_resource = ExtResource("13_oah0i")
 [connection signal="dropped_into_drop_zone" from="MixturePhase/Butter" to="." method="_on_draggable_dropped_into_drop_zone"]
 [connection signal="dropped_into_drop_zone" from="MixturePhase/Milk" to="." method="_on_draggable_dropped_into_drop_zone"]
 [connection signal="dropped_into_drop_zone" from="GarnishPhase/Garnish" to="." method="_on_draggable_dropped_into_drop_zone"]
+[connection signal="dropped_into_drop_zone" from="GarnishPhase/Garnish2" to="." method="_on_draggable_dropped_into_drop_zone"]
+[connection signal="dropped_into_drop_zone" from="GarnishPhase/Garnish3" to="." method="_on_draggable_dropped_into_drop_zone"]
+[connection signal="dropped_into_drop_zone" from="GarnishPhase/Garnish4" to="." method="_on_draggable_dropped_into_drop_zone"]
 
 [editable path="MixturePhase/Mixture"]
 [editable path="GarnishPhase/Cake"]

@@ -1,10 +1,11 @@
 [gd_resource type="Resource" script_class="ObjectResource" format=3 uid="uid://dd4by80jhcg6w"]
 
 [ext_resource type="Script" uid="uid://d0w7pjpcodj0q" path="res://resources/objects/object_resource.gd" id="1_o130h"]
-[ext_resource type="Texture2D" uid="uid://guqc5l4fs23t" path="res://assets/sprites/mixture.png" id="2_tubnu"]
+[ext_resource type="Texture2D" uid="uid://bs3yl3m46e7cr" path="res://assets/sprites/mixture_ready.png" id="2_o130h"]
 
 [resource]
 script = ExtResource("1_o130h")
-texture = ExtResource("2_tubnu")
+texture = ExtResource("2_o130h")
+small_texture_scale = 0.1
 name = "Mixture"
 metadata/_custom_type_script = "uid://d0w7pjpcodj0q"
