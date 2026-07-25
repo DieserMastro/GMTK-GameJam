@@ -6,15 +6,21 @@ signal dropped_into_drop_zone(draggable: Draggable)
 
 const DRAGGABLE_OUTLINE_MATERIAL := preload("uid://ybaumnfu1sk4")
 const OUTLINE_THICKNESS := 2.0
+const UNAVAILABLE_MODULATE := Color(0.5, 0.5, 0.5, 0.6)
 
 @export_group("Data")
 @export var draggable_resource: DraggableResource
 
 @export_group("Properties")
 @export_range(50, 200) var drag_weight := 75.0
+@export var can_drag: bool = true:
+	set(value):
+		can_drag = value
+		_update_appearance()
 
 var _can_follow := false
 var _drop_zone: DropZoneComponent
+var _is_hovered := false
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var drag_component: DragComponent = $DragComponent
@@ -27,6 +33,8 @@ func _ready() -> void:
 	if draggable_resource:
 		sprite.texture = draggable_resource.texture
 		sprite.scale = Vector2.ONE * draggable_resource.texture_scale
+
+	_update_appearance()
 
 
 func _physics_process(delta: float) -> void:
@@ -47,11 +55,13 @@ func unset_drop_zone() -> void:
 
 
 func _on_drag_component_mouse_entered() -> void:
-	sprite.material = DRAGGABLE_OUTLINE_MATERIAL
+	_is_hovered = true
+	_update_appearance()
 
 
 func _on_drag_component_mouse_exited() -> void:
-	sprite.material = null
+	_is_hovered = false
+	_update_appearance()
 
 
 func _on_drag_component_drag_started() -> void:
@@ -62,3 +72,12 @@ func _on_drag_component_drag_ended() -> void:
 	_can_follow = false
 	if _drop_zone:
 		dropped_into_drop_zone.emit(self)
+
+
+func _update_appearance() -> void:
+	if not is_node_ready():
+		return
+
+	drag_component.enabled = can_drag
+	modulate = Color.WHITE if can_drag else UNAVAILABLE_MODULATE
+	sprite.material = DRAGGABLE_OUTLINE_MATERIAL if can_drag and _is_hovered else null

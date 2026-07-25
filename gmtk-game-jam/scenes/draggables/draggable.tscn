@@ -2,7 +2,16 @@
 
 [ext_resource type="Texture2D" uid="uid://vdoysgnwtpds" path="res://icon.svg" id="1_3l1mf"]
 [ext_resource type="Script" uid="uid://b4pb2m35wbf6q" path="res://scenes/draggables/draggable.gd" id="1_k2q1g"]
+[ext_resource type="Shader" uid="uid://3fgfhy2h408j" path="res://common/shaders/sprite_outline.gdshader" id="2_84xpg"]
 [ext_resource type="PackedScene" uid="uid://d2nsioyi4ya0b" path="res://scenes/components/drag_component/drag_component.tscn" id="4_84xpg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dpurm"]
+shader = ExtResource("2_84xpg")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xhu4"]
 size = Vector2(38, 38)
@@ -16,6 +25,7 @@ collision_mask = 0
 script = ExtResource("1_k2q1g")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1027399129]
+material = SubResource("ShaderMaterial_dpurm")
 texture = ExtResource("1_3l1mf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1462348924]

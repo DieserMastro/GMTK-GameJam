@@ -8,9 +8,9 @@
 [ext_resource type="Resource" uid="uid://dhtksiv7nkxa0" path="res://resources/interactables/chef.tres" id="5_7blyf"]
 [ext_resource type="Resource" uid="uid://df6l70rodbigf" path="res://resources/interactables/table.tres" id="7_hd1pi"]
 [ext_resource type="Texture2D" uid="uid://dw5q4crs4y016" path="res://assets/sprites/chef.png" id="7_k25f1"]
-[ext_resource type="Resource" uid="uid://cej0srahq64yr" path="res://resources/interactables/oven.tres" id="8_hd1pi"]
+[ext_resource type="Resource" uid="uid://cej0srahq64yr" path="res://resources/interactables/oven_free.tres" id="8_hd1pi"]
 [ext_resource type="Texture2D" uid="uid://bmbq0mfiprw5v" path="res://assets/sprites/table.png" id="8_qj3sd"]
-[ext_resource type="Texture2D" uid="uid://dfn2x8orwjyy3" path="res://assets/sprites/oven_free.png" id="11_yy1rl"]
+[ext_resource type="Texture2D" uid="uid://bu6ppcak5w1xr" path="res://assets/sprites/oven_empty.png" id="10_eguca"]
 [ext_resource type="Resource" uid="uid://qm4xcbsl28eb" path="res://resources/interactables/kitchen_showcase.tres" id="12_v3bvo"]
 [ext_resource type="Texture2D" uid="uid://bkpo6wu2168rd" path="res://assets/sprites/kitchen_showcase.png" id="13_quxeh"]
 [ext_resource type="Resource" uid="uid://daias6g427ok5" path="res://resources/interactables/kitchen_door.tres" id="14_k20tb"]
@@ -133,6 +133,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_eguca"]
+radius = 12.0
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_qj3sd"]
 animations = [{
 "frames": [{
@@ -149,20 +152,25 @@ size = Vector2(32, 20)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q2kpj"]
 radius = 16.0
-height = 48.0
+height = 47.999985
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_k25f1"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_rpcup"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("11_yy1rl")
+"texture": ExtResource("10_eguca")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"default",
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eguca"]
+size = Vector2(16, 16.000015)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b3fwt"]
+radius = 7.0
+height = 20.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_quxeh"]
 animations = [{
@@ -179,7 +187,7 @@ animations = [{
 size = Vector2(16, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k20tb"]
-size = Vector2(20, 49)
+size = Vector2(14, 49)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nivet"]
 animations = [{
@@ -192,7 +200,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_q2kpj"]
+radius = 8.062258
+
 [node name="KitchenMiniGame" unique_id=431908219 instance=ExtResource("1_exmhl")]
+position = Vector2(-28, 2)
 script = ExtResource("2_4awqa")
 oven_cooking_duration = 10.0
 food_reward = 5.0
@@ -226,33 +238,36 @@ rotation = 1.5707964
 shape = SubResource("WorldBoundaryShape2D_eguca")
 
 [node name="Chef" parent="." index="4" unique_id=158379313 instance=ExtResource("4_wxaar")]
-position = Vector2(144, 248)
+position = Vector2(148, 214)
 interactable_resource = ExtResource("5_7blyf")
 
 [node name="AnimatedSprite2D" parent="Chef" index="0" unique_id=1880559299]
 sprite_frames = SubResource("SpriteFrames_hd1pi")
-frame_progress = 0.73527145
+frame_progress = 0.933794
 
 [node name="InteractiveComponent" parent="Chef" index="2" unique_id=1993090527]
-position = Vector2(24, 0)
+position = Vector2(21, 0)
+
+[node name="CollisionShape2D" parent="Chef/InteractiveComponent" index="0" unique_id=405062491]
+shape = SubResource("CircleShape2D_eguca")
 
 [node name="Table" parent="." index="5" unique_id=1870566876 instance=ExtResource("4_wxaar")]
-position = Vector2(224, 264)
+position = Vector2(148, 254)
 interactable_resource = ExtResource("7_hd1pi")
 enabled = false
 
 [node name="AnimatedSprite2D" parent="Table" index="0" unique_id=1880559299]
 sprite_frames = SubResource("SpriteFrames_qj3sd")
-frame_progress = 0.73527145
+frame_progress = 0.933794
 
 [node name="CollisionShape2D" parent="Table" index="1" unique_id=1354084234]
 shape = SubResource("RectangleShape2D_k25f1")
 
 [node name="InteractiveComponent" parent="Table" index="2" unique_id=1993090527]
-position = Vector2(0, -8)
+position = Vector2(32, -8)
 
 [node name="CollisionShape2D" parent="Table/InteractiveComponent" index="0" unique_id=405062491]
-position = Vector2(0, 8)
+position = Vector2(-32, 8)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_q2kpj")
 
@@ -264,13 +279,18 @@ enabled = false
 
 [node name="AnimatedSprite2D" parent="Oven" index="0" unique_id=1880559299]
 rotation = -1.5707964
-sprite_frames = SubResource("SpriteFrames_k25f1")
-frame_progress = 0.43021452
+sprite_frames = SubResource("SpriteFrames_rpcup")
+frame_progress = 1.0
+
+[node name="CollisionShape2D" parent="Oven" index="1" unique_id=1354084234]
+position = Vector2(-1.7484422e-07, 0)
+shape = SubResource("RectangleShape2D_eguca")
 
 [node name="InteractiveComponent" parent="Oven" index="2" unique_id=1993090527]
-position = Vector2(32, -1.3987644e-06)
+position = Vector2(32, -1.0000014)
 
 [node name="CollisionShape2D" parent="Oven/InteractiveComponent" index="0" unique_id=405062491]
+position = Vector2(4.371139e-08, 1)
 shape = SubResource("CapsuleShape2D_b3fwt")
 
 [node name="OvenTimer" type="Timer" parent="Oven" index="3" unique_id=872090508]
@@ -282,7 +302,7 @@ interactable_resource = ExtResource("12_v3bvo")
 
 [node name="AnimatedSprite2D" parent="Showcase" index="0" unique_id=1880559299]
 sprite_frames = SubResource("SpriteFrames_quxeh")
-frame_progress = 0.9972156
+frame_progress = 0.24093704
 
 [node name="CollisionShape2D" parent="Showcase" index="1" unique_id=1354084234]
 shape = SubResource("RectangleShape2D_quxeh")
@@ -291,7 +311,7 @@ shape = SubResource("RectangleShape2D_quxeh")
 position = Vector2(-16, 0)
 
 [node name="CollisionShape2D" parent="Showcase/InteractiveComponent" index="0" unique_id=405062491]
-position = Vector2(0, 0.5)
+position = Vector2(3, 0.5)
 shape = SubResource("RectangleShape2D_k20tb")
 
 [node name="ShowcaseCakeMarkers" type="Node2D" parent="Showcase" index="3" unique_id=1033867214]
@@ -310,10 +330,13 @@ interactable_resource = ExtResource("14_k20tb")
 
 [node name="AnimatedSprite2D" parent="Door" index="0" unique_id=1880559299]
 sprite_frames = SubResource("SpriteFrames_nivet")
-frame_progress = 0.43021452
+frame_progress = 0.67395014
 
 [node name="InteractiveComponent" parent="Door" index="2" unique_id=1993090527]
 position = Vector2(0, -10)
+
+[node name="CollisionShape2D" parent="Door/InteractiveComponent" index="0" unique_id=405062491]
+shape = SubResource("CircleShape2D_q2kpj")
 
 [node name="Player" parent="." index="9" unique_id=505119842 instance=ExtResource("2_2mbp5")]
 position = Vector2(256, 256)
@@ -339,6 +362,7 @@ color = Color(0, 0, 0, 1)
 [connection signal="interacted" from="Door" to="." method="_on_door_interacted"]
 
 [editable path="Chef"]
+[editable path="Chef/InteractiveComponent"]
 [editable path="Table"]
 [editable path="Table/InteractiveComponent"]
 [editable path="Oven"]

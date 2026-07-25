@@ -11,9 +11,10 @@ enum STATE {
 	DONE,
 }
 
+const OVEN_FREE = preload("uid://cej0srahq64yr")
+const OVEN_BUSY = preload("uid://dyfybcescfaq8")
+const OVEN_READY = preload("uid://brkm7tw42siq1")
 const TABLE_MINI_GAME_PACKED := preload("uid://c3thcmvc25bv6")
-const OVEN_RESOURCE = preload("uid://cej0srahq64yr")
-const OVEN_BUSY_RESOURCE = preload("uid://dyfybcescfaq8")
 const MIXTURE_OBJECT_RESOURCE = preload("uid://dd4by80jhcg6w")
 const CAKE_OBJECT_RESOURCE = preload("uid://c8fkav6qrxu1c")
 const OBJECT = preload("uid://bgn0vyn0uq0ix")
@@ -76,17 +77,19 @@ func _change_state(new_state: STATE) -> void:
 			oven.enable()
 			table.disable()
 			careful_progress_bar.show()
+			oven.set_resource(OVEN_FREE)
 		STATE.OVEN_BUSY:
 			careful_progress_bar.hide()
 			oven.disable()
 			table.disable()
 			oven_timer.start()
-			oven.set_resource(OVEN_BUSY_RESOURCE)
+			oven.set_resource(OVEN_BUSY)
 		STATE.OVEN_DONE:
 			oven.enable()
+			oven.set_resource(OVEN_READY)
 		STATE.GARNISH:
 			table.enable()
-			oven.set_resource(OVEN_RESOURCE)
+			oven.set_resource(OVEN_FREE)
 			careful_progress_bar.show()
 		STATE.SHOWCASE:
 			careful_progress_bar.hide()
@@ -178,8 +181,8 @@ func _display_cake() -> void:
 
 		var cake: GameObject = OBJECT.instantiate()
 		cake.object_resource = CAKE_OBJECT_RESOURCE
-		cake.small()
 		cake_marker.add_child(cake)
+		cake.small()
 		return
 
 
