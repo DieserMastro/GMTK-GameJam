@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dc3cpfcs5dn66"]
 
-[ext_resource type="Script" uid="uid://djsofijeesvx1" path="res://scenes/Test_Scenes/dialogue_manager.gd" id="1_fwsxm"]
+[ext_resource type="Script" uid="uid://djsofijeesvx1" path="res://core/managers/dialogue_manager.gd" id="1_fwsxm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wd0n3"]
 bg_color = Color(0.0768358, 0.07683582, 0.076835774, 1)

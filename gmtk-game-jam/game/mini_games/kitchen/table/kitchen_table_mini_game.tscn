@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://6scta5rmi534" path="res://scenes/draggables/draggable.tscn" id="5_4l0du"]
 [ext_resource type="PackedScene" uid="uid://lnn5d0ur6gfm" path="res://scenes/components/drop_zone_component/drop_zone_component.tscn" id="5_ehgg7"]
 [ext_resource type="Resource" uid="uid://n2pgweek6e8s" path="res://resources/clickables/mixture_clickable.tres" id="5_woy5e"]
+[ext_resource type="Texture2D" uid="uid://cb4d3st5tw4pv" path="res://assets/sprites/large_mixture.png" id="6_tepoe"]
 [ext_resource type="Resource" uid="uid://uyr0ytc1fh54" path="res://resources/draggables/egg_resource.tres" id="7_sbbns"]
 [ext_resource type="Resource" uid="uid://b0b7x38kgsfm1" path="res://resources/draggables/milk_resource.tres" id="8_dq8y6"]
 [ext_resource type="Resource" uid="uid://05ihqtkovdlj" path="res://resources/draggables/flour_resource.tres" id="9_oah0i"]
@@ -24,6 +25,7 @@ radius = 104.0
 
 [node name="KitchenTableMiniGame" unique_id=431908219 instance=ExtResource("1_tapj2")]
 script = ExtResource("2_yrf5k")
+mini_game_scene = 0
 
 [node name="Background" type="Sprite2D" parent="." index="2" unique_id=2060904358]
 texture = ExtResource("3_kariw")
@@ -35,6 +37,9 @@ centered = false
 position = Vector2(128, 256)
 clickable_resource = ExtResource("5_woy5e")
 metadata/_edit_group_ = true
+
+[node name="Sprite2D" parent="MixturePhase/Mixture" index="0" unique_id=443016978]
+texture = ExtResource("6_tepoe")
 
 [node name="DropZoneComponent" parent="MixturePhase/Mixture" index="2" unique_id=1875523933 node_paths=PackedStringArray("sprite_to_outline") instance=ExtResource("5_ehgg7")]
 sprite_to_outline = NodePath("../Sprite2D")

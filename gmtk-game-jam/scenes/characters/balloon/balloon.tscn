@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c1hh13qvefpp3"]
+
+[ext_resource type="Script" uid="uid://cm2l5gbgaxqna" path="res://scenes/characters/balloon/balloon.gd" id="1_0dr6h"]
+[ext_resource type="PackedScene" uid="uid://dt3wcl8syj6pn" path="res://scenes/components/clickable_component/clickable_component.tscn" id="1_rqo2f"]
+[ext_resource type="Texture2D" uid="uid://brsr6n0sgx0k0" path="res://assets/sprites/balloon.png" id="2_sj4bj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1xhu4"]
+radius = 24.0
+height = 48.0
+
+[node name="Balloon" type="Node2D" unique_id=2104587361]
+script = ExtResource("1_0dr6h")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=165679216]
+texture = ExtResource("2_sj4bj")
+
+[node name="ClickableComponent" parent="." unique_id=1735204891 instance=ExtResource("1_rqo2f")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickableComponent" unique_id=240563239]
+shape = SubResource("CapsuleShape2D_1xhu4")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=349839206]
+rect = Rect2(-32, -32, 64, 64)
+
+[connection signal="clicked" from="ClickableComponent" to="." method="_on_clickable_component_clicked"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

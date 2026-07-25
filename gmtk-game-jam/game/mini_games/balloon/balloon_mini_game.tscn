@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://theoq8o3tpee"]
+
+[ext_resource type="PackedScene" uid="uid://cwrx7y4kaw1v5" path="res://game/mini_games/mini_game.tscn" id="1_73ggw"]
+[ext_resource type="Script" uid="uid://b8b0f7hjtivyb" path="res://game/mini_games/balloon/balloon_mini_game.gd" id="2_73ggw"]
+[ext_resource type="Texture2D" uid="uid://c704mjf72ts3r" path="res://assets/sprites/balloon_tent_background.png" id="3_tyqja"]
+[ext_resource type="Texture2D" uid="uid://btnhj3xjwfqv4" path="res://assets/sprites/balloon_tent_foreground.png" id="4_lqh7t"]
+
+[sub_resource type="Curve2D" id="Curve2D_tyqja"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 32, 432, 0, 0, 0, 0, 472, 432)
+}
+point_count = 2
+
+[node name="BalloonMiniGame" unique_id=431908219 instance=ExtResource("1_73ggw")]
+script = ExtResource("2_73ggw")
+game_duration = 15.0
+balloon_spawn_interval = 0.5
+initial_state = 0
+mini_game_scene = 4
+
+[node name="Player" parent="." index="3" unique_id=505119842]
+visible = false
+
+[node name="Camera2D" parent="Player" index="3" unique_id=1976386145]
+position = Vector2(0, 16)
+enabled = false
+zoom = Vector2(1, 1)
+
+[node name="Background" type="Sprite2D" parent="." index="4" unique_id=414873658]
+texture = ExtResource("3_tyqja")
+centered = false
+
+[node name="Balloons" type="Node2D" parent="." index="5" unique_id=1215184236]
+
+[node name="Path2D" type="Path2D" parent="." index="6" unique_id=1772478870]
+curve = SubResource("Curve2D_tyqja")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" index="0" unique_id=1113421568]
+position = Vector2(32, 432)
+
+[node name="Foreground" type="Sprite2D" parent="." index="7" unique_id=26084894]
+texture = ExtResource("4_lqh7t")
+centered = false
+
+[node name="BalloonSpawnTimer" type="Timer" parent="." index="8" unique_id=682726332]
+one_shot = true
+
+[node name="GameTimer" type="Timer" parent="." index="9" unique_id=1721857439]
+one_shot = true
+
+[connection signal="timeout" from="BalloonSpawnTimer" to="." method="_on_balloon_spawn_timer_timeout"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

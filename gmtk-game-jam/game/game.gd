@@ -35,7 +35,7 @@ func _end() -> void:
 
 ## Override for logic that happens when game exits
 func _exit() -> void:
-	pass
+	get_tree().reload_current_scene()
 
 
 func _toggle_pause() -> void:

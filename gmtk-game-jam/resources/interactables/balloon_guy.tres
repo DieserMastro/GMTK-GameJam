@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="InteractableResource" format=3 uid="uid://d4fekj6cbhyw"]
+
+[ext_resource type="Script" uid="uid://drepfw6nrceyd" path="res://resources/interactables/interactable_resource.gd" id="1_w6np8"]
+[ext_resource type="Texture2D" uid="uid://b77dmubkffn4m" path="res://assets/sprites/balloon man.png" id="2_h3qi4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdwc2"]
+atlas = ExtResource("2_h3qi4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6sis1"]
+atlas = ExtResource("2_h3qi4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h3qi4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdwc2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6sis1")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 2.5
+}]
+
+[resource]
+script = ExtResource("1_w6np8")
+sprite_frames = SubResource("SpriteFrames_h3qi4")
+metadata/_custom_type_script = "uid://drepfw6nrceyd"

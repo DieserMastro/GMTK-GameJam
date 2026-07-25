@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dt3wcl8syj6pn"]
+
+[ext_resource type="Script" uid="uid://iy7ao6ey36nw" path="res://scenes/components/clickable_component/clickable_component.gd" id="1_cmpnt"]
+
+[node name="ClickableComponent" type="Area2D" unique_id=1735204891]
+collision_layer = 32
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("1_cmpnt")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

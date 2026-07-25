@@ -38,12 +38,8 @@ func next_frame() -> void:
 	completed.emit()
 
 
-func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+func _on_clickable_component_clicked() -> void:
 	if not enabled or _is_complete:
 		return
 
-	if event is not InputEventMouseButton or event.button_index != MOUSE_BUTTON_LEFT:
-		return
-
-	if event.is_pressed():
-		next_frame()
+	next_frame()

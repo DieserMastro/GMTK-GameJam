@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="DialogueInteractionResource" format=3 uid="uid://boah3wpq6xbxv"]
+
+[ext_resource type="Script" uid="uid://b16j8gviy27i0" path="res://resources/dialogues/dialogue_resource.gd" id="1_8anuv"]
+[ext_resource type="Script" uid="uid://shptia53mxru" path="res://resources/interactions/dialogue_interaction_resource.gd" id="1_bm1wo"]
+
+[sub_resource type="Resource" id="Resource_6afvc"]
+script = ExtResource("1_8anuv")
+lines = Array[String](["Wait, there was money in the balloons?"])
+metadata/_custom_type_script = "uid://b16j8gviy27i0"
+
+[sub_resource type="Resource" id="Resource_8anuv"]
+script = ExtResource("1_8anuv")
+lines = Array[String](["I can tell you're bored.", "You wanna shoot some balloons?"])
+metadata/_custom_type_script = "uid://b16j8gviy27i0"
+
+[resource]
+script = ExtResource("1_bm1wo")
+dialogue = SubResource("Resource_8anuv")
+completed_dialogue = SubResource("Resource_6afvc")
+should_go_to_destination = true
+dialogue_destination = 4
+mini_game = 4
+metadata/_custom_type_script = "uid://shptia53mxru"

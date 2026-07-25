@@ -6,6 +6,7 @@ enum SCENE {
 	TOWN_SQUARE,
 	KITCHEN_GAME,
 	FARM_GAME,
+	BALLOON_GAME,
 }
 
 @export_group("Scenes")
@@ -17,6 +18,7 @@ var _scene_paths: Dictionary[SCENE, String] = {
 	SCENE.TOWN_SQUARE: "uid://b170u02mew26o",
 	SCENE.KITCHEN_GAME: "uid://dxvlmr187anxi",
 	SCENE.FARM_GAME: "uid://b6p6w4ydoyg03",
+	SCENE.BALLOON_GAME: "uid://theoq8o3tpee",
 }
 
 

@@ -19,13 +19,15 @@ const CAKE_READY_OBJECT = preload("uid://dk4wbgbpof2cr")
 const TABLE_MINI_GAME_PACKED := preload("uid://c3thcmvc25bv6")
 const MIXTURE_OBJECT_RESOURCE = preload("uid://dd4by80jhcg6w")
 const OBJECT = preload("uid://bgn0vyn0uq0ix")
+const KITCHEN_CAKE_FAIL_DIALOGUE = preload("uid://b5e5kw1415kwb")
+const KITCHEN_MIXTURE_FAIL_DIALOGUE = preload("uid://dqg0vrptjnnyw")
 
 
 @export_group("Properties")
 @export var oven_cooking_duration := 10.0
 @export var food_reward := 5.0
 @export_group("Player")
-@export var player_maximum_cake_speed := 100.0
+@export var player_maximum_cake_speed := 90.0
 
 var _state := STATE.DIALOGUE
 var _table_mini_game: KitchenTableMiniGame
