@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="InteractableResource" format=3 uid="uid://c5aomg841ikwt"]
+
+[ext_resource type="Script" uid="uid://drepfw6nrceyd" path="res://resources/interactables/interactable_resource.gd" id="1_wdisp"]
+[ext_resource type="Texture2D" uid="uid://cr2m0lmkrdbj6" path="res://scenes/characters/player/sprites/water_bottle.png" id="2_wdisp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wdisp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wdisp")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_wdisp")
+sprite_frames = SubResource("SpriteFrames_wdisp")
+metadata/_custom_type_script = "uid://drepfw6nrceyd"

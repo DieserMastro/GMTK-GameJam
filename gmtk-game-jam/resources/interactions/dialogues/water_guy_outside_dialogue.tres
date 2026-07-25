@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="DialogueInteractionResource" format=3 uid="uid://ukoninx1lq1t"]
+
+[ext_resource type="Script" uid="uid://b16j8gviy27i0" path="res://resources/dialogues/dialogue_resource.gd" id="1_ktrf7"]
+[ext_resource type="Script" uid="uid://shptia53mxru" path="res://resources/interactions/dialogue_interaction_resource.gd" id="1_mtm0r"]
+
+[sub_resource type="Resource" id="Resource_l503i"]
+script = ExtResource("1_ktrf7")
+lines = Array[String](["Only the water gods can help us now."])
+metadata/_custom_type_script = "uid://b16j8gviy27i0"
+
+[sub_resource type="Resource" id="Resource_ktrf7"]
+script = ExtResource("1_ktrf7")
+lines = Array[String](["Oh bazonkers!", "I cannot find my water dispenser machine anymore.", "Can you help me find it?", "It's somewhere out there on festival grounds, be quick!"])
+metadata/_custom_type_script = "uid://b16j8gviy27i0"
+
+[resource]
+script = ExtResource("1_mtm0r")
+dialogue = SubResource("Resource_ktrf7")
+completed_dialogue = SubResource("Resource_l503i")
+mini_game = 5
+metadata/_custom_type_script = "uid://shptia53mxru"

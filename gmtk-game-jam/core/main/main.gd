@@ -7,6 +7,8 @@ enum SCENE {
 	KITCHEN_GAME,
 	FARM_GAME,
 	BALLOON_GAME,
+	## Runs inside Town Square, so it has no scene path of its own.
+	WATER_GAME,
 }
 
 @export_group("Scenes")

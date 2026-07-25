@@ -99,6 +99,9 @@ draggable_resource = ExtResource("13_oah0i")
 position = Vector2(352, 208)
 draggable_resource = ExtResource("13_oah0i")
 
+[node name="Camera2D" parent="Player" parent_id_path=PackedInt32Array(505119842) index="3" unique_id=1976386145]
+enabled = false
+
 [connection signal="completed" from="MixturePhase/Mixture" to="." method="_on_mixture_completed"]
 [connection signal="body_entered" from="MixturePhase/Mixture/DropZoneComponent" to="." method="_on_drop_zone_component_body_entered"]
 [connection signal="dropped_into_drop_zone" from="MixturePhase/Egg" to="." method="_on_draggable_dropped_into_drop_zone"]

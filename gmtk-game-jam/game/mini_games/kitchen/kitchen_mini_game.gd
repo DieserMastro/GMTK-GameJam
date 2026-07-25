@@ -21,6 +21,12 @@ const MIXTURE_OBJECT_RESOURCE = preload("uid://dd4by80jhcg6w")
 const OBJECT = preload("uid://bgn0vyn0uq0ix")
 const KITCHEN_CAKE_FAIL_DIALOGUE = preload("uid://b5e5kw1415kwb")
 const KITCHEN_MIXTURE_FAIL_DIALOGUE = preload("uid://dqg0vrptjnnyw")
+const CHEF_NAME := "Chef"
+const CAREFUL_STATES := [STATE.OVEN_FREE, STATE.GARNISH]
+const CAREFUL_RECOVERY_RATE := 2.0
+const CAREFUL_SAFE_COLOR := Color(0.537, 1.0, 0.537)
+const CAREFUL_DANGER_COLOR := Color(1.0, 0.4, 0.4)
+const CAREFUL_BAR_BACKGROUND_COLOR := Color(0.11, 0.11, 0.13, 0.9)
 
 
 @export_group("Properties")
@@ -28,10 +34,14 @@ const KITCHEN_MIXTURE_FAIL_DIALOGUE = preload("uid://dqg0vrptjnnyw")
 @export var food_reward := 5.0
 @export_group("Player")
 @export var player_maximum_cake_speed := 90.0
+## How long the player may exceed the maximum speed before dropping what they carry.
+@export var careful_grace_duration := 0.4
 
 var _state := STATE.DIALOGUE
 var _table_mini_game: KitchenTableMiniGame
 var _showcase_cake_markers = []
+var _reckless_time := 0.0
+var _careful_bar_fill: StyleBoxFlat
 
 @onready var table: Interactable = $Table
 @onready var oven: Interactable = $Oven
@@ -44,18 +54,23 @@ var _showcase_cake_markers = []
  
 func _ready() -> void:
 	super()
+	_style_careful_progress_bar()
 	_change_state(STATE.DIALOGUE)
-	careful_progress_bar.max_value = player_maximum_cake_speed
 	oven_timer.wait_time = oven_cooking_duration
 	_showcase_cake_markers = $Showcase/ShowcaseCakeMarkers.get_children()
 
 
-func _physics_process(_delta: float) -> void:
-	match _state:
-		STATE.OVEN_FREE, STATE.GARNISH:
-			careful_progress_bar.value = player.velocity.length()
-			if player.velocity.length() > player_maximum_cake_speed:
-				_reset()
+func _physics_process(delta: float) -> void:
+	if _state not in CAREFUL_STATES:
+		return
+
+	var is_too_fast := player.velocity.length() > player_maximum_cake_speed
+	var change := delta if is_too_fast else -delta * CAREFUL_RECOVERY_RATE
+	_reckless_time = clampf(_reckless_time + change, 0.0, careful_grace_duration)
+	_update_careful_progress_bar()
+
+	if _reckless_time >= careful_grace_duration:
+		_drop_carried_object()
 
 
 func _change_state(new_state: STATE) -> void:
@@ -72,12 +87,14 @@ func _change_state(new_state: STATE) -> void:
 			showcase.disable()
 			chef.disable()
 			table.enable()
-			careful_progress_bar.value = 0.0
+			careful_progress_bar.hide()
+			_reset_carefulness()
 		STATE.OVEN_FREE:
 			oven.enable()
 			table.disable()
-			careful_progress_bar.show()
 			oven.set_resource(OVEN_FREE)
+			_reset_carefulness()
+			careful_progress_bar.show()
 		STATE.OVEN_BUSY:
 			careful_progress_bar.hide()
 			oven.disable()
@@ -90,6 +107,7 @@ func _change_state(new_state: STATE) -> void:
 		STATE.GARNISH:
 			table.enable()
 			oven.set_resource(OVEN_FREE)
+			_reset_carefulness()
 			careful_progress_bar.show()
 		STATE.SHOWCASE:
 			careful_progress_bar.hide()
@@ -110,9 +128,44 @@ func _end() -> void:
 	GameManager.main.load_scene(Main.SCENE.TOWN_SQUARE)
 
 
-func _reset() -> void:
-	_change_state(STATE.MIXING)
+func _drop_carried_object() -> void:
+	var fail_dialogue := (
+		KITCHEN_MIXTURE_FAIL_DIALOGUE if _state == STATE.OVEN_FREE else KITCHEN_CAKE_FAIL_DIALOGUE
+	)
+
 	player.drop_object()
+	_change_state(STATE.MIXING)
+	DialogueManager.start_dialogue(fail_dialogue, CHEF_NAME)
+
+
+func _reset_carefulness() -> void:
+	_reckless_time = 0.0
+	_update_careful_progress_bar()
+
+
+func _style_careful_progress_bar() -> void:
+	careful_progress_bar.max_value = careful_grace_duration
+	careful_progress_bar.show_percentage = false
+
+	# The default ProgressBar theme fills at 40% alpha, which is too faint to read.
+	_careful_bar_fill = _make_careful_bar_style(CAREFUL_SAFE_COLOR)
+	careful_progress_bar.add_theme_stylebox_override(
+		"background", _make_careful_bar_style(CAREFUL_BAR_BACKGROUND_COLOR)
+	)
+	careful_progress_bar.add_theme_stylebox_override("fill", _careful_bar_fill)
+
+
+func _make_careful_bar_style(color: Color) -> StyleBoxFlat:
+	var style := StyleBoxFlat.new()
+	style.bg_color = color
+	style.set_corner_radius_all(3)
+	return style
+
+
+func _update_careful_progress_bar() -> void:
+	var reckless_ratio := _reckless_time / careful_grace_duration
+	careful_progress_bar.value = _reckless_time
+	_careful_bar_fill.bg_color = CAREFUL_SAFE_COLOR.lerp(CAREFUL_DANGER_COLOR, reckless_ratio)
 
 
 func _on_chef_interacted() -> void:

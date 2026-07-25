@@ -115,6 +115,7 @@ script = ExtResource("2_4awqa")
 oven_cooking_duration = 10.0
 food_reward = 5.0
 player_maximum_cake_speed = 90.0
+careful_grace_duration = 0.4
 mini_game_scene = 2
 metadata/_edit_group_ = true
 
@@ -159,7 +160,7 @@ interaction_resource = ExtResource("5_eguca")
 
 [node name="AnimatedSprite2D" parent="Chef" index="0" unique_id=1880559299]
 sprite_frames = SubResource("SpriteFrames_hd1pi")
-frame_progress = 0.073964626
+frame_progress = 0.6851182
 
 [node name="InteractiveComponent" parent="Chef" index="2" unique_id=1993090527]
 position = Vector2(21, 0)
@@ -174,7 +175,7 @@ enabled = false
 
 [node name="AnimatedSprite2D" parent="Table" index="0" unique_id=1880559299]
 sprite_frames = SubResource("SpriteFrames_qj3sd")
-frame_progress = 0.14793313
+frame_progress = 0.51816475
 
 [node name="CollisionShape2D" parent="Table" index="1" unique_id=1354084234]
 shape = SubResource("RectangleShape2D_k25f1")
@@ -217,7 +218,7 @@ interactable_resource = ExtResource("12_v3bvo")
 
 [node name="AnimatedSprite2D" parent="Showcase" index="0" unique_id=1880559299]
 sprite_frames = SubResource("SpriteFrames_quxeh")
-frame_progress = 0.14793313
+frame_progress = 0.51816475
 
 [node name="CollisionShape2D" parent="Showcase" index="1" unique_id=1354084234]
 shape = SubResource("RectangleShape2D_quxeh")

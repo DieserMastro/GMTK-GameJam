@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ObjectResource" format=3]
+
+[ext_resource type="Script" uid="uid://d0w7pjpcodj0q" path="res://resources/objects/object_resource.gd" id="1_wbobj"]
+[ext_resource type="Texture2D" uid="uid://cr2m0lmkrdbj6" path="res://scenes/characters/player/sprites/water_bottle.png" id="2_wbobj"]
+
+[resource]
+script = ExtResource("1_wbobj")
+texture = ExtResource("2_wbobj")
+small_texture_scale = 0.5
+name = "Water dispenser"
+metadata/_custom_type_script = "uid://d0w7pjpcodj0q"

@@ -22,6 +22,7 @@ func _ready() -> void:
 	super()
 	mixture.enabled = false
 	_collect_draggables(mixture_phase)
+	player.queue_free()
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
