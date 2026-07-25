@@ -19,10 +19,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		_is_dragging = false
 
 
-func is_dragging() -> bool:
-	return _is_dragging
-
-
 func _on_mouse_entered() -> void:
 	_can_drag = true
 

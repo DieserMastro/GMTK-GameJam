@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="InteractableResource" format=3 uid="uid://qm4xcbsl28eb"]
+
+[ext_resource type="Script" uid="uid://drepfw6nrceyd" path="res://resources/interactables/interactable_resource.gd" id="1_rgt6o"]
+[ext_resource type="Texture2D" uid="uid://bkpo6wu2168rd" path="res://assets/sprites/kitchen_showcase.png" id="2_3cj8e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_quxeh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3cj8e")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_rgt6o")
+sprite_frames = SubResource("SpriteFrames_quxeh")
+metadata/_custom_type_script = "uid://drepfw6nrceyd"

@@ -1,10 +1,10 @@
 class_name Player
 extends CharacterBody2D
 
-const SPEED := 150.0
-const RUN_SPEED := 250.0
-const ACCELERATION_WEIGHT := 0.075
-const DECCELERATION_WEIGHT := 0.1
+const SPEED := 100.0
+const RUN_SPEED := 150.0
+const ACCELERATION_WEIGHT := 0.1
+const DECELERATION_WEIGHT := 0.2
 
 var _is_running := false
 var _is_frozen := false
@@ -59,6 +59,7 @@ func unset_interactive() -> void:
 #region Freeze
 func freeze() -> void:
 	_is_frozen = true
+	velocity = Vector2.ZERO
 
 
 func unfreeze() -> void:
@@ -72,7 +73,8 @@ func _movement() -> void:
 	_process_sprite(direction)
 
 	if direction.is_zero_approx():
-		velocity = velocity.lerp(Vector2.ZERO, DECCELERATION_WEIGHT)
+		velocity = velocity.lerp(Vector2.ZERO, DECELERATION_WEIGHT)
+		return
 
 	sprite.speed_scale = 1.2 if _is_running else 1.0
 	var speed := RUN_SPEED if _is_running else SPEED

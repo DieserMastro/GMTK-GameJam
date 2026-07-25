@@ -2,7 +2,7 @@
 class_name Draggable
 extends AnimatableBody2D
 
-signal dropped_into_drop_zone
+signal dropped_into_drop_zone(draggable: Draggable)
 
 const DRAGGABLE_OUTLINE_MATERIAL := preload("uid://ybaumnfu1sk4")
 const OUTLINE_THICKNESS := 2.0
@@ -26,6 +26,7 @@ func _ready() -> void:
 
 	if draggable_resource:
 		sprite.texture = draggable_resource.texture
+		sprite.scale = Vector2.ONE * draggable_resource.texture_scale
 
 
 func _physics_process(delta: float) -> void:
@@ -60,4 +61,4 @@ func _on_drag_component_drag_started() -> void:
 func _on_drag_component_drag_ended() -> void:
 	_can_follow = false
 	if _drop_zone:
-		dropped_into_drop_zone.emit()
+		dropped_into_drop_zone.emit(self)

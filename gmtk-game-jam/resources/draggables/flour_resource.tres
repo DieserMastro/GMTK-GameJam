@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DraggableResource" format=3 uid="uid://05ihqtkovdlj"]
+
+[ext_resource type="Script" uid="uid://drc58io8bh1q1" path="res://resources/draggables/draggable_resource.gd" id="1_8vekd"]
+[ext_resource type="Texture2D" uid="uid://bd0x2ngstdunp" path="res://assets/sprites/flour.png" id="2_ioqsy"]
+
+[resource]
+script = ExtResource("1_8vekd")
+texture = ExtResource("2_ioqsy")
+texture_scale = 3.0
+metadata/_custom_type_script = "uid://drc58io8bh1q1"
