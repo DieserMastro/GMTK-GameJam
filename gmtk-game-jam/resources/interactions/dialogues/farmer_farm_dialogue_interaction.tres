@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="DialogueInteractionResource" format=3 uid="uid://eexneq5r4hpo"]
+
+[ext_resource type="Script" uid="uid://shptia53mxru" path="res://resources/interactions/dialogue_interaction_resource.gd" id="1_avxxq"]
+[ext_resource type="Script" uid="uid://b16j8gviy27i0" path="res://resources/dialogues/dialogue_resource.gd" id="1_pdiad"]
+
+[sub_resource type="Resource" id="Resource_fts17"]
+script = ExtResource("1_pdiad")
+lines = Array[String](["Well, goshdarn! Thank you for chiken!"])
+metadata/_custom_type_script = "uid://b16j8gviy27i0"
+
+[sub_resource type="Resource" id="Resource_hstvr"]
+script = ExtResource("1_pdiad")
+lines = Array[String](["Goshdaaarn chickeeens!!", "I need to catch them all to get the eggs..", "You feel me, pal?", "Hold SHIFT to run faster, interact with them to catch them.", "I'm counting on you!"])
+metadata/_custom_type_script = "uid://b16j8gviy27i0"
+
+[resource]
+script = ExtResource("1_avxxq")
+dialogue = SubResource("Resource_hstvr")
+completed_dialogue = SubResource("Resource_fts17")
+mini_game = 3
+metadata/_custom_type_script = "uid://shptia53mxru"

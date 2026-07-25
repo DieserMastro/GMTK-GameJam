@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="InteractableResource" format=3 uid="uid://7aufwvand422"]
+
+[ext_resource type="Script" uid="uid://drepfw6nrceyd" path="res://resources/interactables/interactable_resource.gd" id="1_uuero"]
+[ext_resource type="Texture2D" uid="uid://c6bl42cq7peqk" path="res://assets/sprites/farmer.png" id="2_lr4pc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2int6"]
+atlas = ExtResource("2_lr4pc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mb5q"]
+atlas = ExtResource("2_lr4pc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lr4pc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2int6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mb5q")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 2.5
+}]
+
+[resource]
+script = ExtResource("1_uuero")
+sprite_frames = SubResource("SpriteFrames_lr4pc")
+metadata/_custom_type_script = "uid://drepfw6nrceyd"

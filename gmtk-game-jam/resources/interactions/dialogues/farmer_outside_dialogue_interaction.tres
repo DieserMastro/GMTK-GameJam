@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="DialogueInteractionResource" format=3 uid="uid://br2yxcxkkstll"]
+
+[ext_resource type="Script" uid="uid://b16j8gviy27i0" path="res://resources/dialogues/dialogue_resource.gd" id="1_m7j4x"]
+[ext_resource type="Script" uid="uid://shptia53mxru" path="res://resources/interactions/dialogue_interaction_resource.gd" id="1_wokaq"]
+
+[sub_resource type="Resource" id="Resource_m1bwj"]
+script = ExtResource("1_m7j4x")
+lines = Array[String](["The chicken ain't gonna run now, hehe."])
+metadata/_custom_type_script = "uid://b16j8gviy27i0"
+
+[sub_resource type="Resource" id="Resource_m7j4x"]
+script = ExtResource("1_m7j4x")
+lines = Array[String](["Gahdarn, chickeeens! Oh, you wanna catch some?", "Be my guest!"])
+metadata/_custom_type_script = "uid://b16j8gviy27i0"
+
+[resource]
+script = ExtResource("1_wokaq")
+dialogue = SubResource("Resource_m7j4x")
+completed_dialogue = SubResource("Resource_m1bwj")
+should_go_to_destination = true
+dialogue_destination = 3
+mini_game = 3
+metadata/_custom_type_script = "uid://shptia53mxru"
