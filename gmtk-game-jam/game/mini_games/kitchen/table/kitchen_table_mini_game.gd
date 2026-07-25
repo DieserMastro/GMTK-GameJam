@@ -9,7 +9,8 @@ enum STATE {
 	GARNISH_PHASE,
 }
 
-var _ingredients_needed := 4
+var _draggables: Array[Draggable] = []
+var _state: STATE
 
 @onready var mixture_phase: Node2D = $MixturePhase
 @onready var garnish_phase: Node2D = $GarnishPhase
@@ -18,7 +19,8 @@ var _ingredients_needed := 4
 
 func _ready() -> void:
 	super()
-	_ingredients_needed = mixture_phase.find_children("*", "Draggable").size()
+	mixture.enabled = false
+	_collect_draggables(mixture_phase)
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -27,12 +29,16 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func spawn(state: STATE) -> void:
+	_state = state
+
 	match state:
 		STATE.MIXTURE_PHASE:
 			mixture.enabled = false
 			garnish_phase.queue_free()
+			_collect_draggables(mixture_phase)
 		STATE.GARNISH_PHASE:
 			mixture_phase.queue_free()
+			_collect_draggables(garnish_phase)
 		_:
 			push_error("Kitchen table mini game state doesn't exist %s" % state)
 
@@ -47,15 +53,34 @@ func _on_mixture_completed() -> void:
 	_end()
 
 
-func _on_ingredient_dropped_into_drop_zone(draggable: Draggable) -> void:
+func _on_draggable_dropped_into_drop_zone(draggable: Draggable) -> void:
+	_draggables.erase(draggable)
 	draggable.queue_free()
-	_ingredients_needed -= 1
 
-	if _ingredients_needed <= 0:
-		mixture.enabled = true
+	if _state == STATE.MIXTURE_PHASE:
+		mixture.next_frame()
+
+	if _draggables.is_empty():
+		_on_phase_completed()
+		return
+
+	_update_draggable_availability()
 
 
-func _on_garnish_dropped_into_drop_zone(draggable: Draggable) -> void:
-	draggable.queue_free()
-	cake_complete.emit()
-	_end()
+func _on_phase_completed() -> void:
+	match _state:
+		STATE.MIXTURE_PHASE:
+			mixture.enabled = true
+		STATE.GARNISH_PHASE:
+			cake_complete.emit()
+			_end()
+
+
+func _collect_draggables(phase: Node2D) -> void:
+	_draggables.assign(phase.find_children("*", "Draggable"))
+	_update_draggable_availability()
+
+
+func _update_draggable_availability() -> void:
+	for index in _draggables.size():
+		_draggables[index].can_drag = index == 0

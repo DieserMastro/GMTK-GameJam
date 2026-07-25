@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="InteractableResource" format=3 uid="uid://dyfybcescfaq8"]
 
-[ext_resource type="Texture2D" uid="uid://woyrbmh4comp" path="res://assets/sprites/oven_busy.png" id="2_hjixm"]
-[ext_resource type="Script" uid="uid://drepfw6nrceyd" path="res://resources/interactables/interactable_resource.gd" id="2_hrrqn"]
+[ext_resource type="Script" uid="uid://drepfw6nrceyd" path="res://resources/interactables/interactable_resource.gd" id="1_g6o48"]
+[ext_resource type="Texture2D" uid="uid://woyrbmh4comp" path="res://assets/sprites/oven_busy.png" id="2_llv26"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1t04s"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_hjixm")
+"texture": ExtResource("2_llv26")
 }],
 "loop": 1,
 "name": &"default",
@@ -15,6 +15,6 @@ animations = [{
 }]
 
 [resource]
-script = ExtResource("2_hrrqn")
+script = ExtResource("1_g6o48")
 sprite_frames = SubResource("SpriteFrames_1t04s")
 metadata/_custom_type_script = "uid://drepfw6nrceyd"

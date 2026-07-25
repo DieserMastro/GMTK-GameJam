@@ -27,7 +27,8 @@ func _ready() -> void:
 		return
 
 	sprite.sprite_frames = interactable_resource.sprite_frames
-	sprite.play("default")
+	if not interactable_resource.play_only_on_interaction:
+		sprite.play("default")
 
 
 func enable() -> void:
@@ -42,13 +43,16 @@ func set_resource(new_resource: InteractableResource) -> void:
 	interactable_resource = new_resource
 	sprite.sprite_frames = new_resource.sprite_frames
 
-	if sprite.sprite_frames:
+	if sprite.sprite_frames and not new_resource.play_only_on_interaction:
 		sprite.play("default")
 
 
 func _on_interactive_component_interacted() -> void:
-	if not enabled:
+	if not enabled or not interactable_resource:
 		return
+
+	if interactable_resource.play_only_on_interaction:
+		sprite.play("default")
 
 	if interactable_resource.can_interact():
 		interactable_resource.interaction_resource.interact(self)

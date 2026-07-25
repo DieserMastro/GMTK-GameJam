@@ -28,6 +28,9 @@ func _on_mouse_exited() -> void:
 
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if not enabled:
+		return
+
 	if event is not InputEventMouseButton or event.button_index != MOUSE_BUTTON_LEFT:
 		return
 

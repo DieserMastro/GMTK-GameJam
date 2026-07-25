@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="InteractableResource" format=3 uid="uid://cej0srahq64yr"]
+
+[ext_resource type="Script" uid="uid://drepfw6nrceyd" path="res://resources/interactables/interactable_resource.gd" id="1_rpcup"]
+[ext_resource type="Texture2D" uid="uid://bu6ppcak5w1xr" path="res://assets/sprites/oven_empty.png" id="2_it5ss"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rpcup"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_it5ss")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_rpcup")
+sprite_frames = SubResource("SpriteFrames_rpcup")
+play_only_on_interaction = true
+metadata/_custom_type_script = "uid://drepfw6nrceyd"
