@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="OutcomeResource" format=3 uid="uid://n58vppfb4qwm"]
+
+[ext_resource type="Script" uid="uid://b16j8gviy27i0" path="res://resources/dialogues/dialogue_resource.gd" id="1_l16k4"]
+[ext_resource type="Script" uid="uid://cuhvbyuumph5e" path="res://resources/outcomes/outcome_resource.gd" id="2_ot2jk"]
+
+[sub_resource type="Resource" id="Resource_modst"]
+script = ExtResource("1_l16k4")
+lines = Array[String](["I mean.. I've witnessed worse!", "Most people had food and drinks, so there's that.", "Our villagers had decent fun, so I'd count that as a win.", "Let's do better next year."])
+metadata/_custom_type_script = "uid://b16j8gviy27i0"
+
+[resource]
+script = ExtResource("2_ot2jk")
+title = "Mid, but not the worst"
+minimum_supplies = 150.0
+dialogue = SubResource("Resource_modst")

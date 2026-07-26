@@ -41,6 +41,11 @@ func enable() -> void:
 		_run_away()
 
 
+func disable() -> void:
+	_is_active = false
+	_calm_down()
+
+
 func _run_away() -> void:
 	_randomize_flee()
 	sprite.play("run")
@@ -81,5 +86,8 @@ func _on_detection_area_body_exited(_body: Player) -> void:
 
 
 func _on_interactive_component_interacted() -> void:
+	if not _is_active:
+		return
+
 	caught.emit()
 	queue_free()

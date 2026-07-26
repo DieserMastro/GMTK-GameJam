@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bmbq0mfiprw5v" path="res://assets/sprites/table.png" id="8_qj3sd"]
 [ext_resource type="Texture2D" uid="uid://bu6ppcak5w1xr" path="res://assets/sprites/oven_empty.png" id="10_eguca"]
 [ext_resource type="Resource" uid="uid://qm4xcbsl28eb" path="res://resources/interactables/kitchen_showcase.tres" id="12_v3bvo"]
+[ext_resource type="PackedScene" uid="uid://bug8t6njx0iow" path="res://scenes/clock/clock.tscn" id="13_k20tb"]
 [ext_resource type="Texture2D" uid="uid://bkpo6wu2168rd" path="res://assets/sprites/kitchen_showcase.png" id="13_quxeh"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1xhu4"]
@@ -113,7 +114,8 @@ size = Vector2(14, 49)
 [node name="KitchenMiniGame" unique_id=431908219 instance=ExtResource("1_exmhl")]
 script = ExtResource("2_4awqa")
 oven_cooking_duration = 10.0
-food_reward = 5.0
+game_duration = 90.0
+cake_supply_reward = 50.0
 player_maximum_cake_speed = 90.0
 careful_grace_duration = 0.4
 mini_game_scene = 2
@@ -134,7 +136,6 @@ position = Vector2(288, 296)
 [node name="Camera2D" parent="Player" index="3" unique_id=1976386145]
 zoom = Vector2(2.75, 2.75)
 process_callback = 0
-position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
 [node name="Walls" type="Node2D" parent="." index="4" unique_id=1253551247]
@@ -160,7 +161,7 @@ interaction_resource = ExtResource("5_eguca")
 
 [node name="AnimatedSprite2D" parent="Chef" index="0" unique_id=1880559299]
 sprite_frames = SubResource("SpriteFrames_hd1pi")
-frame_progress = 0.6851182
+frame_progress = 0.1409343
 
 [node name="InteractiveComponent" parent="Chef" index="2" unique_id=1993090527]
 position = Vector2(21, 0)
@@ -175,7 +176,7 @@ enabled = false
 
 [node name="AnimatedSprite2D" parent="Table" index="0" unique_id=1880559299]
 sprite_frames = SubResource("SpriteFrames_qj3sd")
-frame_progress = 0.51816475
+frame_progress = 0.28186902
 
 [node name="CollisionShape2D" parent="Table" index="1" unique_id=1354084234]
 shape = SubResource("RectangleShape2D_k25f1")
@@ -218,7 +219,7 @@ interactable_resource = ExtResource("12_v3bvo")
 
 [node name="AnimatedSprite2D" parent="Showcase" index="0" unique_id=1880559299]
 sprite_frames = SubResource("SpriteFrames_quxeh")
-frame_progress = 0.51816475
+frame_progress = 0.28186902
 
 [node name="CollisionShape2D" parent="Showcase" index="1" unique_id=1354084234]
 shape = SubResource("RectangleShape2D_quxeh")
@@ -253,11 +254,20 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
+[node name="GameTimer" type="Timer" parent="." index="10" unique_id=1102000001]
+one_shot = true
+
+[node name="Clock" parent="." index="11" unique_id=1594854910 instance=ExtResource("13_k20tb")]
+position = Vector2(168, 140)
+scale = Vector2(0.75, 0.75)
+starts_hidden = true
+
 [connection signal="interacted" from="Chef" to="." method="_on_chef_interacted"]
 [connection signal="interacted" from="Table" to="." method="_on_table_interacted"]
 [connection signal="interacted" from="Oven" to="." method="_on_oven_interacted"]
 [connection signal="timeout" from="Oven/OvenTimer" to="." method="_on_oven_timer_timeout"]
 [connection signal="interacted" from="Showcase" to="." method="_on_showcase_interacted"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
 
 [editable path="Chef"]
 [editable path="Chef/InteractiveComponent"]

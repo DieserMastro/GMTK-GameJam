@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DialogueResource" format=3 uid="uid://bv7g8uf7i3yiv"]
+
+[ext_resource type="Script" uid="uid://b16j8gviy27i0" path="res://resources/dialogues/dialogue_resource.gd" id="1_yt1ia"]
+
+[resource]
+script = ExtResource("1_yt1ia")
+lines = Array[String](["Time has ran out. Get off my farm."])
+metadata/_custom_type_script = "uid://b16j8gviy27i0"

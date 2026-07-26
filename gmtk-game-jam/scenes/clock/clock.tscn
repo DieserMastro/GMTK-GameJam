@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bug8t6njx0iow"]
+
+[ext_resource type="Texture2D" uid="uid://h5fegcmmw4ig" path="res://assets/sprites/clock.png" id="1_4o2gw"]
+[ext_resource type="Script" uid="uid://dcqpekmn4mgic" path="res://scenes/clock/clock.gd" id="1_yxh3l"]
+
+[node name="Clock" type="Node2D" unique_id=1594854910]
+script = ExtResource("1_yxh3l")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=372337960]
+texture = ExtResource("1_4o2gw")
+
+[node name="Time" type="Label" parent="." unique_id=458162415]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_type_variation = &"TimeLabel"
+text = "59"
+horizontal_alignment = 1
+vertical_alignment = 1

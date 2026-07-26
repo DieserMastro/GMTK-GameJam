@@ -16,7 +16,6 @@ var _type_tween: Tween
 @onready var dialogue_box: MarginContainer = $DialogueBox
 
 
-
 func _ready() -> void:
 	_stop_typing()
 	dialogue_box.hide()
@@ -32,6 +31,16 @@ func start_dialogue(dialogue: DialogueResource, char_name: String) -> void:
 	dialogue_box.show()
 	dialogue_started.emit()
 	_show_line()
+
+
+func stop_dialogue() -> void:
+	_stop_typing()
+	_lines = []
+	_current_line_index = 0
+	dialogue_box.hide()
+
+	for connection in dialogue_completed.get_connections():
+		dialogue_completed.disconnect(connection.callable)
 
 
 func _input(event: InputEvent) -> void:

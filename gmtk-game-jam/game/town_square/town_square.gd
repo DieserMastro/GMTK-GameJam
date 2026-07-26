@@ -14,7 +14,7 @@ const WATER_GUY_NAME := "Water Guy"
 
 @export_group("Water Mini Game")
 @export var water_search_duration := 30.0
-@export var water_reward := 5.0
+@export var water_supply_reward := 200.0
 
 var _water_dispenser: Interactable
 var _is_carrying_dispenser := false
@@ -23,11 +23,13 @@ var _is_carrying_dispenser := false
 @onready var water_guy: Interactable = $"Characters/Water Guy"
 @onready var water_search_timer: Timer = $WaterSearchTimer
 @onready var water_dispenser_spawns: Node2D = $WaterDispenserSpawns
+@onready var clock: Clock = $ClockLayer/Clock
 
 
 func _ready() -> void:
 	super()
 	water_search_timer.wait_time = water_search_duration
+	clock.follow(water_search_timer)
 	_spawn_player()
 	_update_characters()
 	GameManager.start_game_timer()
@@ -61,6 +63,7 @@ func _update_characters() -> void:
 func _start_water_search() -> void:
 	_spawn_water_dispenser()
 	water_search_timer.start()
+	clock.drop_in()
 
 
 func _spawn_water_dispenser() -> void:
@@ -79,6 +82,7 @@ func _spawn_water_dispenser() -> void:
 
 func _finish_water_search() -> void:
 	water_search_timer.stop()
+	clock.retract()
 	_despawn_water_dispenser()
 	GameManager.complete_mini_game(Main.SCENE.WATER_GAME)
 
@@ -101,7 +105,7 @@ func _despawn_water_dispenser() -> void:
 func _on_water_guy_interacted() -> void:
 	if _is_carrying_dispenser:
 		_finish_water_search()
-		GameManager.drinks += water_reward
+		GameManager.supplies += water_supply_reward
 		DialogueManager.start_dialogue(WATER_GUY_SUCCESS_DIALOGUE, WATER_GUY_NAME)
 		return
 

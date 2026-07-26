@@ -21,6 +21,7 @@ const MIXTURE_OBJECT_RESOURCE = preload("uid://dd4by80jhcg6w")
 const OBJECT = preload("uid://bgn0vyn0uq0ix")
 const KITCHEN_CAKE_FAIL_DIALOGUE = preload("uid://b5e5kw1415kwb")
 const KITCHEN_MIXTURE_FAIL_DIALOGUE = preload("uid://dqg0vrptjnnyw")
+const KITCHEN_TIME_OUT_DIALOGUE = preload("uid://bmxqiobogroxb")
 const CHEF_NAME := "Chef"
 const CAREFUL_STATES := [STATE.OVEN_FREE, STATE.GARNISH]
 const CAREFUL_RECOVERY_RATE := 2.0
@@ -31,10 +32,10 @@ const CAREFUL_BAR_BACKGROUND_COLOR := Color(0.11, 0.11, 0.13, 0.9)
 
 @export_group("Properties")
 @export var oven_cooking_duration := 10.0
-@export var food_reward := 5.0
+@export var game_duration := 90.0
+@export var cake_supply_reward := 50.0
 @export_group("Player")
 @export var player_maximum_cake_speed := 90.0
-## How long the player may exceed the maximum speed before dropping what they carry.
 @export var careful_grace_duration := 0.4
 
 var _state := STATE.DIALOGUE
@@ -50,13 +51,17 @@ var _careful_bar_fill: StyleBoxFlat
 @onready var table_layer: CanvasLayer = $TableLayer
 @onready var careful_progress_bar: ProgressBar = $HUD/CarefulProgressBar
 @onready var oven_timer: Timer = $Oven/OvenTimer
+@onready var game_timer: Timer = $GameTimer
+@onready var clock: Clock = $Clock
 
- 
+
 func _ready() -> void:
 	super()
 	_style_careful_progress_bar()
 	_change_state(STATE.DIALOGUE)
 	oven_timer.wait_time = oven_cooking_duration
+	game_timer.wait_time = game_duration
+	clock.follow(game_timer)
 	_showcase_cake_markers = $Showcase/ShowcaseCakeMarkers.get_children()
 
 
@@ -114,18 +119,32 @@ func _change_state(new_state: STATE) -> void:
 			table.disable()
 			showcase.enable()
 		STATE.DONE:
+			game_timer.stop()
+			oven_timer.stop()
+			clock.retract()
+			careful_progress_bar.hide()
+			_close_table_mini_game()
+			player.drop_object()
 			table.disable()
 			showcase.disable()
 			oven.disable()
+			oven.set_resource(OVEN_FREE)
 			chef.enable()
 			_complete()
 
 	_state = new_state
 
 
-func _end() -> void:
-	super()
+func _exit() -> void:
 	GameManager.main.load_scene(Main.SCENE.TOWN_SQUARE)
+
+
+func _close_table_mini_game() -> void:
+	if not _table_mini_game:
+		return
+
+	_table_mini_game.queue_free()
+	_on_table_mini_game_exited()
 
 
 func _drop_carried_object() -> void:
@@ -147,7 +166,6 @@ func _style_careful_progress_bar() -> void:
 	careful_progress_bar.max_value = careful_grace_duration
 	careful_progress_bar.show_percentage = false
 
-	# The default ProgressBar theme fills at 40% alpha, which is too faint to read.
 	_careful_bar_fill = _make_careful_bar_style(CAREFUL_SAFE_COLOR)
 	careful_progress_bar.add_theme_stylebox_override(
 		"background", _make_careful_bar_style(CAREFUL_BAR_BACKGROUND_COLOR)
@@ -171,6 +189,8 @@ func _update_careful_progress_bar() -> void:
 func _on_chef_interacted() -> void:
 	match _state:
 		STATE.DIALOGUE:
+			game_timer.start()
+			clock.drop_in()
 			_change_state(STATE.MIXING)
 		STATE.DONE:
 			DialogueManager.dialogue_completed.connect(_end, CONNECT_ONE_SHOT)
@@ -223,9 +243,18 @@ func _on_oven_timer_timeout() -> void:
 	_change_state(STATE.OVEN_DONE)
 
 
+func _on_game_timer_timeout() -> void:
+	_change_state(STATE.DONE)
+	DialogueManager.start_dialogue(KITCHEN_TIME_OUT_DIALOGUE, CHEF_NAME)
+
+
 func _on_showcase_interacted() -> void:
+	if _state != STATE.SHOWCASE:
+		return
+
 	player.drop_object()
 	_display_cake()
+	GameManager.supplies += cake_supply_reward
 
 	if _is_showcase_full():
 		_change_state(STATE.DONE)

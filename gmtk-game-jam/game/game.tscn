@@ -20,3 +20,5 @@ script = ExtResource("1_vasa2")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1976386145]
 zoom = Vector2(1.5, 1.5)
+process_callback = 0
+position_smoothing_enabled = true

@@ -13,7 +13,9 @@ extends Node2D
 func _ready() -> void:
 	fade_transition.fade_in_finished.connect(_on_fade_in_transition_finished)
 	fade_transition.fade_out_finished.connect(_on_fade_out_transition_finished)
+	GameManager.run_over.connect(_stop_timers)
 	GameManager.time_expired.connect(_on_time_expired)
+	player.teleported.connect(camera.reset_smoothing)
 
 	_restrict_camera()
 
@@ -23,17 +25,14 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		_toggle_pause()
 
 
-## Override for logic that happens when game starts
 func _start() -> void:
 	pass
 
 
-## Override for logic that happens when game ends
 func _end() -> void:
 	pass
 
 
-## Override for logic that happens when game exits
 func _exit() -> void:
 	get_tree().reload_current_scene()
 
@@ -72,8 +71,17 @@ func _on_fade_in_transition_finished() -> void:
 
 
 func _on_fade_out_transition_finished() -> void:
+	if GameManager.is_run_over():
+		GameManager.show_outcome()
+		return
+
 	_exit()
 
 
 func _on_time_expired() -> void:
 	_end()
+
+
+func _stop_timers() -> void:
+	for timer: Timer in find_children("*", "Timer", true, false):
+		timer.stop()

@@ -1,13 +1,18 @@
 class_name Player
 extends CharacterBody2D
 
+signal teleported
+
 const SPEED := 100.0
 const RUN_SPEED := 150.0
 const ACCELERATION_WEIGHT := 0.1
 const DECELERATION_WEIGHT := 0.2
+const TELEPORT_FADE_DURATION := 0.35
 
 var _is_running := false
 var _is_frozen := false
+var _is_teleporting := false
+var _teleport_tween: Tween
 var _interactive: InteractiveComponent
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -20,7 +25,7 @@ func _init() -> void:
 
 
 func _physics_process(_delta: float):
-	if _is_frozen:
+	if _is_frozen or _is_teleporting:
 		return
 
 	_movement()
@@ -69,6 +74,32 @@ func freeze() -> void:
 
 func unfreeze() -> void:
 	_is_frozen = false
+#endregion
+
+
+#region Teleporting
+func teleport_to(target: Vector2) -> void:
+	if _teleport_tween:
+		_teleport_tween.kill()
+
+	_is_teleporting = true
+	velocity = Vector2.ZERO
+	sprite.play("idle")
+
+	_teleport_tween = create_tween()
+	_teleport_tween.tween_property(self, "modulate:a", 0.0, TELEPORT_FADE_DURATION)
+	_teleport_tween.tween_callback(_arrive_at.bind(target))
+	_teleport_tween.tween_property(self, "modulate:a", 1.0, TELEPORT_FADE_DURATION)
+	_teleport_tween.tween_callback(_finish_teleport)
+
+
+func _arrive_at(target: Vector2) -> void:
+	global_position = target
+	teleported.emit()
+
+
+func _finish_teleport() -> void:
+	_is_teleporting = false
 #endregion
 
 

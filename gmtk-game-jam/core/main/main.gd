@@ -7,8 +7,8 @@ enum SCENE {
 	KITCHEN_GAME,
 	FARM_GAME,
 	BALLOON_GAME,
-	## Runs inside Town Square, so it has no scene path of its own.
 	WATER_GAME,
+	OUTCOME,
 }
 
 @export_group("Scenes")
@@ -21,6 +21,7 @@ var _scene_paths: Dictionary[SCENE, String] = {
 	SCENE.KITCHEN_GAME: "uid://dxvlmr187anxi",
 	SCENE.FARM_GAME: "uid://b6p6w4ydoyg03",
 	SCENE.BALLOON_GAME: "uid://theoq8o3tpee",
+	SCENE.OUTCOME: "res://game/outcome/outcome.tscn",
 }
 
 
@@ -39,6 +40,7 @@ func unload_scene() -> void:
 
 func load_scene(new_scene: SCENE) -> void:
 	unload_scene()
+	DialogueManager.stop_dialogue()
 
 	var scene := load(_scene_paths[new_scene])
 	_current_scene = scene.instantiate()

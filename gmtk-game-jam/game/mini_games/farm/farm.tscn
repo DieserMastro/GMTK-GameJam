@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://7aufwvand422" path="res://resources/interactables/farmer.tres" id="5_f4k6m"]
 [ext_resource type="Texture2D" uid="uid://c6bl42cq7peqk" path="res://assets/sprites/farmer.png" id="6_hstvr"]
 [ext_resource type="Resource" uid="uid://eexneq5r4hpo" path="res://resources/interactions/dialogues/farmer_farm_dialogue_interaction.tres" id="7_ox0c0"]
+[ext_resource type="PackedScene" uid="uid://bug8t6njx0iow" path="res://scenes/clock/clock.tscn" id="9_kathj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xhu4"]
 size = Vector2(8, 64)
@@ -41,6 +42,7 @@ size = Vector2(20, 80)
 script = ExtResource("2_35tpc")
 chicken_amount = 10
 game_duration = 30.0
+chicken_supply_reward = 12.0
 initial_state = 0
 mini_game_scene = 3
 
@@ -99,7 +101,7 @@ interaction_resource = ExtResource("7_ox0c0")
 
 [node name="AnimatedSprite2D" parent="Farmer" index="0" unique_id=1880559299]
 sprite_frames = SubResource("SpriteFrames_lr4pc")
-frame_progress = 0.028712822
+frame_progress = 0.37011924
 flip_h = true
 
 [node name="InteractiveComponent" parent="Farmer" index="2" unique_id=1993090527]
@@ -116,6 +118,10 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StartGameArea" index="0" unique_id=770486639]
 shape = SubResource("RectangleShape2D_n340e")
+
+[node name="Clock" parent="." index="11" unique_id=1594854910 instance=ExtResource("9_kathj")]
+position = Vector2(112, 208)
+starts_hidden = true
 
 [connection signal="interacted" from="Farmer" to="." method="_on_farmer_interacted"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

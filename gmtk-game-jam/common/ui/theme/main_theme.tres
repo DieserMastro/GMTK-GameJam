@@ -1,5 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://biq8ht6fmtou7"]
 
+[ext_resource type="FontFile" uid="uid://c2ggcy1ttguqi" path="res://common/ui/fonts/Tiny5/Tiny5-Regular.ttf" id="1_1ojn0"]
+
 [resource]
 default_font_size = 32
 DialogueBoxMarginContainer/base_type = &"MarginContainer"
@@ -18,5 +20,9 @@ MarginContainer/constants/margin_right = 16
 MarginContainer/constants/margin_top = 16
 ObjectLabel/base_type = &"Label"
 ObjectLabel/font_sizes/font_size = 6
+TimeLabel/base_type = &"Label"
+TimeLabel/colors/font_color = Color(0, 0, 0, 1)
+TimeLabel/font_sizes/font_size = 12
+TimeLabel/fonts/font = ExtResource("1_1ojn0")
 TimerLabel/base_type = &"Label"
 TimerLabel/font_sizes/font_size = 16

@@ -7,11 +7,14 @@ enum STATE {
 }
 
 const CHICKEN = preload("uid://durly01mavpvi")
+const FARM_TIME_OUT_DIALOGUE = preload("uid://bv7g8uf7i3yiv")
+const FARMER_NAME := "Farmer"
 const WORLD_LAYER := 4
 
 @export_group("Properties")
 @export var chicken_amount := 5
 @export var game_duration := 30.0
+@export var chicken_supply_reward := 12.0
 @export_group("State")
 @export var initial_state := STATE.PREPARE
 
@@ -24,22 +27,23 @@ var _chickens_left: int
 @onready var fence_gate: StaticBody2D = $FenceGate
 @onready var player_reset_marker: Marker2D = $PlayerResetMarker
 @onready var game_timer: Timer = $GameTimer
+@onready var clock: Clock = $Clock
 
 
 func _ready() -> void:
 	super()
+	game_timer.wait_time = game_duration
+	clock.follow(game_timer)
 	_change_state(initial_state)
 
 
-func _end() -> void:
-	super()
+func _exit() -> void:
 	GameManager.main.load_scene(Main.SCENE.TOWN_SQUARE)
 
 
 func _change_state(new_state: STATE) -> void:
 	match new_state:
 		STATE.PREPARE:
-			game_timer.wait_time = game_duration
 			_spawn_chickens()
 		STATE.CHASING:
 			farmer.disable()
@@ -53,7 +57,9 @@ func _change_state(new_state: STATE) -> void:
 
 func _finish_game() -> void:
 	game_timer.stop()
-	player.global_position = player_reset_marker.global_position
+	clock.retract()
+	_disable_chickens()
+	player.teleport_to(player_reset_marker.global_position)
 	farmer.enable()
 	_close_gate()
 	_complete()
@@ -66,7 +72,6 @@ func _get_chicken_bounds() -> Rect2:
 		Vector2(fence_rect.position) * tile_size,
 		Vector2(fence_rect.size) * tile_size,
 	)
-	# Reduce by 1 tile so chickens won't go on top of fence
 	return fence_bounds_in_px.grow(-tile_size.x)
 
 
@@ -89,6 +94,11 @@ func _enable_chickens() -> void:
 		chicken.enable()
 
 
+func _disable_chickens() -> void:
+	for chicken: Chicken in chickens.get_children():
+		chicken.disable()
+
+
 func _open_gate() -> void:
 	if GameManager.is_mini_game_finished(mini_game_scene):
 		return
@@ -103,7 +113,12 @@ func _close_gate() -> void:
 
 
 func _on_chicken_caught() -> void:
+	if _state == STATE.END:
+		return
+
+	GameManager.supplies += chicken_supply_reward
 	_chickens_left -= 1
+
 	if _chickens_left > 0:
 		return
 
@@ -120,7 +135,12 @@ func _on_farmer_interacted() -> void:
 
 func _on_game_timer_timeout() -> void:
 	_change_state(STATE.END)
+	DialogueManager.start_dialogue(FARM_TIME_OUT_DIALOGUE, FARMER_NAME)
 
 
 func _on_start_game_area_body_entered(_body: Node2D) -> void:
+	if _state != STATE.CHASING or not game_timer.is_stopped():
+		return
+
 	game_timer.start()
+	clock.drop_in()

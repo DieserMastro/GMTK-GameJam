@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dfy467pphqbvf"]
 
 [ext_resource type="Script" uid="uid://cni7ngvbekblt" path="res://common/ui/huds/hud.gd" id="1_2s4u0"]
+[ext_resource type="Texture2D" uid="uid://dbmb66yq2chre" path="res://assets/sprites/food.png" id="2_food0"]
+[ext_resource type="Texture2D" uid="uid://b4lxfogm5d1f5" path="res://assets/sprites/money.png" id="3_money"]
 
 [node name="HUD" type="CanvasLayer" unique_id=1935746708]
 script = ExtResource("1_2s4u0")
@@ -13,12 +15,57 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TimeLeftLabel" type="Label" parent="ContentContainer" unique_id=168906198]
+[node name="StatusContainer" type="VBoxContainer" parent="ContentContainer" unique_id=1103000001]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme_type_variation = &"TimerLabel"
+mouse_filter = 2
+theme_override_constants/separation = 2
+
+[node name="TimeLeftLabel" type="Label" parent="ContentContainer/StatusContainer" unique_id=168906198]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
 text = "00:00"
+horizontal_alignment = 2
+
+[node name="SuppliesContainer" type="HBoxContainer" parent="ContentContainer/StatusContainer" unique_id=1103000004]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+alignment = 2
+
+[node name="SuppliesIcon" type="TextureRect" parent="ContentContainer/StatusContainer/SuppliesContainer" unique_id=1103000005]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_food0")
+
+[node name="SuppliesLabel" type="Label" parent="ContentContainer/StatusContainer/SuppliesContainer" unique_id=1103000002]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+theme_type_variation = &"TimerLabel"
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MoneyContainer" type="HBoxContainer" parent="ContentContainer/StatusContainer" unique_id=1103000006]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+alignment = 2
+
+[node name="MoneyIcon" type="TextureRect" parent="ContentContainer/StatusContainer/MoneyContainer" unique_id=1103000007]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_money")
+stretch_mode = 3
+
+[node name="MoneyLabel" type="Label" parent="ContentContainer/StatusContainer/MoneyContainer" unique_id=1103000003]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+theme_type_variation = &"TimerLabel"
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="TitleLabel" type="Label" parent="ContentContainer" unique_id=1733014648]
 layout_mode = 2

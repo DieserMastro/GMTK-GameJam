@@ -16,6 +16,8 @@ const CROSSHAIR_TEXTURE = preload("uid://dej0amaqtt46g")
 @export_group("Properties")
 @export var game_duration := 15.0
 @export var balloon_spawn_interval := 0.75
+@export var minimum_balloon_money := 5
+@export var maximum_balloon_money := 10
 @export_group("State")
 @export var initial_state := STATE.INTRO
 
@@ -26,11 +28,15 @@ var _balloons_popped := 0
 @onready var game_timer: Timer = $GameTimer
 @onready var path_follow_2d: PathFollow2D = $Path2D/PathFollow2D
 @onready var balloons: Node2D = $Balloons
+@onready var clock: Clock = $Clock
 
 
 func _ready() -> void:
 	super()
 	player.queue_free()
+	balloon_spawn_timer.wait_time = balloon_spawn_interval
+	game_timer.wait_time = game_duration
+	clock.follow(game_timer)
 
 
 func _start() -> void:
@@ -39,7 +45,8 @@ func _start() -> void:
 
 func _finish_game() -> void:
 	balloon_spawn_timer.stop()
-	balloons.queue_free()
+	clock.retract()
+	_clear_balloons()
 	_complete()
 	DialogueManager.start_dialogue(BALLOON_END_DIALOGUE, BALLOON_GUY_NAME)
 	DialogueManager.dialogue_completed.connect(_on_dialogue_completed, CONNECT_ONE_SHOT)
@@ -57,8 +64,6 @@ func _exit() -> void:
 func _change_state(new_state: STATE) -> void:
 	match new_state:
 		STATE.INTRO:
-			balloon_spawn_timer.wait_time = balloon_spawn_interval
-			game_timer.wait_time = game_duration
 			DialogueManager.start_dialogue(BALLOON_INTRO_DIALOGUE, BALLOON_GUY_NAME)
 			DialogueManager.dialogue_completed.connect(_on_dialogue_completed, CONNECT_ONE_SHOT)
 		STATE.SHOOTING:
@@ -76,6 +81,7 @@ func _start_game() -> void:
 		CROSSHAIR_TEXTURE.get_size() / 2.0,
 	)
 	game_timer.start()
+	clock.drop_in()
 	_spawn_balloon()
 
 
@@ -90,6 +96,11 @@ func _spawn_balloon() -> void:
 	balloon_spawn_timer.start()
 
 
+func _clear_balloons() -> void:
+	for balloon in balloons.get_children():
+		balloon.queue_free()
+
+
 func _update_spawn_interval() -> void:
 	var elapsed_ratio := 1.0 - game_timer.time_left / game_timer.wait_time
 	var spawn_rate := 1.0 + BALLOON_SPAWN_INCREASE_RATIO * elapsed_ratio
@@ -98,6 +109,7 @@ func _update_spawn_interval() -> void:
 
 func _on_balloon_popped() -> void:
 	_balloons_popped += 1
+	GameManager.money += randi_range(minimum_balloon_money, maximum_balloon_money)
 
 
 func _on_balloon_spawn_timer_timeout() -> void:

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://b8b0f7hjtivyb" path="res://game/mini_games/balloon/balloon_mini_game.gd" id="2_73ggw"]
 [ext_resource type="Texture2D" uid="uid://c704mjf72ts3r" path="res://assets/sprites/balloon_tent_background.png" id="3_tyqja"]
 [ext_resource type="Texture2D" uid="uid://btnhj3xjwfqv4" path="res://assets/sprites/balloon_tent_foreground.png" id="4_lqh7t"]
+[ext_resource type="PackedScene" uid="uid://bug8t6njx0iow" path="res://scenes/clock/clock.tscn" id="5_ado3o"]
 
 [sub_resource type="Curve2D" id="Curve2D_tyqja"]
 _data = {
@@ -15,6 +16,8 @@ point_count = 2
 script = ExtResource("2_73ggw")
 game_duration = 15.0
 balloon_spawn_interval = 0.5
+minimum_balloon_money = 5
+maximum_balloon_money = 10
 initial_state = 0
 mini_game_scene = 4
 
@@ -47,6 +50,12 @@ one_shot = true
 
 [node name="GameTimer" type="Timer" parent="." index="9" unique_id=1721857439]
 one_shot = true
+
+[node name="Clock" parent="." index="10" unique_id=1594854910 instance=ExtResource("5_ado3o")]
+position = Vector2(62, 445)
+scale = Vector2(2, 2)
+starts_hidden = true
+hidden_offset = Vector2(0, 112)
 
 [connection signal="timeout" from="BalloonSpawnTimer" to="." method="_on_balloon_spawn_timer_timeout"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

@@ -1,19 +1,31 @@
 extends Node
 
 signal time_left_changed(time_left: int)
+signal run_over
 signal time_expired
+signal supplies_changed(supplies: float)
+signal money_changed(money: float)
 
-const DEFAULT_TIME_LEFT_IN_S := 600
+const DEFAULT_TIME_LEFT_IN_S := 300
+const FESTIVAL_TIME_DIALOGUE = preload("uid://cajh1oxmjgqok")
+const MAYOR_NAME := "Mayor"
 
-var money := 0.0
-var food := 0.0
-var drinks := 0.0
-var score := 0.0
+var supplies := 0.0:
+	set(value):
+		supplies = value
+		supplies_changed.emit(supplies)
+var money := 0.0:
+	set(value):
+		money = value
+		money_changed.emit(money)
 var time_left := DEFAULT_TIME_LEFT_IN_S
 var finished_mini_games: Array[Main.SCENE] = []
 
 var main: Main
 var town_square_player_position := Vector2.ZERO
+
+var _is_run_over := false
+var _is_outcome_requested := false
 
 @onready var game_timer: Timer = $GameTimer
 
@@ -23,14 +35,14 @@ func _ready() -> void:
 
 
 func reset_run() -> void:
+	supplies = 0.0
 	money = 0.0
-	food = 0.0
-	drinks = 0.0
-	score = 0.0
 	finished_mini_games.clear()
 	town_square_player_position = Vector2.ZERO
 	game_timer.stop()
 	time_left = DEFAULT_TIME_LEFT_IN_S
+	_is_run_over = false
+	_is_outcome_requested = false
 
 
 func complete_mini_game(mini_game: Main.SCENE) -> void:
@@ -42,6 +54,18 @@ func complete_mini_game(mini_game: Main.SCENE) -> void:
 
 func is_mini_game_finished(mini_game: Main.SCENE) -> bool:
 	return finished_mini_games.has(mini_game)
+
+
+func is_run_over() -> bool:
+	return _is_run_over
+
+
+func show_outcome() -> void:
+	if _is_outcome_requested:
+		return
+
+	_is_outcome_requested = true
+	main.load_scene(Main.SCENE.OUTCOME)
 
 
 func start_game_timer() -> void:
@@ -65,4 +89,17 @@ func _on_game_timer_timeout() -> void:
 
 	if time_left == 0:
 		game_timer.stop()
+		_is_run_over = true
+		run_over.emit()
+		_announce_festival()
+
+
+func _announce_festival() -> void:
+	DialogueManager.stop_dialogue()
+
+	if FESTIVAL_TIME_DIALOGUE.lines.is_empty():
 		time_expired.emit()
+		return
+
+	DialogueManager.dialogue_completed.connect(time_expired.emit, CONNECT_ONE_SHOT)
+	DialogueManager.start_dialogue(FESTIVAL_TIME_DIALOGUE, MAYOR_NAME)
