@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ch2bvudr6iaf6" path="res://scenes/characters/player/player.tscn" id="5_dxrkv"]
 
 [node name="Game" type="Node2D" unique_id=2038440534]
-process_mode = 3
+process_mode = 1
 script = ExtResource("1_vasa2")
 
 [node name="FadeTransition" parent="." unique_id=988272189 instance=ExtResource("2_h7iqs")]

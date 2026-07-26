@@ -30,6 +30,14 @@ func _ready() -> void:
 	load_scene(initial_scene)
 
 
+func _unhandled_key_input(event: InputEvent) -> void:
+	if not event.is_action_pressed("pause") or _current_scene is not Game:
+		return
+
+	get_viewport().set_input_as_handled()
+	_current_scene.toggle_pause()
+
+
 func unload_scene() -> void:
 	if not _current_scene:
 		return

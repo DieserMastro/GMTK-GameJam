@@ -16,7 +16,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [node name="DialogueManager" type="CanvasLayer" unique_id=621769665]
-process_mode = 3
+process_mode = 1
 layer = 5
 script = ExtResource("1_fwsxm")
 

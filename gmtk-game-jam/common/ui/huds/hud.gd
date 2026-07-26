@@ -7,7 +7,7 @@ extends CanvasLayer
 @onready var supplies_label: Label = $ContentContainer/StatusContainer/SuppliesContainer/SuppliesLabel
 @onready var money_label: Label = $ContentContainer/StatusContainer/MoneyContainer/MoneyLabel
 @onready var title_label: Label = $ContentContainer/TitleLabel
-@onready var pause_container: Control = $PauseContainer
+@onready var pause_container: Control = $PauseLayer/PauseContainer
 
 
 func _init() -> void:

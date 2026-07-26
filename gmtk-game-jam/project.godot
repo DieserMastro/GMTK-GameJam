@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="GMTK gameJam"
+config/name="Festillagers"
+config/description="Game for the GMTK game jam 2026"
 run/main_scene="uid://dkge4ia3gq4jw"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://b3ox82p502y54"
 
 [audio]
 

@@ -20,11 +20,6 @@ func _ready() -> void:
 	_restrict_camera()
 
 
-func _unhandled_key_input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause"):
-		_toggle_pause()
-
-
 func _start() -> void:
 	pass
 
@@ -37,7 +32,10 @@ func _exit() -> void:
 	get_tree().reload_current_scene()
 
 
-func _toggle_pause() -> void:
+func toggle_pause() -> void:
+	if GameManager.is_showing_outcome:
+		return
+
 	var is_paused := get_tree().paused
 
 	if is_paused:

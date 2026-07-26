@@ -9,7 +9,6 @@ const ACCELERATION_WEIGHT := 0.1
 const DECELERATION_WEIGHT := 0.2
 const TELEPORT_FADE_DURATION := 0.35
 
-var _is_running := false
 var _is_frozen := false
 var _is_teleporting := false
 var _teleport_tween: Tween
@@ -35,12 +34,6 @@ func _physics_process(_delta: float):
 func _unhandled_key_input(event: InputEvent) -> void:
 	if _is_frozen:
 		return
-
-	if event.is_action_pressed("run"):
-		_is_running = true
-
-	if event.is_action_released("run"):
-		_is_running = false
 
 	if event.is_action_pressed("interact") and _interactive:
 		_interact()
@@ -112,8 +105,9 @@ func _movement() -> void:
 		velocity = velocity.lerp(Vector2.ZERO, DECELERATION_WEIGHT)
 		return
 
-	sprite.speed_scale = 1.2 if _is_running else 1.0
-	var speed := RUN_SPEED if _is_running else SPEED
+	var is_running := Input.is_action_pressed("run")
+	sprite.speed_scale = 1.2 if is_running else 1.0
+	var speed := RUN_SPEED if is_running else SPEED
 	velocity = velocity.lerp(direction * speed, ACCELERATION_WEIGHT)
 
 
