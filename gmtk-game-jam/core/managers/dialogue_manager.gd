@@ -51,6 +51,7 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	get_viewport().set_input_as_handled()
+	AudioManager.play_sfx(AudioManager.SFX.UI_PRESSED, false)
 
 	if _is_typing():
 		_finish_line()

@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://cq5wc2iw7eeon"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" unique_id=1555576649]

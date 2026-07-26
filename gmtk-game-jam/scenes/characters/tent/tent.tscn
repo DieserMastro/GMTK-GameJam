@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dity28mahiu53"]
+
+[ext_resource type="Texture2D" uid="uid://b7uf0rllnwdo3" path="res://assets/sprites/blue_tent.png" id="1_byl8a"]
+[ext_resource type="Script" uid="uid://bmhlh6wrevlkj" path="res://scenes/characters/tent/tent.gd" id="1_xjya3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1xhu4"]
+size = Vector2(64, 40)
+
+[node name="Tent" type="StaticBody2D" unique_id=539378667]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_xjya3")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1322115783]
+texture = ExtResource("1_byl8a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1680372068]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_1xhu4")

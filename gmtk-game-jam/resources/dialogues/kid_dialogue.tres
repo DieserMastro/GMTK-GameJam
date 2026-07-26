@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DialogueResource" format=3 uid="uid://yvc7c05n8p3y"]
+
+[ext_resource type="Script" uid="uid://b16j8gviy27i0" path="res://resources/dialogues/dialogue_resource.gd" id="1_f63ti"]
+
+[resource]
+script = ExtResource("1_f63ti")
+lines = Array[String](["Are you my dad?"])
+metadata/_custom_type_script = "uid://b16j8gviy27i0"

@@ -21,7 +21,7 @@ var _scene_paths: Dictionary[SCENE, String] = {
 	SCENE.KITCHEN_GAME: "uid://dxvlmr187anxi",
 	SCENE.FARM_GAME: "uid://b6p6w4ydoyg03",
 	SCENE.BALLOON_GAME: "uid://theoq8o3tpee",
-	SCENE.OUTCOME: "res://game/outcome/outcome.tscn",
+	SCENE.OUTCOME: "uid://b170u02mew26o",
 }
 
 

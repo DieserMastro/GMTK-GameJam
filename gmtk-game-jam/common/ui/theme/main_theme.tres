@@ -2,6 +2,41 @@
 
 [ext_resource type="FontFile" uid="uid://c2ggcy1ttguqi" path="res://common/ui/fonts/Tiny5/Tiny5-Regular.ttf" id="1_1ojn0"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ojn0"]
+bg_color = Color(0, 0.82123107, 0.16083807, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6eit7"]
+bg_color = Color(0, 0.82123107, 0.16083807, 1)
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nhdl"]
+bg_color = Color(0, 0.82123107, 0.16083807, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [resource]
 default_font_size = 32
 DialogueBoxMarginContainer/base_type = &"MarginContainer"
@@ -11,8 +46,16 @@ DialogueBoxMarginContainer/constants/margin_right = 8
 DialogueBoxMarginContainer/constants/margin_top = 8
 DialogueLabel/base_type = &"Label"
 DialogueLabel/font_sizes/font_size = 16
-HeaderLarge/font_sizes/font_size = 48
+HeaderLarge/colors/font_shadow_color = Color(0, 0, 0, 1)
+HeaderLarge/constants/shadow_offset_x = 1
+HeaderLarge/constants/shadow_offset_y = 1
+HeaderLarge/constants/shadow_outline_size = 0
+HeaderLarge/font_sizes/font_size = 52
 HeaderMedium/base_type = &"Label"
+HeaderMedium/colors/font_shadow_color = Color(0, 0, 0, 1)
+HeaderMedium/constants/shadow_offset_x = 1
+HeaderMedium/constants/shadow_offset_y = 1
+HeaderMedium/constants/shadow_outline_size = 0
 HeaderMedium/font_sizes/font_size = 20
 MarginContainer/constants/margin_bottom = 16
 MarginContainer/constants/margin_left = 16
@@ -20,9 +63,16 @@ MarginContainer/constants/margin_right = 16
 MarginContainer/constants/margin_top = 16
 ObjectLabel/base_type = &"Label"
 ObjectLabel/font_sizes/font_size = 6
+PlayButton/base_type = &"Button"
+PlayButton/styles/hover = SubResource("StyleBoxFlat_1ojn0")
+PlayButton/styles/normal = SubResource("StyleBoxFlat_6eit7")
+PlayButton/styles/pressed = SubResource("StyleBoxFlat_6nhdl")
 TimeLabel/base_type = &"Label"
 TimeLabel/colors/font_color = Color(0, 0, 0, 1)
 TimeLabel/font_sizes/font_size = 12
 TimeLabel/fonts/font = ExtResource("1_1ojn0")
 TimerLabel/base_type = &"Label"
+TimerLabel/colors/font_shadow_color = Color(0, 0, 0, 1)
+TimerLabel/constants/shadow_offset_x = 1
+TimerLabel/constants/shadow_offset_y = 1
 TimerLabel/font_sizes/font_size = 16

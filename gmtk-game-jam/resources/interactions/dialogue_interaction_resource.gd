@@ -8,6 +8,7 @@ extends InteractionResource
 @export var dialogue_destination: Main.SCENE
 @export_group("Mini Game")
 @export var mini_game: Main.SCENE
+@export var requires_all_mini_games := false
 
 
 func interact(interactable: Interactable) -> void:
@@ -30,6 +31,9 @@ func is_available() -> bool:
 
 
 func _is_mini_game_finished() -> bool:
+	if requires_all_mini_games:
+		return GameManager.are_all_mini_games_finished()
+
 	return GameManager.is_mini_game_finished(mini_game)
 
 

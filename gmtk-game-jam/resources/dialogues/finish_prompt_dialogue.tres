@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DialogueResource" format=3 uid="uid://d47lokkncn4v"]
+
+[ext_resource type="Script" uid="uid://b16j8gviy27i0" path="res://resources/dialogues/dialogue_resource.gd" id="1_bu7id"]
+
+[resource]
+script = ExtResource("1_bu7id")
+lines = Array[String](["If you keep going upwards, the festival will begin."])
+metadata/_custom_type_script = "uid://b16j8gviy27i0"

@@ -33,6 +33,7 @@ func _randomize_color() -> void:
 
 func _on_clickable_component_clicked() -> void:
 	popped.emit()
+	AudioManager.play_sfx(AudioManager.SFX.BALLOON_POP)
 	queue_free()
 
 

@@ -4,8 +4,6 @@ extends Node2D
 
 signal completed
 
-const BREATHE_DURATION := 0.25
-
 @export_group("Data")
 @export var clickable_resource: ClickableResource
 @export_group("Properties")

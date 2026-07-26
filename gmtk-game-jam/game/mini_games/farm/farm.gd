@@ -10,6 +10,8 @@ const CHICKEN = preload("uid://durly01mavpvi")
 const FARM_TIME_OUT_DIALOGUE = preload("uid://bv7g8uf7i3yiv")
 const FARMER_NAME := "Farmer"
 const WORLD_LAYER := 4
+const CHICKEN_SOUND_MINIMUM := 1.5
+const CHICKEN_SOUND_MAXIMUM := 6.0
 
 @export_group("Properties")
 @export var chicken_amount := 5
@@ -28,6 +30,7 @@ var _chickens_left: int
 @onready var player_reset_marker: Marker2D = $PlayerResetMarker
 @onready var game_timer: Timer = $GameTimer
 @onready var clock: Clock = $Clock
+@onready var chicken_sound_timer: Timer = $ChickenSoundTimer
 
 
 func _ready() -> void:
@@ -144,3 +147,8 @@ func _on_start_game_area_body_entered(_body: Node2D) -> void:
 
 	game_timer.start()
 	clock.drop_in()
+
+
+func _on_chicken_sound_timer_timeout() -> void:
+	AudioManager.play_sfx(AudioManager.SFX.CHICKEN)
+	chicken_sound_timer.start(randf_range(CHICKEN_SOUND_MINIMUM, CHICKEN_SOUND_MAXIMUM))

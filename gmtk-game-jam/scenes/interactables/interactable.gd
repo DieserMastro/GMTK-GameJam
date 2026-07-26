@@ -52,6 +52,8 @@ func _on_interactive_component_interacted() -> void:
 	if not enabled or not interactable_resource:
 		return
 
+	AudioManager.play_sfx(AudioManager.SFX.INTERACTION)
+
 	if interactable_resource.play_only_on_interaction:
 		sprite.play("default")
 

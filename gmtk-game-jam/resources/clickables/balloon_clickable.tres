@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="ClickableResource" format=3 uid="uid://fp5rnguls285"]
-
-[ext_resource type="Script" uid="uid://bkpys216jvj2m" path="res://resources/clickables/clickable_resource.gd" id="1_wpwtw"]
-[ext_resource type="Texture2D" uid="uid://brsr6n0sgx0k0" path="res://assets/sprites/balloon.png" id="2_6shd8"]
-
-[resource]
-script = ExtResource("1_wpwtw")
-texture = ExtResource("2_6shd8")
-metadata/_custom_type_script = "uid://bkpys216jvj2m"

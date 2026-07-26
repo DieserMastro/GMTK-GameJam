@@ -3,11 +3,21 @@
 [ext_resource type="Script" uid="uid://ihmn7eksbxu0" path="res://core/main/main.gd" id="1_8fcwd"]
 [ext_resource type="PackedScene" uid="uid://yj615rn7aflx" path="res://core/managers/game_manager.tscn" id="2_6vymn"]
 [ext_resource type="PackedScene" uid="uid://dc3cpfcs5dn66" path="res://core/managers/dialogue_manager.tscn" id="3_vwfi5"]
+[ext_resource type="PackedScene" uid="uid://cpt5tc84q7r0u" path="res://core/managers/audio_manager.tscn" id="3_yibi5"]
+[ext_resource type="AudioStream" uid="uid://dyop2xbbeelcv" path="res://assets/sounds/music.ogg" id="5_81xgm"]
+[ext_resource type="PackedScene" uid="uid://cq5wc2iw7eeon" path="res://core/managers/music_player.tscn" id="5_k5wvu"]
 
 [node name="Main" type="Node" unique_id=2037038990]
 process_mode = 3
 script = ExtResource("1_8fcwd")
 
 [node name="GameManager" parent="." unique_id=1164351822 instance=ExtResource("2_6vymn")]
+
+[node name="AudioManager" parent="." unique_id=1046196678 instance=ExtResource("3_yibi5")]
+
+[node name="MusicPlayer" parent="." unique_id=1555576649 instance=ExtResource("5_k5wvu")]
+stream = ExtResource("5_81xgm")
+autoplay = true
+bus = &"Music"
 
 [node name="DialogueManager" parent="." unique_id=621769665 instance=ExtResource("3_vwfi5")]

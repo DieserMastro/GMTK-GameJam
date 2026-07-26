@@ -13,3 +13,4 @@ script = ExtResource("2_ot2jk")
 title = "Mid, but not the worst"
 minimum_supplies = 150.0
 dialogue = SubResource("Resource_modst")
+crowd_count = 12

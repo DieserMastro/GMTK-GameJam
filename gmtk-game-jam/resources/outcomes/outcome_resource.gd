@@ -6,9 +6,9 @@ extends Resource
 @export var minimum_supplies := 0.0
 @export var minimum_money := 0.0
 @export_group("Presentation")
-@export var background: Texture2D
 @export var dialogue: DialogueResource
 @export var speaker_name := "Mayor"
+@export var crowd_count := 0
 
 
 func is_earned(supplies: float, money: float) -> bool:

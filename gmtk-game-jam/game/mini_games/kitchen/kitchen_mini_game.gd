@@ -240,6 +240,7 @@ func _on_oven_interacted() -> void:
 
 
 func _on_oven_timer_timeout() -> void:
+	AudioManager.play_sfx(AudioManager.SFX.OVEN_ALARM)
 	_change_state(STATE.OVEN_DONE)
 
 

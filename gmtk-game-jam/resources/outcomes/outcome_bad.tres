@@ -12,3 +12,4 @@ metadata/_custom_type_script = "uid://b16j8gviy27i0"
 script = ExtResource("1_ruind")
 title = "Forgettable Festival"
 dialogue = SubResource("Resource_ruind")
+crowd_count = 5

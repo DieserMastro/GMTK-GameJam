@@ -89,5 +89,6 @@ func _on_interactive_component_interacted() -> void:
 	if not _is_active:
 		return
 
+	AudioManager.play_sfx(AudioManager.SFX.INTERACTION)
 	caught.emit()
 	queue_free()

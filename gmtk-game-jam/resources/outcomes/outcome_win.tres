@@ -12,5 +12,6 @@ metadata/_custom_type_script = "uid://b16j8gviy27i0"
 script = ExtResource("2_152qv")
 title = "Festival so good, it created a babyboom"
 minimum_supplies = 300.0
-minimum_money = 60.0
+minimum_money = 200.0
 dialogue = SubResource("Resource_trmph")
+crowd_count = 24

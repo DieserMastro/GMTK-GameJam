@@ -22,7 +22,6 @@ const CROSSHAIR_TEXTURE = preload("uid://dej0amaqtt46g")
 @export var initial_state := STATE.INTRO
 
 var _state: STATE
-var _balloons_popped := 0
 
 @onready var balloon_spawn_timer: Timer = $BalloonSpawnTimer
 @onready var game_timer: Timer = $GameTimer
@@ -108,7 +107,6 @@ func _update_spawn_interval() -> void:
 
 
 func _on_balloon_popped() -> void:
-	_balloons_popped += 1
 	GameManager.money += randi_range(minimum_balloon_money, maximum_balloon_money)
 
 
